@@ -57,6 +57,7 @@ let stride = MemoryLayout<Int>.stride
 let alignment = MemoryLayout<Int>.alignment
 let byteCount = stride * count
 
+//Using Raw Pointers
 // 2
 do {
   print("Raw pointers")
@@ -83,6 +84,7 @@ do {
   }
 }
 
+//Using Typed Pointers
 do {
   print("Typed pointers")
   
@@ -103,3 +105,40 @@ do {
     print("value \(index): \(value)")
   }
 }
+
+//Converting Raw Pointers to Typed Pointers
+do {
+  print("Converting raw pointers to typed pointers")
+  
+  let rawPointer = UnsafeMutableRawPointer.allocate(
+    byteCount: byteCount,
+    alignment: alignment)
+  defer {
+    rawPointer.deallocate()
+  }
+  
+  let typedPointer = rawPointer.bindMemory(to: Int.self, capacity: count)
+  typedPointer.initialize(repeating: 0, count: count)
+  defer {
+    typedPointer.deinitialize(count: count)
+  }
+
+  typedPointer.pointee = 42
+  typedPointer.advanced(by: 1).pointee = 6
+  typedPointer.pointee
+  typedPointer.advanced(by: 1).pointee
+  
+  let bufferPointer = UnsafeBufferPointer(start: typedPointer, count: count)
+  for (index, value) in bufferPointer.enumerated() {
+    print("value \(index): \(value)")
+  }
+}
+
+//Compression
+enum CompressionAlgorithm {
+  case lz4   // speed is critical
+  case lz4a  // space is critical
+  case zlib  // reasonable speed and space
+  case lzfse // better speed and space
+}
+
