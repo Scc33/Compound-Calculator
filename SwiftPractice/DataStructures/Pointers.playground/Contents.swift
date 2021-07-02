@@ -50,3 +50,56 @@ class SampleClass {
 MemoryLayout<SampleClass>.size      // returns 8 (on 64-bit)
 MemoryLayout<SampleClass>.stride    // returns 8 (on 64-bit)
 MemoryLayout<SampleClass>.alignment // returns 8 (on 64-bit)
+
+// 1
+let count = 2
+let stride = MemoryLayout<Int>.stride
+let alignment = MemoryLayout<Int>.alignment
+let byteCount = stride * count
+
+// 2
+do {
+  print("Raw pointers")
+  
+  // 3
+  let pointer = UnsafeMutableRawPointer.allocate(
+    byteCount: byteCount,
+    alignment: alignment)
+  // 4
+  defer {
+    pointer.deallocate()
+  }
+  
+  // 5
+  pointer.storeBytes(of: 42, as: Int.self)
+  pointer.advanced(by: stride).storeBytes(of: 6, as: Int.self)
+  pointer.load(as: Int.self)
+  pointer.advanced(by: stride).load(as: Int.self)
+  
+  // 6
+  let bufferPointer = UnsafeRawBufferPointer(start: pointer, count: byteCount)
+  for (index, byte) in bufferPointer.enumerated() {
+    print("byte \(index): \(byte)")
+  }
+}
+
+do {
+  print("Typed pointers")
+  
+  let pointer = UnsafeMutablePointer<Int>.allocate(capacity: count)
+  pointer.initialize(repeating: 0, count: count)
+  defer {
+    pointer.deinitialize(count: count)
+    pointer.deallocate()
+  }
+  
+  pointer.pointee = 42
+  pointer.advanced(by: 1).pointee = 6
+  pointer.pointee
+  pointer.advanced(by: 1).pointee
+  
+  let bufferPointer = UnsafeBufferPointer(start: pointer, count: count)
+  for (index, value) in bufferPointer.enumerated() {
+    print("value \(index): \(value)")
+  }
+}
