@@ -47,3 +47,42 @@ func username(for id: Int) -> String? {
 }
 let user = username(for: 15) ?? "Anonymous"
 
+//Optional chaining
+let names = ["John", "Paul", "George", "Ringo"]
+let beatle = names.first?.uppercased()
+let shoppingList = ["eggs", "tomatoes", "grapes"]
+let firstItem = shoppingList.first?.appending(" are on my shopping list")
+
+//try? vs try!
+/*if let result = try? runRiskyFunction() {
+    print(result)
+}*/
+
+//Failable initializer
+struct Person {
+    var id: String
+
+    init?(id: String) {
+        if id.count == 9 {
+            self.id = id
+        } else {
+            return nil
+        }
+    }
+}
+
+//Typecasting
+class Animal { }
+class Fish: Animal { }
+
+class Dog: Animal {
+    func makeNoise() {
+        print("Woof!")
+    }
+}
+let pets = [Fish(), Dog(), Fish(), Dog()]
+for pet in pets {
+    if let dog = pet as? Dog {
+        dog.makeNoise()
+    }
+}
