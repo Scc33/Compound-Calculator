@@ -19,6 +19,7 @@ struct ContentView: View {
     let time = ["seconds", "minutes", "hours", "days"]
     let volume = ["milliliters", "liters", "cups", "pints", "gallons"]
     
+    @ViewBuilder
     var body: some View {
         NavigationView {
             Form {
@@ -32,87 +33,73 @@ struct ContentView: View {
                     .pickerStyle(SegmentedPickerStyle())
                 }
                 Section(header: Text("Unit One")) {
-                    switch unit {
-                    case 0 :
+                    if (unit == 0) {
                         Picker("Unit", selection: $type1) {
                             ForEach(0 ..< temp.count) {
                                 Text("\(self.units[$0])")
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
-                    case 1 :
+                        type1 = "Celsius"
+                    } else if unit == 1 {
                         Picker("Unit", selection: $type1) {
                             ForEach(0 ..< length.count) {
                                 Text("\(self.units[$0])")
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
-                    case 2 :
+                        type1 = "meters"
+                    } else if unit == 2 {
                         Picker("Unit", selection: $type1) {
                             ForEach(0 ..< time.count) {
                                 Text("\(self.units[$0])")
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
-                    default :
+                        type1 = "seconds"
+                    } else {
                         Picker("Unit", selection: $type1) {
                             ForEach(0 ..< volume.count) {
                                 Text("\(self.units[$0])")
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
-                    }
-                    switch unit {
-                    case 0 :
-                        type1 = "Celsius"
-                    case 1 :
-                        type1 = "meters"
-                    case 2 :
-                        type1 = "seconds"
-                    default :
                         type1 = "milliliters"
                     }
                 }
                 Section(header: Text("Unit Two")) {
-                    switch unit {
-                    case 0 :
+                    if unit == 0 {
                         Picker("Unit", selection: $type1) {
                             ForEach(0 ..< temp.count) {
-                                Text("\(self.temp[$0])")
+                                Text("\(self.units[$0])")
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
-                    case 1 :
+                        type1 = "Celsius"
+                    } else if unit == 1 {
                         Picker("Unit", selection: $type1) {
                             ForEach(0 ..< length.count) {
-                                Text("\(self.length[$0])")
+                                Text("\(self.units[$0])")
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
-                    case 2 :
+                        type1 = "meters"
+                    } else if unit == 2 {
                         Picker("Unit", selection: $type1) {
                             ForEach(0 ..< time.count) {
-                                Text("\(self.time[$0])")
+                                Text("\(self.units[$0])")
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
-                    default :
+                        type1 = "seconds"
+                    } else {
                         Picker("Unit", selection: $type1) {
                             ForEach(0 ..< volume.count) {
-                                Text("\(self.volume[$0])")
+                                Text("\(self.units[$0])")
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
-                    }
-                    switch unit {
-                    case 0 :
-                        type2 = "Celsius"
-                    case 1 :
-                        type2 = "meters"
-                    case 2 :
-                        type2 = "seconds"
-                    default :
-                        type2 = "milliliters"
+                        type1 = "milliliters"
                     }
                 }
                 Section {
