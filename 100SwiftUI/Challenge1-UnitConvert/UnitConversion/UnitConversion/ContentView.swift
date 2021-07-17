@@ -10,103 +10,63 @@ import SwiftUI
 struct ContentView: View {
     @State private var unit = 0
     @State private var val1 = ""
-    @State private var val2 = ""
-    @State private var type1 = ""
-    @State private var type2 = ""
-    let units = ["temp", "length", "time", "volume"]
+    @State private var type1 = 0
+    @State private var type2 = 0
     let temp = ["Celsius", "Fahrenheit", "Kelvin"]
-    let length = ["meters", "kilometers", "feet", "yards", "miles"]
-    let time = ["seconds", "minutes", "hours", "days"]
-    let volume = ["milliliters", "liters", "cups", "pints", "gallons"]
     
-    @ViewBuilder
+    var finalTemp: Double {
+        let v1 = Double(val1) ?? 0
+        var u1:UnitTemperature
+        var u2:UnitTemperature
+        
+        switch type1 {
+        case 0 :
+            u1 = UnitTemperature.celsius
+        case 1 :
+            u1 = UnitTemperature.fahrenheit
+        default:
+            u1 = UnitTemperature.kelvin
+        }
+        switch type2 {
+        case 0 :
+            u2 = UnitTemperature.celsius
+        case 1 :
+            u2 = UnitTemperature.fahrenheit
+        default:
+            u2 = UnitTemperature.kelvin
+        }
+        
+        let t = Measurement(value: v1, unit: u1)
+        return t.converted(to: u2).value
+    }
+    
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("What units to convert")) {
-                    Picker("Unit", selection: $unit) {
-                        ForEach(0 ..< units.count) {
-                            //remember $ is shorthand for closures
-                            Text("\(self.units[$0])")
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                }
                 Section(header: Text("Unit One")) {
-                    if (unit == 0) {
                         Picker("Unit", selection: $type1) {
                             ForEach(0 ..< temp.count) {
-                                Text("\(self.units[$0])")
+                                Text("\(self.temp[$0])")
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
-                        type1 = "Celsius"
-                    } else if unit == 1 {
-                        Picker("Unit", selection: $type1) {
-                            ForEach(0 ..< length.count) {
-                                Text("\(self.units[$0])")
-                            }
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        type1 = "meters"
-                    } else if unit == 2 {
-                        Picker("Unit", selection: $type1) {
-                            ForEach(0 ..< time.count) {
-                                Text("\(self.units[$0])")
-                            }
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        type1 = "seconds"
-                    } else {
-                        Picker("Unit", selection: $type1) {
-                            ForEach(0 ..< volume.count) {
-                                Text("\(self.units[$0])")
-                            }
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        type1 = "milliliters"
-                    }
                 }
                 Section(header: Text("Unit Two")) {
                     if unit == 0 {
-                        Picker("Unit", selection: $type1) {
+                        Picker("Unit", selection: $type2) {
                             ForEach(0 ..< temp.count) {
-                                Text("\(self.units[$0])")
+                                Text("\(self.temp[$0])")
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
-                        type1 = "Celsius"
-                    } else if unit == 1 {
-                        Picker("Unit", selection: $type1) {
-                            ForEach(0 ..< length.count) {
-                                Text("\(self.units[$0])")
-                            }
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        type1 = "meters"
-                    } else if unit == 2 {
-                        Picker("Unit", selection: $type1) {
-                            ForEach(0 ..< time.count) {
-                                Text("\(self.units[$0])")
-                            }
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        type1 = "seconds"
-                    } else {
-                        Picker("Unit", selection: $type1) {
-                            ForEach(0 ..< volume.count) {
-                                Text("\(self.units[$0])")
-                            }
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        type1 = "milliliters"
                     }
                 }
                 Section {
-                    TextField("Value One", text: $val1)
+                    TextField("Value", text: $val1)
                         .keyboardType(.decimalPad)
-                    TextField("Value Two", text: $val2)
-                        .keyboardType(.decimalPad)
+                }
+                Section(header: Text("Final Temp")) {
+                    Text("\(finalTemp, specifier: "%.2f") \(temp[type2])")
                 }
             }
         }
