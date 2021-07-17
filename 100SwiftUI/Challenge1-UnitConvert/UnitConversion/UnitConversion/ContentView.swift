@@ -11,8 +11,8 @@ struct ContentView: View {
     @State private var unit = 0
     @State private var val1 = ""
     @State private var val2 = ""
-    @State private var type1 = "milliliters"
-    @State private var type2 = "milliliters"
+    @State private var type1 = ""
+    @State private var type2 = ""
     let units = ["temp", "length", "time", "volume"]
     let temp = ["Celsius", "Fahrenheit", "Kelvin"]
     let length = ["meters", "kilometers", "feet", "yards", "miles"]
@@ -36,31 +36,41 @@ struct ContentView: View {
                     case 0 :
                         Picker("Unit", selection: $type1) {
                             ForEach(0 ..< temp.count) {
-                                Text("\(self.temp[$0])")
+                                Text("\(self.units[$0])")
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
                     case 1 :
                         Picker("Unit", selection: $type1) {
                             ForEach(0 ..< length.count) {
-                                Text("\(self.length[$0])")
+                                Text("\(self.units[$0])")
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
                     case 2 :
                         Picker("Unit", selection: $type1) {
                             ForEach(0 ..< time.count) {
-                                Text("\(self.time[$0])")
+                                Text("\(self.units[$0])")
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
                     default :
                         Picker("Unit", selection: $type1) {
                             ForEach(0 ..< volume.count) {
-                                Text("\(self.volume[$0])")
+                                Text("\(self.units[$0])")
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
+                    }
+                    switch unit {
+                    case 0 :
+                        type1 = "Celsius"
+                    case 1 :
+                        type1 = "meters"
+                    case 2 :
+                        type1 = "seconds"
+                    default :
+                        type1 = "milliliters"
                     }
                 }
                 Section(header: Text("Unit Two")) {
@@ -93,6 +103,16 @@ struct ContentView: View {
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
+                    }
+                    switch unit {
+                    case 0 :
+                        type2 = "Celsius"
+                    case 1 :
+                        type2 = "meters"
+                    case 2 :
+                        type2 = "seconds"
+                    default :
+                        type2 = "milliliters"
                     }
                 }
                 Section {
