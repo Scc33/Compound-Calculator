@@ -14,10 +14,12 @@ struct ContentView: View {
     @State private var correctAnswer = Int.random(in: 0...2)
     @State private var showingScore = false
     @State private var scoreTitle = ""
+    @State private var score = 0
     
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
             scoreTitle = "Correct"
+            score += 1
         } else {
             scoreTitle = "Wrong"
         }
@@ -57,10 +59,12 @@ struct ContentView: View {
                         //modifier tells SwiftUI to render the original image pixels rather than trying to recolor them as a button
                     }
                 }
+                Text("Your score is \(score)")
+                    .foregroundColor(.white)
                 Spacer()
             }
         }.alert(isPresented: $showingScore) {
-            Alert(title: Text(scoreTitle), message: Text("Your score is ???"), dismissButton: .default(Text("Continue")) {
+            Alert(title: Text(scoreTitle), message: Text("That was \(scoreTitle). Your score is \(score)."), dismissButton: .default(Text("Continue")) {
                 self.askQuestion()
             })
         }
