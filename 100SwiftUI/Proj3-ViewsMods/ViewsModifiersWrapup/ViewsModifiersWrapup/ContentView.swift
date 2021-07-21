@@ -7,10 +7,27 @@
 
 import SwiftUI
 
+//Custom modifier
+struct LargeBlue: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .foregroundColor(Color.blue)
+            .padding()
+    }
+}
+
+extension View {
+    func titleStyle() -> some View {
+        self.modifier(LargeBlue())
+    }
+}
+
+
 struct ContentView: View {
     var body: some View {
         Text("Hello, world!")
-            .padding()
+            .titleStyle()
     }
 }
 
