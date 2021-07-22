@@ -1,0 +1,31 @@
+Structs vs Classes
+ 1. Classes don't come with member wise initializer
+ 2. Classes can se inheritance
+ 3. Classes use references so copying relies on same data, structs pass by copy so everything unique
+ 4. Classes can have deinitializers
+ 5. You can change variables inside constant classes, properties inside constant structs are constant  regardless of var or let
+
+"Tip: One of the fascinating details of SwiftUI is how it completely inverts how we use structs and classes. In UIKit we would use structs for data and classes for UI, but in SwiftUI it’s completely the opposite – a good reminder of the importance of learning things, even if you think they aren’t immediately useful."
+
+For Each
+ let agents = ["Cyril", "Lana", "Pam", "Sterling"]
+
+ VStack {
+     ForEach(0 ..< agents.count) {
+        Text(self.agents[$0])
+     }
+ }
+
+ OR...
+ 
+ VStack {
+     ForEach(agents, id: \.self) {
+         Text($0)
+     }
+ }
+
+ - using the self tells Swift what the value is and if the view needs to be updated
+
+"Everything that SwiftUI does for us can be done by hand, and although it’s nearly always better to rely on the automatic solution it can be really helpful to take a peek behind the scenes so you understand what it’s doing on your behalf."
+
+@State - takes away boilerplate code
