@@ -8,15 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    func select1() {
-        player = 0
-    }
-    func select2() {
-        player = 1
-    }
-    func select3() {
-        player = 2
-    }
     func decide() {
         let comp = Int.random(in: 0..<3)
         if (comp == 0) {
@@ -58,34 +49,44 @@ struct ContentView: View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.green, .black]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
-        }
-        Button(action: select1) {
-            Text("Rock")
-        }
-        Button(action: select2) {
-            Text("Paper")
-        }
-        Button(action: select3) {
-            Text("Scissors")
-        }
-        Button(action: decide) {
-            Text("Submit")
-        }
-        VStack(spacing: 30) {
-            Text("Choose an option")
-                .foregroundColor(.white)
-            Text("Your score is \(playerScore)")
-                .foregroundColor(.white)
-            Text("The computer score is \(computerScore)")
-                .foregroundColor(.white)
-        }
-        switch winner {
-        case 0:
-            Text("Tie")
-        case 1:
-            Text("Player wins")
-        default:
-            Text("Computer wins")
+            VStack(spacing: 30) {
+                Text("Choose an option")
+                    .foregroundColor(.white)
+                    .font(.largeTitle)
+                HStack {
+                    ForEach(0 ..< 3) { number in
+                        Button(action: {player = number}) {
+                            Text(choices[number])
+                                .font(.largeTitle)
+                                .foregroundColor(.white)
+                        }
+                        .clipShape(Capsule())
+                        .overlay(Capsule().stroke(Color.black, lineWidth: 1))
+                    }
+                }
+                HStack {
+                    Text("Your score \(playerScore)")
+                        .foregroundColor(.white)
+                        .font(.largeTitle)
+                    Text("Computer score \(computerScore)")
+                        .foregroundColor(.white)
+                        .font(.largeTitle)
+                }
+                switch winner {
+                case 0:
+                    Text("Tie")
+                        .foregroundColor(.white)
+                        .font(.largeTitle)
+                case 1:
+                    Text("Player wins")
+                        .foregroundColor(.white)
+                        .font(.largeTitle)
+                default:
+                    Text("Computer wins")
+                        .foregroundColor(.white)
+                        .font(.largeTitle)
+                }
+            }
         }
     }
 }
