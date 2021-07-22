@@ -9,28 +9,34 @@ import SwiftUI
 
 struct ContentView: View {
     func decide() {
-        let comp = Int.random(in: 0..<3)
-        if (comp == 0) {
+        computer = Int.random(in: 0..<3)
+        if (computer == 0) {
             if (player == 0) {
                 winner = 0
             } else if (player == 1) {
                 winner = 1
+                playerScore += 1
             } else {
                 winner = -1
+                computerScore += 1
             }
-        } else if (comp == 1) {
+        } else if (computer == 1) {
             if (player == 0) {
                 winner = -1
+                computerScore += 1
             } else if (player == 1) {
                 winner = 0
             } else {
                 winner = 1
+                playerScore += 1
             }
         } else {
             if (player == 0) {
                 winner = 1
+                playerScore += 1
             } else if (player == 1) {
                 winner = -1
+                computerScore += 1
             } else {
                 winner = 0
             }
@@ -47,47 +53,46 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.green, .black]), startPoint: .top, endPoint: .bottom)
-                .edgesIgnoringSafeArea(.all)
+            LinearGradient(
+                gradient: Gradient(colors: [.green, .black]),
+                startPoint: .top,
+                endPoint: .bottom
+            ).edgesIgnoringSafeArea(.all)
             VStack(spacing: 30) {
                 Text("Choose an option")
-                    .foregroundColor(.white)
-                    .font(.largeTitle)
                 HStack {
                     ForEach(0 ..< 3) { number in
                         Button(action: {player = number}) {
                             Text(choices[number])
-                                .font(.largeTitle)
-                                .foregroundColor(.white)
                         }
-                        .clipShape(Capsule())
-                        .overlay(Capsule().stroke(Color.black, lineWidth: 1))
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .foregroundColor(.white)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 25)
+                                .stroke(Color.white, lineWidth: 2))
                     }
+                }
+                Button(action: decide) {
+                    Text("Play!")
+                }
+                Text("You picked \(choices[player])")
+                Text("Computer picked \(choices[computer])")
+                switch winner {
+                case 0:
+                    Text("Tied")
+                case 1:
+                    Text("Player wins")
+                default:
+                    Text("Computer wins")
                 }
                 HStack {
                     Text("Your score \(playerScore)")
-                        .foregroundColor(.white)
-                        .font(.largeTitle)
                     Text("Computer score \(computerScore)")
-                        .foregroundColor(.white)
-                        .font(.largeTitle)
-                }
-                switch winner {
-                case 0:
-                    Text("Tie")
-                        .foregroundColor(.white)
-                        .font(.largeTitle)
-                case 1:
-                    Text("Player wins")
-                        .foregroundColor(.white)
-                        .font(.largeTitle)
-                default:
-                    Text("Computer wins")
-                        .foregroundColor(.white)
-                        .font(.largeTitle)
                 }
             }
         }
+        .font(.largeTitle)
+        .foregroundColor(.white)
     }
 }
 
