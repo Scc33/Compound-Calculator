@@ -1,0 +1,19 @@
+ML Review/Overview
+
+Random Forest
+ - Similar to boosted trees
+ - Each tree only has access to subset of data
+ - Reduces risk of overfitting
+ - Brings in new ideas
+
+Boosted Tree
+ - Uses series of decision trees
+ - Subsequent trees refine the errors
+
+Decision Tree
+ - Tree structure that contains choices
+ - Similar to 20 questions
+
+Linear regressor 
+ - Estimate relationships by drawing a straight line (linear equation)
+ - Minimize sum of squared error
