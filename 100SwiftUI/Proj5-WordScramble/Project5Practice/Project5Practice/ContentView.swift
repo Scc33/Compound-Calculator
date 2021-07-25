@@ -10,9 +10,36 @@
 /*The job of List is to provide a scrolling table of data. In fact, it’s pretty much identical to Form, except it’s used for presentation of data rather than requesting user input. Don’t get me wrong: you’ll use Form quite a lot too, but really it’s just a specialized type of List.*/
 /*But one thing List can do that Form can’t is to generate its rows entirely from dynamic content without needing a ForEach*/
 
+//Bundles - Swift creates bundles behind the screens so it can store everything in one place
+//Multiple bundles can be included within one single app
+
 import SwiftUI
 
 struct ContentView: View {
+    func randomBundle() {
+        //URL datatype
+        if let fileURL = Bundle.main.url(forResource: "some-file", withExtension: "txt") {
+            // we found the file in our bundle!
+            if let fileContents = try? String(contentsOf: fileURL) {
+                // we loaded the file into a string!
+            }
+        }
+    }
+    
+    func randomStringPrac() {
+        let input1 = "a b c"
+        let letters1 = input1.components(separatedBy: " ")
+        let input2 = """
+                    a
+                    b
+                    c
+                    """
+        let letters2 = input2.components(separatedBy: "\n")
+        let letter1 = letters1.randomElement()
+        let word = "swift"
+        let checker = UITextChecker() // from UIKit so written in Objective-C
+    }
+    
     var body: some View {
         NavigationView {
             //Text("Hello, world!").padding()
