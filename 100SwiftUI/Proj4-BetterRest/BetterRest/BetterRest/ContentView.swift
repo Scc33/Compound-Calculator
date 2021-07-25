@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var wakeUp = defaultWakeTime
     @State private var sleepAmount = 8.0
     @State private var coffeeAmount = 1
+    @State private var teaAmount = 1
     
     @State private var alertTitle = ""
     @State private var alertMessage = ""
@@ -53,6 +54,12 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             Form {
+                Section(header: Text("Test")) {
+                    //Reminder: ForEach is a view struct
+                    ForEach((1...2).reversed(), id: \.self) {
+                            Text("\($0)…")
+                        }
+                }
                 VStack(alignment: .leading, spacing: 0) {
                     Text("When do you want to wake up?")
                         .font(.headline)
@@ -83,6 +90,16 @@ struct ContentView: View {
                         }
                     }
                 }
+                
+                VStack(alignment: .leading, spacing: 0) {
+                    Picker("Tea", selection: $teaAmount) {
+                        ForEach((1...5), id: \.self) {
+                            Text("\($0)")
+                        }
+                    }.font(.headline)
+                }
+                
+                Text(alertMessage).font(.headline)
             }
             .navigationBarTitle("BetterRest")
             .navigationBarItems(trailing:
