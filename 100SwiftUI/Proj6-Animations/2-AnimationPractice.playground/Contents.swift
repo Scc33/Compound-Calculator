@@ -1,65 +1,42 @@
 import SwiftUI
 import PlaygroundSupport
 
+//The animatioin modifer can be applied to any SwiftUI binding
 struct ContentView: View {
-    //We want to change the scale effect every click
-    //Need a very specific data type: CGFloat to play nicely with older APIs
     @State private var animationAmount: CGFloat = 1
-    
+
     var body: some View {
-        Button("Tap Me") {
-            self.animationAmount += 1
+        print(animationAmount)
+        
+        //This return allows SwiftUI to know this is the view to look at
+        return VStack {
+            Stepper("Scale amount", value: $animationAmount.animation(), in: 1...10)
+            Stepper("Scale amount", value: $animationAmount.animation(
+                Animation.easeInOut(duration: 1)
+                    .repeatCount(3, autoreverses: true)
+            ), in: 1...10)
+
+            Spacer()
+
+            Button("Tap Me") {
+                self.animationAmount += 1
+            }
+            .padding(40)
+            .background(Color.red)
+            .foregroundColor(.white)
+            .clipShape(Circle())
+            .scaleEffect(animationAmount)
         }
-        .padding(50)
-        .background(Color.red)
-        .foregroundColor(.white)
-        .clipShape(Circle())
-        .scaleEffect(animationAmount)
-        .overlay(
-            Circle()
-                .stroke(Color.red)
-                .scaleEffect(animationAmount)
-                .opacity(Double(2 - animationAmount))
-                .animation(
-                    Animation.easeOut(duration: 1)
-                        .repeatForever(autoreverses: false)
-                )
-        )
-        .blur(radius: (animationAmount - 1) * 3)
     }
 }
 
 PlaygroundPage.current.setLiveView(ContentView())
 
-//Basic kind
 /*
- .animation(.default) // means "ease" in" or "ease out"
+ .rotation3DEffect(.degrees(animationAmount), axis: (x: 0, y: 1, z: 0))
+ withAnimation(.interpolatingSpring(stiffness: 5, damping: 1)) {
+     self.animationAmount += 360
+ }
  */
-//Other animation types
-/*Gives a bouncy effect
- .animation(.interpolatingSpring(stiffness: 50, damping: 1))
- */
-/*
- .animation(.easeInOut(duration: 2))
- */
-/*
- .animation(
-     Animation.easeInOut(duration: 1)
-         .repeatCount(3, autoreverses: true)
- )
- .animation(
-     Animation.easeInOut(duration: 1)
-         .repeatForever(autoreverses: true)
- )
- .animation(
-     Animation.easeInOut(duration: 2)
-         .delay(1)
- )
- */
-/*
- .overlay(
- Circle()
-     .stroke(Color.red)
-     .scaleEffect(animationAmount)
-     .opacity(Double(2 - animationAmount))
-)*/
+//THIS IS A COOL ONE
+//https://www.hackingwithswift.com/books/ios-swiftui/creating-explicit-animations

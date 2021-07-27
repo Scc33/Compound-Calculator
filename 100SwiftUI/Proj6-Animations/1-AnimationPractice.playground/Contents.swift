@@ -24,7 +24,7 @@ struct ContentView: View {
                     Animation.easeOut(duration: 1)
                         .repeatForever(autoreverses: false)
                 )
-        )
+        ) // this animation creates a pulsating circle that extends out from the button
         .blur(radius: (animationAmount - 1) * 3)
     }
 }
