@@ -1,0 +1,7 @@
+# Merge vs PR
+
+As far as history is concerned, there is no difference between a merge and the PR process.
+
+And as far as contribution goes, your contributors will not have to do anything different for the two situations. They are the same (minus the nice little chat).
+
+PRs are not much helpful if there is only a single contributor to a repository.
