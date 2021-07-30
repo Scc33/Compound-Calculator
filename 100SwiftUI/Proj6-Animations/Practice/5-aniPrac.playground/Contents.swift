@@ -1,21 +1,27 @@
-//: A UIKit based Playground for presenting user interface
-  
-import UIKit
+import SwiftUI
 import PlaygroundSupport
 
-class MyViewController : UIViewController {
-    override func loadView() {
-        let view = UIView()
-        view.backgroundColor = .white
+// Animate on transition
 
-        let label = UILabel()
-        label.frame = CGRect(x: 150, y: 200, width: 200, height: 20)
-        label.text = "Hello World!"
-        label.textColor = .black
-        
-        view.addSubview(label)
-        self.view = view
+struct ContentView: View {
+    @State private var isShowingRed = false
+    var body: some View {
+        VStack {
+            Button("Tap Me") {
+                withAnimation {
+                    self.isShowingRed.toggle()
+                }
+            }
+
+            if isShowingRed {
+                Rectangle()
+                    .fill(Color.red)
+                    .frame(width: 200, height: 200)
+                    .transition(.scale)
+                //.transition(.asymmetric(insertion: .scale, removal: .opacity))
+            }
+        }
     }
 }
-// Present the view controller in the Live View window
-PlaygroundPage.current.liveView = MyViewController()
+
+PlaygroundPage.current.setLiveView(ContentView())
