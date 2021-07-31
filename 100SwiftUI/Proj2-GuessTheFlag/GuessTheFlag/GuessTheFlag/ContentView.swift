@@ -36,7 +36,7 @@ struct ContentView: View {
         } else {
             scoreTitle = "Wrong"
         }
-
+        
         showingScore = true
     }
     
@@ -67,6 +67,7 @@ struct ContentView: View {
                         FlagImg(flag: self.countries[number])
                         //modifier tells SwiftUI to render the original image pixels rather than trying to recolor them as a button
                     }
+                    //.animation(.default)
                 }
                 Text("Your score is \(score)")
                     .foregroundColor(.white)
