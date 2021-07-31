@@ -8,9 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var numQuestions = 5
+    @State private var multSize = 5
+    let step = 5
+    let range = 1...15
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            VStack {
+                Stepper(value: $numQuestions, in: range, step: step) {
+                    Text("Current: \(numQuestions) in \(range.description)")
+                }
+                .padding(10)
+                Stepper(value: $multSize, in: range) {
+                    Text("Current: \(multSize) in \(range.description) ")
+                }
+                .padding(10)
+                Text("")
+                Spacer()
+            }
+            .navigationTitle(Text("EduApp"))
+        }
     }
 }
 
