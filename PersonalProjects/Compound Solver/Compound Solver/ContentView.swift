@@ -11,6 +11,9 @@ struct ContentView: View {
     @State private var selectedTab = 1
     @State private var isShareSheetShowing = false
     
+    @State private var initial = ""
+    @State private var contributions = ""
+    
     func shareButton() {
         isShareSheetShowing.toggle()
         let url = URL(string: "https://apple.com")
@@ -22,38 +25,34 @@ struct ContentView: View {
         VStack {
             TabView(selection: $selectedTab) {
                 NavigationView {
-                    ScrollView {
-                        VStack(alignment: .center) {
-                            HStack {
-                                Button(action: shareButton) {
-                                    Image(systemName:  "square.and.arrow.up").font(.largeTitle)
-                                }
-                                Spacer()
-                                Text("List").font(.largeTitle)
-                                Spacer()
-                                Image(systemName:  "gearshape").font(.largeTitle)
-                            }.padding()
-                            HStack {
-                                Text("test")
+                    VStack(alignment: .center) {
+                        HStack {
+                            Spacer()
+                            Button(action: shareButton) {
+                                Image(systemName: "square.and.arrow.up")
+                                    .font(.largeTitle)
                             }
-                            HStack {
-                                Text("test1")
-                            }
-                            HStack {
-                                NavigationView {
-                                    List {
-                                        
-                                    }
-                                }
-                            }
+                            Image(systemName:  "gearshape")
+                                .font(.largeTitle)
+                        }.padding()
+                        Form {
+                            TextField("Initial", text: $initial)
+                                .keyboardType(.decimalPad)
+                            TextField("Contributions", text: $contributions)
+                                .keyboardType(.decimalPad)
                         }
+                        List {
+                            Text("test")
+                            Text("test1")
+                        }
+                        Spacer()
                     }
                     .navigationTitle(Text("Title"))
-                    .tabItem {
-                        Text("Graph")
-                        Image(systemName:"waveform.path.ecg.rectangle")
-                    }.tag(2)
                 }
+                .tabItem {
+                    Text("Graph")
+                    Image(systemName:"waveform.path.ecg.rectangle")
+                }.tag(2)
             }
         }
     }
