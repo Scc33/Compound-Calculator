@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct ContentView: View {
     @State private var selectedTab = 1
@@ -23,6 +24,13 @@ struct ContentView: View {
         let url = URL(string: "https://apple.com")
         let activityView = UIActivityViewController(activityItems: [url!], applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
+    }
+    
+    var excDouble: Double {
+        let convertedEstInterest = Double(estInterest) ?? 0.1
+        let num = log(2.0)
+        let dem = log(1.0 + (convertedEstInterest / 100.0))
+        return num / dem
     }
     
     var estDouble: Double {
@@ -68,15 +76,21 @@ struct ContentView: View {
                 }.tag(0)
                 VStack {
                     Form {
-                        Picker("Base", selection: $estBase) {
-                            ForEach(topLine.allCases, id: \.id) { value in
-                                Text(value.localizedName)
-                                    .tag(value)
+                        Section {
+                            Picker("Base", selection: $estBase) {
+                                ForEach(topLine.allCases, id: \.id) { value in
+                                    Text(value.localizedName)
+                                        .tag(value)
+                                }
                             }
+                            .pickerStyle(SegmentedPickerStyle())
+                            TextField("Interest Rate", text: $estInterest)
+                                .keyboardType(.decimalPad)
                         }
-                        .pickerStyle(SegmentedPickerStyle())
-                        TextField("Interest Rate", text: $estInterest)
-                            .keyboardType(.decimalPad)
+                        Section {
+                            Text("Estimated doubling time \(estDouble)")
+                            Text("Exact doubling time \(excDouble)")
+                        }
                     }
                 }
                 .tabItem {
@@ -89,6 +103,7 @@ struct ContentView: View {
 }
 
 enum topLine: String, Equatable, CaseIterable, Identifiable {
+    case exact = "69.3"
     case seventy = "70"
     case seventyTwo = "72"
     
