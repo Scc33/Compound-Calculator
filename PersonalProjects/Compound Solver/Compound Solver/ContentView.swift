@@ -35,7 +35,7 @@ struct ContentView: View {
     @State private var selectedTab = 0
     
     @State private var initial = ""
-    @State private var contributions = ""
+    @State private var start = ""
     @State private var time = ""
     
     @State private var estBase: topLine = .seventy
@@ -57,26 +57,45 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             NavigationView {
-                VStack(alignment: .center) {
-                    Form {
-                        Section {
-                            TextField("Initial", text: $initial)
-                                .keyboardType(.decimalPad)
-                            TextField("Contributions", text: $contributions)
-                                .keyboardType(.decimalPad)
-                            TextField("Years", text: $time)
-                                .keyboardType(.decimalPad)
+                Form {
+                    Section {
+                        HStack {
+                            VStack {
+                                Text("Contribution amount")
+                                Text("Compounded") //(annually, quarterly, monthly, daily)
+                                Text("Number ") //of contributions per year
+                            }
+                            VStack {
+                                TextField("Years", text: $time)
+                                    .keyboardType(.decimalPad)
+                                TextField("Starting amount", text: $start)
+                                    .keyboardType(.decimalPad)
+                                Text("test")
+                            }
                         }
-                        Section {
-                            Text("test")
-                            Text("test1")
+                    }
+                    Section {
+                        Text("Final Value")
+                    }
+                    Section {
+                        Text("Graph type (bar for contrib/profits or just total)")
+                        Text("A slider for type")
+                        Text("Graph")
+                    }
+                    Section {
+                        Text("Yearly Values")
+                    }
+                    Section {
+                        //https://www.hackingwithswift.com/articles/216/complete-guide-to-navigationview-in-swiftui
+                        NavigationLink(destination: Text("Second View")) {
+                            Text("History")
                         }
                     }
                 }
-                .navigationTitle(Text("Title"))
+                .navigationTitle(Text("Compound Solver"))
             }
             .tabItem {
-                Text("Graph")
+                Text("Compound")
                 Image(systemName:"waveform.path.ecg.rectangle")
             }.tag(0)
             NavigationView {
