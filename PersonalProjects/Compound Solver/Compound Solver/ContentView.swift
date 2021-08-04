@@ -74,28 +74,42 @@ struct DoubleView: View {
     }
 }
 
+struct History: View {
+    var body: some View {
+        Text("History")
+    }
+}
+
 struct CompoundSolverView: View {
     @State private var initial = ""
     @State private var start = ""
     @State private var time = ""
+    @State private var contributionAmt = ""
+    @State private var numberContrib = ""
+    @State private var compounding: compoundType = .day
     
     var body: some View {
         Form {
             Section {
                 HStack {
-                    VStack {
-                        Text("Contribution amount")
-                        Text("Compounded") //(annually, quarterly, monthly, daily)
-                        Text("Number ") //of contributions per year
-                    }
-                    VStack {
-                        TextField("Years", text: $time)
-                            .keyboardType(.decimalPad)
-                        TextField("Starting amount", text: $start)
-                            .keyboardType(.decimalPad)
-                        Text("test")
+                    TextField("Contribution amount", text: $contributionAmt)
+                        .keyboardType(.decimalPad)
+                    TextField("Years", text: $time)
+                        .keyboardType(.decimalPad)
+                    
+                }
+                HStack {
+                    TextField("Contributions per Year", text: $numberContrib)
+                    TextField("Starting amount", text: $start)
+                        .keyboardType(.decimalPad)
+                }
+                Picker("Base", selection: $compounding) {
+                    ForEach(compoundType.allCases, id: \.id) { value in
+                        Text(value.localizedName)
+                            .tag(value)
                     }
                 }
+                .pickerStyle(SegmentedPickerStyle())
             }
             Section {
                 Text("Final Value")
@@ -111,12 +125,13 @@ struct CompoundSolverView: View {
             Section {
                 //https://www.hackingwithswift.com/articles/216/complete-guide-to-navigationview-in-swiftui
                 NavigationLink(destination: Text("Second View")) {
-                    Text("History")
+                    History()
                 }
             }
         }
     }
 }
+
 
 struct ContentView: View {
     @State private var selectedTab = 0
@@ -125,7 +140,7 @@ struct ContentView: View {
         TabView(selection: $selectedTab) {
             NavigationView {
                 CompoundSolverView()
-                .navigationTitle(Text("Compound Solver"))
+                    .navigationTitle(Text("Compound Solver"))
             }
             .tabItem {
                 Text("Compound")
@@ -133,7 +148,7 @@ struct ContentView: View {
             }.tag(0)
             NavigationView {
                 DoubleView()
-                .navigationTitle(Text("Doubling"))
+                    .navigationTitle(Text("Doubling"))
             }
             .tabItem {
                 Text("Doubling Calculator")
@@ -147,6 +162,17 @@ enum topLine: String, Equatable, CaseIterable, Identifiable {
     case exact = "69.3"
     case seventy = "70"
     case seventyTwo = "72"
+    
+    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
+    var id: String { self.rawValue }
+}
+
+enum compoundType: String, Equatable, CaseIterable, Identifiable {
+    case day = "Daily"
+    case week = "Weekly"
+    case month = "Montly"
+    case quarter = "Quarterly"
+    case year = "Yearly"
     
     var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
     var id: String { self.rawValue }
