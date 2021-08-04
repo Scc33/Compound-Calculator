@@ -7,7 +7,10 @@
 
 // Sean Allen Tutorial
 // https://youtu.be/MCLiPW2ns2w
-// 13:35 in
+// Day 1 13:35 in
+// Day 2 23:39
+
+// Cmd + shift + A for light/dark in simulator
 
 import SwiftUI
 
@@ -26,29 +29,49 @@ struct ContentView: View {
         GeometryReader { geometry in
             VStack {
                 Spacer()
-                LazyVGrid(columns: columns, spacing: 5) {
+                LazyVGrid(columns: columns, spacing: 1) {
                     ForEach(0 ..< 9) { i in
                         ZStack {
                             Circle()
                                 .foregroundColor(.red).opacity(0.5)
-                                .frame(width: geometry.size.width / 3 - 10,
-                                       height: geometry.size.height / 3 - 10)
-                            Image(systemName: "xmark") // Using SF symbols
+                                .frame(width: geometry.size.width / 3 - 15,
+                                       height: geometry.size.height / 5 - 15)
+                            Image(systemName: moves[i]?.indicator ?? "") // Using SF symbols
                                 .resizable()
                                 .frame(width: 40, height: 40)
                                 .foregroundColor(.white)
-                            //Image(systemName: "circle")
+                        }
+                        .onTapGesture {
+                            if isSquareOccupied(in: moves, forIndex: i) { return }
+                            moves[i] = Move(player: isHumansTurn ? .human : .computer, boardIndex: i)
+                            isHumansTurn.toggle()
                         }
                     }
                 }
                 Spacer()
-            }.padding()
+            }
+            .padding(0)
         }
+    }
+    
+    func isSquareOccupied(in moves: [Move?], forIndex index: Int) -> Bool {
+        // Will check each move in board, if not nil then going to check if matches the index
+        return moves.contains(where: { $0?.boardIndex == index})
+    }
+    
+    func determineComputerMove(in moves: [Move?]) -> Int {
+        var movePosition = Int.random(in: 0..<9)
+        
+        while isSquareOccupied(in: moves, forIndex: movePosition) {
+            movePosition = Int.random(in: 0..<9)
+        }
+        
+        return movePosition
     }
 }
 
 enum Player {
-    case human, player
+    case human, computer
 }
 
 struct Move {
