@@ -5,9 +5,14 @@
 //  Created by Sean Coughlin on 8/1/21.
 //
 
+// The rule of 72
+// https://en.wikipedia.org/wiki/Rule_of_72#E-M_rule
+// maybe include a link to this and the formulas under the settings
+
 import SwiftUI
 import Foundation
 
+// this struct is currently unused
 struct MenuView: View {
     @State private var isShareSheetShowing = false
     
@@ -31,13 +36,7 @@ struct MenuView: View {
     }
 }
 
-struct ContentView: View {
-    @State private var selectedTab = 0
-    
-    @State private var initial = ""
-    @State private var start = ""
-    @State private var time = ""
-    
+struct DoubleView: View {
     @State private var estBase: topLine = .seventy
     @State private var estInterest = ""
     
@@ -55,43 +54,77 @@ struct ContentView: View {
     }
     
     var body: some View {
-        TabView(selection: $selectedTab) {
-            NavigationView {
-                Form {
-                    Section {
-                        HStack {
-                            VStack {
-                                Text("Contribution amount")
-                                Text("Compounded") //(annually, quarterly, monthly, daily)
-                                Text("Number ") //of contributions per year
-                            }
-                            VStack {
-                                TextField("Years", text: $time)
-                                    .keyboardType(.decimalPad)
-                                TextField("Starting amount", text: $start)
-                                    .keyboardType(.decimalPad)
-                                Text("test")
-                            }
-                        }
-                    }
-                    Section {
-                        Text("Final Value")
-                    }
-                    Section {
-                        Text("Graph type (bar for contrib/profits or just total)")
-                        Text("A slider for type")
-                        Text("Graph")
-                    }
-                    Section {
-                        Text("Yearly Values")
-                    }
-                    Section {
-                        //https://www.hackingwithswift.com/articles/216/complete-guide-to-navigationview-in-swiftui
-                        NavigationLink(destination: Text("Second View")) {
-                            Text("History")
-                        }
+        Form {
+            Section {
+                Picker("Base", selection: $estBase) {
+                    ForEach(topLine.allCases, id: \.id) { value in
+                        Text(value.localizedName)
+                            .tag(value)
                     }
                 }
+                .pickerStyle(SegmentedPickerStyle())
+                TextField("Interest Rate", text: $estInterest)
+                    .keyboardType(.decimalPad)
+            }
+            Section {
+                Text("Estimated doubling time \(estDouble)")
+                Text("Exact doubling time \(excDouble)")
+            }
+        }
+    }
+}
+
+struct CompoundSolverView: View {
+    @State private var initial = ""
+    @State private var start = ""
+    @State private var time = ""
+    
+    var body: some View {
+        Form {
+            Section {
+                HStack {
+                    VStack {
+                        Text("Contribution amount")
+                        Text("Compounded") //(annually, quarterly, monthly, daily)
+                        Text("Number ") //of contributions per year
+                    }
+                    VStack {
+                        TextField("Years", text: $time)
+                            .keyboardType(.decimalPad)
+                        TextField("Starting amount", text: $start)
+                            .keyboardType(.decimalPad)
+                        Text("test")
+                    }
+                }
+            }
+            Section {
+                Text("Final Value")
+            }
+            Section {
+                Text("Graph type (bar for contrib/profits or just total)")
+                Text("A slider for type")
+                Text("Graph")
+            }
+            Section {
+                Text("Yearly Values")
+            }
+            Section {
+                //https://www.hackingwithswift.com/articles/216/complete-guide-to-navigationview-in-swiftui
+                NavigationLink(destination: Text("Second View")) {
+                    Text("History")
+                }
+            }
+        }
+    }
+}
+
+struct ContentView: View {
+    @State private var selectedTab = 0
+    
+    var body: some View {
+        TabView(selection: $selectedTab) {
+            NavigationView {
+                CompoundSolverView()
                 .navigationTitle(Text("Compound Solver"))
             }
             .tabItem {
@@ -99,23 +132,7 @@ struct ContentView: View {
                 Image(systemName:"waveform.path.ecg.rectangle")
             }.tag(0)
             NavigationView {
-                Form {
-                    Section {
-                        Picker("Base", selection: $estBase) {
-                            ForEach(topLine.allCases, id: \.id) { value in
-                                Text(value.localizedName)
-                                    .tag(value)
-                            }
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        TextField("Interest Rate", text: $estInterest)
-                            .keyboardType(.decimalPad)
-                    }
-                    Section {
-                        Text("Estimated doubling time \(estDouble)")
-                        Text("Exact doubling time \(excDouble)")
-                    }
-                }
+                DoubleView()
                 .navigationTitle(Text("Doubling"))
             }
             .tabItem {
