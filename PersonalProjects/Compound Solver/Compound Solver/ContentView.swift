@@ -87,6 +87,8 @@ struct CompoundSolverView: View {
     @State private var contributionAmt = ""
     @State private var numberContrib = ""
     @State private var compounding: compoundType = .day
+    @State private var graphing: graphType = .bar
+    @State private var showContrib = false
     
     var body: some View {
         Form {
@@ -115,8 +117,16 @@ struct CompoundSolverView: View {
                 Text("Final Value")
             }
             Section {
-                Text("Graph type (bar for contrib/profits or just total)")
-                Text("A slider for type")
+                Toggle(isOn: $showContrib) {
+                    Text("Show contributions")
+                }
+                Picker("Base", selection: $graphing) {
+                    ForEach(graphType.allCases, id: \.id) { value in
+                        Text(value.localizedName)
+                            .tag(value)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
                 Text("Graph")
             }
             Section {
@@ -173,6 +183,14 @@ enum compoundType: String, Equatable, CaseIterable, Identifiable {
     case month = "Montly"
     case quarter = "Quarterly"
     case year = "Yearly"
+    
+    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
+    var id: String { self.rawValue }
+}
+
+enum graphType: String, Equatable, CaseIterable, Identifiable {
+    case bar = "Bar graph"
+    case line = "Line graph"
     
     var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
     var id: String { self.rawValue }
