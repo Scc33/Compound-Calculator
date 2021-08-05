@@ -24,14 +24,25 @@ struct MenuView: View {
     }
     
     var body: some View {
-        HStack {
-            Spacer()
-            Button(action: shareButton) {
-                Image(systemName: "square.and.arrow.up")
+        VStack {
+            HStack {
+                Spacer()
+                Button(action: shareButton) {
+                    Image(systemName: "square.and.arrow.up")
+                        .font(.largeTitle)
+                }
+                Image(systemName:  "gearshape")
                     .font(.largeTitle)
             }
-            Image(systemName:  "gearshape")
-                .font(.largeTitle)
+            HStack {
+                Text("Compound Interest")
+                Text("A = P (1 + r/n) ") + Text("nt").font(.system(.footnote)).baselineOffset(10)
+            }
+            HStack {
+                Text("Future Value of a series")
+                Text("FV = PMT (1 + r/n) ") + Text("nt").font(.system(.footnote)).baselineOffset(10) + Text("-1 / (r/n)")
+            }
+            Text("8") + Text("2").font(.system(.footnote)).baselineOffset(10)
         }
     }
 }
@@ -74,6 +85,43 @@ struct DoubleView: View {
     }
 }
 
+struct YearlyValues: View {
+    var rate: String
+    var initial: String
+    var time: String
+    var contributionAmt: String
+    var numberContrib: String
+    
+    // TODO
+    // Maybe factor this code out into its own struct/function so it can be called easily from other structs
+    var vals: [Double] {
+        let cRate = Double(rate) ?? 0
+        let cInitial = Double(initial) ?? 0
+        let cTime = Int(time) ?? 0
+        let cContributionAmt = Double(contributionAmt) ?? 0
+        let cNumberContrib = Double(numberContrib) ?? 0
+        
+        var calcVals = [cInitial]
+        
+        for _ in 0 ..< cTime {
+            var currVal = calcVals[calcVals.endIndex - 1]
+            currVal += (cContributionAmt * cNumberContrib)
+            currVal = currVal * pow((1 + (cRate / cNumberContrib)), cNumberContrib)
+            calcVals.append(currVal)
+        }
+        
+        return calcVals
+    }
+    
+    var body: some View {
+        return List {
+            ForEach(vals, id: \.self) { val in
+                Text("\(val)")
+            }
+        }
+    }
+}
+
 struct History: View {
     var body: some View {
         Text("History")
@@ -81,8 +129,8 @@ struct History: View {
 }
 
 struct CompoundSolverView: View {
+    @State private var rate = ""
     @State private var initial = ""
-    @State private var start = ""
     @State private var time = ""
     @State private var contributionAmt = ""
     @State private var numberContrib = ""
@@ -93,16 +141,17 @@ struct CompoundSolverView: View {
     var body: some View {
         Form {
             Section {
+                TextField("Rate", text: $rate)
+                    .keyboardType(.decimalPad)
                 HStack {
                     TextField("Contribution amount", text: $contributionAmt)
                         .keyboardType(.decimalPad)
                     TextField("Years", text: $time)
                         .keyboardType(.decimalPad)
-                    
                 }
                 HStack {
                     TextField("Contributions per Year", text: $numberContrib)
-                    TextField("Starting amount", text: $start)
+                    TextField("Initial amount", text: $initial)
                         .keyboardType(.decimalPad)
                 }
                 Picker("Base", selection: $compounding) {
@@ -114,7 +163,8 @@ struct CompoundSolverView: View {
                 .pickerStyle(SegmentedPickerStyle())
             }
             Section {
-                Text("Final Value")
+                Text("Final Value") // currently this could call YearlyValues but that feels obtuse
+                // needs its own function to call somehow
             }
             Section {
                 Toggle(isOn: $showContrib) {
@@ -130,13 +180,13 @@ struct CompoundSolverView: View {
                 Text("Graph")
             }
             Section {
-                Text("Yearly Values")
+                //https://www.hackingwithswift.com/articles/216/complete-guide-to-navigationview-in-swiftui
+                NavigationLink(destination: YearlyValues(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, numberContrib: numberContrib)) {
+                    Text("Yearly Values")
+                }
             }
             Section {
-                //https://www.hackingwithswift.com/articles/216/complete-guide-to-navigationview-in-swiftui
-                NavigationLink(destination: Text("Second View")) {
-                    History()
-                }
+                History()
             }
         }
     }
@@ -162,6 +212,14 @@ struct ContentView: View {
             }
             .tabItem {
                 Text("Doubling Calculator")
+                Image(systemName:"waveform.path.ecg.rectangle")
+            }.tag(1)
+            NavigationView {
+                MenuView()
+                    .navigationTitle(Text("Settings"))
+            }
+            .tabItem {
+                Text("Settings")
                 Image(systemName:"waveform.path.ecg.rectangle")
             }.tag(1)
         }
