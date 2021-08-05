@@ -9,6 +9,7 @@
 // https://youtu.be/MCLiPW2ns2w
 // Day 1 13:35 in
 // Day 2 23:39
+// Day 3: 32:57
 
 // Cmd + shift + A for light/dark in simulator
 
@@ -23,7 +24,7 @@ let columns: [GridItem] = [GridItem(.flexible()),
 // Will need to be refractored later
 struct ContentView: View {
     @State private var moves: [Move?] = Array(repeating: nil, count: 9)
-    @State private var isHumansTurn = true
+    @State private var isGameBoardDisabled = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -34,7 +35,7 @@ struct ContentView: View {
                         ZStack {
                             Circle()
                                 .foregroundColor(.red).opacity(0.5)
-                                .frame(width: geometry.size.width / 3 - 15,
+                                .frame(width: geometry.size.width / 3 - 20,
                                        height: geometry.size.height / 5 - 15)
                             Image(systemName: moves[i]?.indicator ?? "") // Using SF symbols
                                 .resizable()
@@ -43,13 +44,20 @@ struct ContentView: View {
                         }
                         .onTapGesture {
                             if isSquareOccupied(in: moves, forIndex: i) { return }
-                            moves[i] = Move(player: isHumansTurn ? .human : .computer, boardIndex: i)
-                            isHumansTurn.toggle()
+                            moves[i] = Move(player: .human, boardIndex: i)
+                            isGameBoardDisabled = true
+                            // check for win or draw condition
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                let computerPosition = determineComputerMove(in: moves)
+                                moves[computerPosition] = Move(player: .computer, boardIndex: computerPosition)
+                                isGameBoardDisabled = false
+                            }
                         }
                     }
                 }
                 Spacer()
             }
+            .disabled(isGameBoardDisabled)
             .padding(0)
         }
     }
@@ -67,6 +75,12 @@ struct ContentView: View {
         }
         
         return movePosition
+    }
+    
+    func checkWinCondition(for player: Player, in moves: [Move?]) -> Bool {
+        let winPatterns: Set<Set<Int>> = [[]]
+        // TODO finish the rest of this
+        return true
     }
 }
 
