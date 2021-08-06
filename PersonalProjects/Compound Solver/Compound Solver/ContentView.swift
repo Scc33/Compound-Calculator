@@ -91,8 +91,7 @@ struct YearlyValues: View {
     var contributionAmt: String
     var numberContrib: String
     
-    // TODO
-    // Maybe factor this code out into its own struct/function so it can be called easily from other structs
+    // TODO // Maybe factor this code out into its own struct/function so it can be called easily from other structs
     var vals: [Double] {
         let cRate = Double(rate) ?? 0
         let cInitial = Double(initial) ?? 0
