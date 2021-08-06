@@ -12,7 +12,6 @@
 import SwiftUI
 import Foundation
 
-// this struct is currently unused
 struct MenuView: View {
     @State private var isShareSheetShowing = false
     
