@@ -1,0 +1,15 @@
+CardView {
+    ChartLabel("Bar Chart", type: .legend)
+    BarChart()
+}
+.data(data)
+.chartStyle(orangeStyle)
+.padding()
+
+CardView(showShadow: true) {
+    ChartLabel("Line Chart", type: .subTitle)
+    LineChart()
+}
+.data(data)
+.chartStyle(blueStyle)
+.padding()
