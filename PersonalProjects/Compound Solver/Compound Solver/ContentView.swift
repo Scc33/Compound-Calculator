@@ -61,6 +61,7 @@ struct MenuView: View {
                 Text("FV = PMT (1 + r/n) ") + Text("nt").font(.system(.footnote)).baselineOffset(10) + Text("-1 / (r/n)")
             }
             Text("8") + Text("2").font(.system(.footnote)).baselineOffset(10)
+            Text("Privacy Policy/Website")
         }
     }
 }
@@ -129,6 +130,28 @@ struct History: View {
     }
 }
 
+//https://medium.com/macoclock/conditional-views-in-swiftui-dc09c808bc30
+struct EmptyModifier: ViewModifier {
+    let isEmpty: Bool
+
+    func body(content: Content) -> some View {
+        Group {
+            if isEmpty {
+                EmptyView()
+            } else {
+                content
+            }
+        }
+    }
+}
+
+//https://medium.com/macoclock/conditional-views-in-swiftui-dc09c808bc30
+extension View {
+    func isEmpty(_ bool: Bool) -> some View {
+        modifier(EmptyModifier(isEmpty: bool))
+    }
+}
+
 struct CompoundSolverView: View {
     @State private var rate = ""
     @State private var initial = ""
@@ -137,6 +160,7 @@ struct CompoundSolverView: View {
     @State private var numberContrib = ""
     @State private var compounding: compoundType = .day
     @State private var graphing: graphType = .bar
+    @State private var isContrib = false
     @State private var showContrib = false
     
     var body: some View {
@@ -145,16 +169,19 @@ struct CompoundSolverView: View {
                 TextField("Rate", text: $rate)
                     .keyboardType(.decimalPad)
                 HStack {
-                    TextField("Contribution amount", text: $contributionAmt)
+                    TextField("Initial amount", text: $initial)
                         .keyboardType(.decimalPad)
                     TextField("Years", text: $time)
                         .keyboardType(.decimalPad)
                 }
+                Toggle(isOn: $isContrib) {
+                    Text("Contributions")
+                }
                 HStack {
                     TextField("Contributions per Year", text: $numberContrib)
-                    TextField("Initial amount", text: $initial)
+                    TextField("Contribution amount", text: $contributionAmt)
                         .keyboardType(.decimalPad)
-                }
+                }.isEmpty(!isContrib)
                 Picker("Base", selection: $compounding) {
                     ForEach(compoundType.allCases, id: \.id) { value in
                         Text(value.localizedName)
