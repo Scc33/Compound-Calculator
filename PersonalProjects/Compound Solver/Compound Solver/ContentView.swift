@@ -9,6 +9,9 @@
 // https://en.wikipedia.org/wiki/Rule_of_72#E-M_rule
 // maybe include a link to this and the formulas under the settings
 
+//Test
+
+
 import SwiftUI
 import Foundation
 
