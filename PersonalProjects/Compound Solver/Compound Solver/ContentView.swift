@@ -12,6 +12,25 @@
 import SwiftUI
 import Foundation
 
+func calcYearlyVals(rate: String, initial: String, time: String, contributionAmt: String, numberContrib: String) -> [Double] {
+    let cRate = Double(rate) ?? 0
+    let cInitial = Double(initial) ?? 0
+    let cTime = Int(time) ?? 0
+    let cContributionAmt = Double(contributionAmt) ?? 0
+    let cNumberContrib = Double(numberContrib) ?? 0
+    
+    var calcVals = [cInitial]
+    
+    for _ in 0 ..< cTime {
+        var currVal = calcVals.last ?? 0
+        currVal += (cContributionAmt * cNumberContrib)
+        currVal = currVal * pow((1 + (cRate / cNumberContrib)), cNumberContrib)
+        calcVals.append(currVal)
+    }
+    
+    return calcVals
+}
+
 struct MenuView: View {
     @State private var isShareSheetShowing = false
     
@@ -91,24 +110,8 @@ struct YearlyValues: View {
     var contributionAmt: String
     var numberContrib: String
     
-    // TODO // Maybe factor this code out into its own struct/function so it can be called easily from other structs
     var vals: [Double] {
-        let cRate = Double(rate) ?? 0
-        let cInitial = Double(initial) ?? 0
-        let cTime = Int(time) ?? 0
-        let cContributionAmt = Double(contributionAmt) ?? 0
-        let cNumberContrib = Double(numberContrib) ?? 0
-        
-        var calcVals = [cInitial]
-        
-        for _ in 0 ..< cTime {
-            var currVal = calcVals[calcVals.endIndex - 1]
-            currVal += (cContributionAmt * cNumberContrib)
-            currVal = currVal * pow((1 + (cRate / cNumberContrib)), cNumberContrib)
-            calcVals.append(currVal)
-        }
-        
-        return calcVals
+        return calcYearlyVals(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, numberContrib: numberContrib)
     }
     
     var body: some View {
@@ -161,8 +164,7 @@ struct CompoundSolverView: View {
                 .pickerStyle(SegmentedPickerStyle())
             }
             Section {
-                Text("Final Value") // currently this could call YearlyValues but that feels obtuse
-                // needs its own function to call somehow
+                Text("Final Value \(calcYearlyVals(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, numberContrib: numberContrib).last ?? 0)")
             }
             Section {
                 Toggle(isOn: $showContrib) {
