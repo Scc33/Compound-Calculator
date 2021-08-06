@@ -9,7 +9,8 @@
 // https://youtu.be/MCLiPW2ns2w
 // Day 1 13:35 in
 // Day 2 23:39
-// Day 3: 32:57
+// Day 3 32:57
+// Day 4 43:17
 
 // Cmd + shift + A for light/dark in simulator
 
@@ -46,11 +47,28 @@ struct ContentView: View {
                             if isSquareOccupied(in: moves, forIndex: i) { return }
                             moves[i] = Move(player: .human, boardIndex: i)
                             isGameBoardDisabled = true
+                            
                             // check for win or draw condition
+                            if checkWinCondition(for: .human, in: moves) {
+                                print("Human wins")
+                                return
+                            }
+                            
+                            if checkForDraw(in: moves) {
+                                print("Draw")
+                                return
+                            }
+                            
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 let computerPosition = determineComputerMove(in: moves)
                                 moves[computerPosition] = Move(player: .computer, boardIndex: computerPosition)
                                 isGameBoardDisabled = false
+                                
+                                // check for win or draw condition
+                                if checkWinCondition(for: .computer, in: moves) {
+                                    print("Computer wins")
+                                    return
+                                }
                             }
                         }
                     }
@@ -78,9 +96,24 @@ struct ContentView: View {
     }
     
     func checkWinCondition(for player: Player, in moves: [Move?]) -> Bool {
-        let winPatterns: Set<Set<Int>> = [[]]
-        // TODO finish the rest of this
-        return true
+        // set of all the possible winning patterns
+        let winPatterns: Set<Set<Int>> = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+        
+        // removes all the nils, and filter to human or computer
+        let playerMoves = moves.compactMap( { $0 } ).filter( { $0.player == player } )
+        
+        // go through all player (human or computer) moves and give me the board indexes
+        let playerPositions = Set(playerMoves.map( { $0.boardIndex } ))
+        
+        // check board to see if there is a winner
+        for pattern in winPatterns where pattern.isSubset(of: playerPositions) { return true }
+        
+        return false
+    }
+    
+    func checkForDraw(in moves: [Move?]) -> Bool {
+        // if the board is full, then the game is a draw
+        return moves.compactMap( { $0 } ).count == 9
     }
 }
 
