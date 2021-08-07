@@ -5,8 +5,6 @@
 //  Created by Sean Coughlin on 7/29/21.
 //
 
-//https://www.youtube.com/watch?v=1AXyC24NCkE
-
 import SwiftUI
 
 struct ContentView: View {
