@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		9CE0E12626B266A700589891 /* TicTacToeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E12526B266A700589891 /* TicTacToeApp.swift */; };
-		9CE0E12826B266A700589891 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E12726B266A700589891 /* ContentView.swift */; };
+		9CE0E12826B266A700589891 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E12726B266A700589891 /* GameView.swift */; };
 		9CE0E12A26B266AC00589891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E12926B266AC00589891 /* Assets.xcassets */; };
 		9CE0E12D26B266AC00589891 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E12C26B266AC00589891 /* Preview Assets.xcassets */; };
 		9CE0E19F26BEFE4900589891 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E19E26BEFE4900589891 /* Alerts.swift */; };
+		9CE0E1A126BF148E00589891 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E1A026BF148E00589891 /* GameViewModel.swift */; };
+		9CE0E1A326BF193E00589891 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E1A226BF193E00589891 /* GameModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9CE0E12226B266A700589891 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE0E12526B266A700589891 /* TicTacToeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeApp.swift; sourceTree = "<group>"; };
-		9CE0E12726B266A700589891 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9CE0E12726B266A700589891 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		9CE0E12926B266AC00589891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CE0E12C26B266AC00589891 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9CE0E12E26B266AC00589891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CE0E19E26BEFE4900589891 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		9CE0E1A026BF148E00589891 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		9CE0E1A226BF193E00589891 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +59,13 @@
 			isa = PBXGroup;
 			children = (
 				9CE0E12526B266A700589891 /* TicTacToeApp.swift */,
-				9CE0E12726B266A700589891 /* ContentView.swift */,
+				9CE0E12726B266A700589891 /* GameView.swift */,
 				9CE0E12926B266AC00589891 /* Assets.xcassets */,
 				9CE0E12E26B266AC00589891 /* Info.plist */,
 				9CE0E12B26B266AC00589891 /* Preview Content */,
 				9CE0E19E26BEFE4900589891 /* Alerts.swift */,
+				9CE0E1A026BF148E00589891 /* GameViewModel.swift */,
+				9CE0E1A226BF193E00589891 /* GameModel.swift */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";
@@ -141,7 +147,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CE0E12826B266A700589891 /* ContentView.swift in Sources */,
+				9CE0E1A326BF193E00589891 /* GameModel.swift in Sources */,
+				9CE0E1A126BF148E00589891 /* GameViewModel.swift in Sources */,
+				9CE0E12826B266A700589891 /* GameView.swift in Sources */,
 				9CE0E19F26BEFE4900589891 /* Alerts.swift in Sources */,
 				9CE0E12626B266A700589891 /* TicTacToeApp.swift in Sources */,
 			);
