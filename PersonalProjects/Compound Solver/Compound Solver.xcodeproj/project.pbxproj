@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,9 @@
 		9CE0E18126BA219B00589891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E18026BA219B00589891 /* Assets.xcassets */; };
 		9CE0E18426BA219B00589891 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E18326BA219B00589891 /* Preview Assets.xcassets */; };
 		9CE0E18826BA219B00589891 /* WatchCompound.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9CE0E16C26BA219600589891 /* WatchCompound.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9CE0E19726BE35ED00589891 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 9CE0E19626BE35ED00589891 /* Charts */; };
+		9CE0E19926BE365400589891 /* Transactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E19826BE365400589891 /* Transactions.swift */; };
+		9CE0E19B26BE36CD00589891 /* TransactionBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E19A26BE36CD00589891 /* TransactionBarChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +83,9 @@
 		9CE0E18026BA219B00589891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CE0E18326BA219B00589891 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9CE0E18526BA219B00589891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CE0E19426BE35BC00589891 /* Charts-master */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Charts-master"; sourceTree = "<group>"; };
+		9CE0E19826BE365400589891 /* Transactions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transactions.swift; sourceTree = "<group>"; };
+		9CE0E19A26BE36CD00589891 /* TransactionBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionBarChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CE0E19726BE35ED00589891 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,10 +110,12 @@
 		9CE0E14F26B741D000589891 = {
 			isa = PBXGroup;
 			children = (
+				9CE0E19426BE35BC00589891 /* Charts-master */,
 				9CE0E15A26B741D000589891 /* Compound Solver */,
 				9CE0E16D26BA219600589891 /* WatchCompound */,
 				9CE0E17926BA219A00589891 /* WatchCompound Extension */,
 				9CE0E15926B741D000589891 /* Products */,
+				9CE0E19526BE35EC00589891 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,6 +132,8 @@
 		9CE0E15A26B741D000589891 /* Compound Solver */ = {
 			isa = PBXGroup;
 			children = (
+				9CE0E19826BE365400589891 /* Transactions.swift */,
+				9CE0E19A26BE36CD00589891 /* TransactionBarChartView.swift */,
 				9CE0E15B26B741D000589891 /* Compound_SolverApp.swift */,
 				9CE0E15D26B741D000589891 /* ContentView.swift */,
 				9CE0E15F26B741D400589891 /* Assets.xcassets */,
@@ -170,6 +181,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		9CE0E19526BE35EC00589891 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -188,6 +206,9 @@
 				9CE0E18726BA219B00589891 /* PBXTargetDependency */,
 			);
 			name = "Compound Solver";
+			packageProductDependencies = (
+				9CE0E19626BE35ED00589891 /* Charts */,
+			);
 			productName = "Compound Solver";
 			productReference = 9CE0E15826B741D000589891 /* Compound Solver.app */;
 			productType = "com.apple.product-type.application";
@@ -300,6 +321,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CE0E19B26BE36CD00589891 /* TransactionBarChartView.swift in Sources */,
+				9CE0E19926BE365400589891 /* Transactions.swift in Sources */,
 				9CE0E15E26B741D000589891 /* ContentView.swift in Sources */,
 				9CE0E15C26B741D000589891 /* Compound_SolverApp.swift in Sources */,
 			);
@@ -619,6 +642,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9CE0E19626BE35ED00589891 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Charts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9CE0E15026B741D000589891 /* Project object */;
 }
