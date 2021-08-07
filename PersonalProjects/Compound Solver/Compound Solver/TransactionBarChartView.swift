@@ -12,10 +12,13 @@ import Charts
 
 struct TransactionBarChartView: UIViewRepresentable {
     let entries: [BarChartDataEntry]
+    let barChart = BarChartView()
     
     @Binding var selectedYear: Int
+    @Binding var selectedItem: String
     func makeUIView(context: Context) -> BarChartView {
-        return BarChartView()
+        barChart.delegate = context.coordinator
+        return barChart
     }
     
     func updateUIView(_ uiView: BarChartView, context: Context) {
@@ -24,15 +27,33 @@ struct TransactionBarChartView: UIViewRepresentable {
         uiView.noDataText = "No data"
         uiView.data = BarChartData(dataSet: dataSet)
         uiView.rightAxis.enabled = false
-        if uiView.scaleX == 1.0 {
+        /*if uiView.scaleX == 1.0 {
             uiView.zoom(scaleX: 1.5, scaleY: 1, x: 0, y: 0)
-        }
+        }*/
         uiView.setScaleEnabled(false) // user cannot zoom in on chart
         formatDataSet(dataSet: dataSet)
         formatLeftAxis(leftAxis: uiView.leftAxis)
         formatXAxis(xAxis: uiView.xAxis)
         formatLegend(legend: uiView.legend)
         uiView.notifyDataSetChanged()
+    }
+    
+    class Coordinator: NSObject, ChartViewDelegate {
+        let parent: TransactionBarChartView
+        
+        init(parent: TransactionBarChartView) {
+            self.parent = parent
+        }
+        
+        func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+            let month = Transaction.months[Int(entry.x)]
+            let quantity = Int(entry.y)
+            parent.selectedItem = "\(quantity) sold in \(month)"
+        }
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(parent: self)
     }
     
     // Lots of chart properties can be changed
@@ -69,6 +90,8 @@ struct TransactionBarChartView: UIViewRepresentable {
 
 struct TransactionBarChartView_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionBarChartView(entries: Transaction.dataEntriiesForYear(2019, transactions: Transaction.allTransactions), selectedYear: .constant(2019))
+        TransactionBarChartView(entries: Transaction.dataEntriiesForYear(2019, transactions: Transaction.allTransactions),
+                                selectedYear: .constant(2019),
+                                selectedItem: .constant(""))
     }
 }

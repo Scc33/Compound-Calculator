@@ -165,6 +165,7 @@ struct CompoundSolverView: View {
     @State private var showContrib = false
     @State private var selectedYear = 2019
     @State private var barChartEntries: [BarChartDataEntry] = []
+    @State private var selectedItem = ""
     
     var body: some View {
         Form {
@@ -215,7 +216,11 @@ struct CompoundSolverView: View {
                         selectedYear = 2019
                     }
                 }
-                TransactionBarChartView(entries: Transaction.dataEntriiesForYear(selectedYear, transactions: Transaction.allTransactions), selectedYear: $selectedYear).frame(height: 200)
+                TransactionBarChartView(entries: Transaction.dataEntriiesForYear(selectedYear, transactions: Transaction.allTransactions),
+                                        selectedYear: $selectedYear,
+                                        selectedItem: $selectedItem
+                ).frame(height: 200)
+                Text(selectedItem)
             }
             Section {
                 //https://www.hackingwithswift.com/articles/216/complete-guide-to-navigationview-in-swiftui
