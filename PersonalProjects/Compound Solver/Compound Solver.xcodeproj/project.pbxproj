@@ -22,6 +22,7 @@
 		9CE0E19726BE35ED00589891 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 9CE0E19626BE35ED00589891 /* Charts */; };
 		9CE0E19926BE365400589891 /* Transactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E19826BE365400589891 /* Transactions.swift */; };
 		9CE0E19B26BE36CD00589891 /* TransactionBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E19A26BE36CD00589891 /* TransactionBarChartView.swift */; };
+		9CE0E19D26BEF92200589891 /* TransactionLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E19C26BEF92200589891 /* TransactionLineChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		9CE0E19426BE35BC00589891 /* Charts-master */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Charts-master"; sourceTree = "<group>"; };
 		9CE0E19826BE365400589891 /* Transactions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transactions.swift; sourceTree = "<group>"; };
 		9CE0E19A26BE36CD00589891 /* TransactionBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionBarChartView.swift; sourceTree = "<group>"; };
+		9CE0E19C26BEF92200589891 /* TransactionLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionLineChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			children = (
 				9CE0E19826BE365400589891 /* Transactions.swift */,
 				9CE0E19A26BE36CD00589891 /* TransactionBarChartView.swift */,
+				9CE0E19C26BEF92200589891 /* TransactionLineChartView.swift */,
 				9CE0E15B26B741D000589891 /* Compound_SolverApp.swift */,
 				9CE0E15D26B741D000589891 /* ContentView.swift */,
 				9CE0E15F26B741D400589891 /* Assets.xcassets */,
@@ -322,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CE0E19B26BE36CD00589891 /* TransactionBarChartView.swift in Sources */,
+				9CE0E19D26BEF92200589891 /* TransactionLineChartView.swift in Sources */,
 				9CE0E19926BE365400589891 /* Transactions.swift in Sources */,
 				9CE0E15E26B741D000589891 /* ContentView.swift in Sources */,
 				9CE0E15C26B741D000589891 /* Compound_SolverApp.swift in Sources */,

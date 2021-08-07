@@ -216,10 +216,17 @@ struct CompoundSolverView: View {
                         selectedYear = 2019
                     }
                 }
-                TransactionBarChartView(entries: Transaction.dataEntriiesForYear(selectedYear, transactions: Transaction.allTransactions),
-                                        selectedYear: $selectedYear,
-                                        selectedItem: $selectedItem
-                ).frame(height: 200)
+                switch graphing {
+                case .bar : TransactionBarChartView(entries: Transaction.dataEntriiesForYear(selectedYear, transactions: Transaction.allTransactions),
+                                                   selectedYear: $selectedYear,
+                                                   selectedItem: $selectedItem
+                           ).frame(height: 200)
+                default: TransactionLineChartView(entries: Transaction.dataEntriiesForYear(selectedYear, transactions: Transaction.allTransactions),
+                                                    selectedYear: $selectedYear,
+                                                    selectedItem: $selectedItem
+                            ).frame(height: 200)
+                }
+                
                 Text(selectedItem)
             }
             Section {
