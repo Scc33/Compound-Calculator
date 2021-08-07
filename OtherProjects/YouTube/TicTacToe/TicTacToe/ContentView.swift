@@ -26,6 +26,7 @@ let columns: [GridItem] = [GridItem(.flexible()),
 struct ContentView: View {
     @State private var moves: [Move?] = Array(repeating: nil, count: 9)
     @State private var isGameBoardDisabled = false
+    @State private var alertItem: AlertItem?
     
     var body: some View {
         GeometryReader { geometry in
@@ -46,18 +47,21 @@ struct ContentView: View {
                         .onTapGesture {
                             if isSquareOccupied(in: moves, forIndex: i) { return }
                             moves[i] = Move(player: .human, boardIndex: i)
-                            isGameBoardDisabled = true
                             
                             // check for win or draw condition
                             if checkWinCondition(for: .human, in: moves) {
                                 print("Human wins")
+                                alertItem = AlertContext.humanWin
                                 return
                             }
                             
                             if checkForDraw(in: moves) {
                                 print("Draw")
+                                alertItem = AlertContext.draw
                                 return
                             }
+                            
+                            isGameBoardDisabled = true
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 let computerPosition = determineComputerMove(in: moves)
@@ -67,6 +71,7 @@ struct ContentView: View {
                                 // check for win or draw condition
                                 if checkWinCondition(for: .computer, in: moves) {
                                     print("Computer wins")
+                                    alertItem = AlertContext.computerWin
                                     return
                                 }
                             }
@@ -77,6 +82,11 @@ struct ContentView: View {
             }
             .disabled(isGameBoardDisabled)
             .padding(0)
+            .alert(item: $alertItem, content: {alertItem in
+                Alert(title: alertItem.title,
+                      message: alertItem.message,
+                      dismissButton: .default(alertItem.buttonTitle, action: { resetGame() }))
+            })
         }
     }
     
@@ -114,6 +124,10 @@ struct ContentView: View {
     func checkForDraw(in moves: [Move?]) -> Bool {
         // if the board is full, then the game is a draw
         return moves.compactMap( { $0 } ).count == 9
+    }
+    
+    func resetGame() {
+        moves = Array(repeating: nil, count: 9)
     }
 }
 
