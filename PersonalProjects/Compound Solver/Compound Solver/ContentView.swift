@@ -42,27 +42,41 @@ struct MenuView: View {
         UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
     }
     
+    func openWebsite() {
+        if let url = URL(string: "https://www.hackingwithswift.com") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     var body: some View {
-        VStack {
+        List {
             HStack {
+                Text("Share App")
                 Spacer()
                 Button(action: shareButton) {
                     Image(systemName: "square.and.arrow.up")
                         .font(.largeTitle)
                 }
+            }
+            HStack {
+                Text("Settings")
+                Spacer()
                 Image(systemName:  "gearshape")
                     .font(.largeTitle)
             }
             HStack {
                 Text("Compound Interest")
+                Spacer()
                 Text("A = P (1 + r/n) ") + Text("nt").font(.system(.footnote)).baselineOffset(10)
             }
             HStack {
                 Text("Future Value of a series")
+                Spacer()
                 Text("FV = PMT (1 + r/n) ") + Text("nt").font(.system(.footnote)).baselineOffset(10) + Text("-1 / (r/n)")
             }
-            Text("8") + Text("2").font(.system(.footnote)).baselineOffset(10)
-            Text("Privacy Policy/Website")
+            Button(action: openWebsite) {
+                Text("Privacy Policy/Website")
+            }
         }
     }
 }
@@ -134,7 +148,7 @@ struct History: View {
 //https://medium.com/macoclock/conditional-views-in-swiftui-dc09c808bc30
 struct EmptyModifier: ViewModifier {
     let isEmpty: Bool
-
+    
     func body(content: Content) -> some View {
         Group {
             if isEmpty {
@@ -218,13 +232,13 @@ struct CompoundSolverView: View {
                 }
                 switch graphing {
                 case .bar : TransactionBarChartView(entries: Transaction.dataEntriiesForYear(selectedYear, transactions: Transaction.allTransactions),
-                                                   selectedYear: $selectedYear,
-                                                   selectedItem: $selectedItem
-                           ).frame(height: 200)
-                default: TransactionLineChartView(entries: Transaction.dataEntriiesForYear(selectedYear, transactions: Transaction.allTransactions),
                                                     selectedYear: $selectedYear,
                                                     selectedItem: $selectedItem
-                            ).frame(height: 200)
+                ).frame(height: 200)
+                default: TransactionLineChartView(entries: Transaction.dataEntriiesForYear(selectedYear, transactions: Transaction.allTransactions),
+                                                  selectedYear: $selectedYear,
+                                                  selectedItem: $selectedItem
+                ).frame(height: 200)
                 }
                 
                 Text(selectedItem)
