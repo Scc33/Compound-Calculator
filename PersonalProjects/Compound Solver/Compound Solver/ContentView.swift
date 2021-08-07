@@ -11,6 +11,7 @@
 
 import SwiftUI
 import Foundation
+import Charts
 
 func calcYearlyVals(rate: String, initial: String, time: String, contributionAmt: String, numberContrib: String) -> [Double] {
     let cRate = Double(rate) ?? 0
@@ -162,6 +163,8 @@ struct CompoundSolverView: View {
     @State private var graphing: graphType = .bar
     @State private var isContrib = false
     @State private var showContrib = false
+    @State private var selectedYear = 2019
+    @State private var barChartEntries: [BarChartDataEntry] = []
     
     var body: some View {
         Form {
@@ -204,7 +207,15 @@ struct CompoundSolverView: View {
                     }
                 }
                 .pickerStyle(SegmentedPickerStyle())
-                Text("Graph")
+                Text("Graph selected year \(selectedYear)")
+                Button("Change Year") {
+                    if selectedYear == 2019 {
+                        selectedYear = 2020
+                    } else {
+                        selectedYear = 2019
+                    }
+                }
+                TransactionBarChartView(entries: Transaction.dataEntriiesForYear(selectedYear, transactions: Transaction.allTransactions), selectedYear: $selectedYear).frame(height: 200)
             }
             Section {
                 //https://www.hackingwithswift.com/articles/216/complete-guide-to-navigationview-in-swiftui

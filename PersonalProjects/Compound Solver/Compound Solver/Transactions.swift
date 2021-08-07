@@ -17,6 +17,8 @@ struct Transaction {
         let yearTransactions = transactions.filter( {$0.year == year })
         return yearTransactions.map( { BarChartDataEntry(x: $0.month, y:$0.quantity) } )
     }
+    
+    static var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
     static var allTransactions:[Transaction] {
         [
