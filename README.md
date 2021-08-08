@@ -1,4 +1,1 @@
-# HackingWithSwift
-https://www.hackingwithswift.com
-# DetailsPro
-https://detailspro.app
+My iOS dev learning journey
