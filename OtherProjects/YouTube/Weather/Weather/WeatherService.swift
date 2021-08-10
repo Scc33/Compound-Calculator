@@ -13,6 +13,11 @@ public final class WeatherService: NSObject {
     private let API_KEY = "c2314ea3b69b08101dba1a7bd0ab32e9"
     private var completionHandler: ((Weather) -> Void)?
     
+    public override init() {
+        super.init()
+        locationManager.delegate = self
+    }
+    
     public func loadWeatherData(_ completionHandler: @escaping((Weather) -> Void)) {
         self.completionHandler = completionHandler
         locationManager.requestWhenInUseAuthorization()
@@ -32,6 +37,23 @@ public final class WeatherService: NSObject {
                 self.completionHandler?(Weather(response: response))
             }
         }).resume()
+    }
+}
+
+extension WeatherService: CLLocationManagerDelegate {
+    public func locationManager(
+        _ manager: CLLocationManager,
+        didUpdateLocations locations: [CLLocation]
+    ) {
+        guard let location = locations.first else { return }
+        makeDataRequest(forCoordinates: location.coordinate)
+    }
+    
+    public func locationManager(
+        _ manager: CLLocationManager,
+        didFailWithError error: Error
+    ) {
+        print("Something went wrong: \(error.localizedDescription)")
     }
 }
 
