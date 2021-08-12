@@ -11,6 +11,7 @@
 		9CE0E10D26B111BD00589891 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E10C26B111BD00589891 /* ContentView.swift */; };
 		9CE0E10F26B111C100589891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E10E26B111C100589891 /* Assets.xcassets */; };
 		9CE0E11226B111C100589891 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E11126B111C100589891 /* Preview Assets.xcassets */; };
+		9CE0E1C626C4D06600589891 /* StructVClass in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E1C526C4D06500589891 /* StructVClass */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		9CE0E10E26B111C100589891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CE0E11126B111C100589891 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9CE0E11326B111C100589891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CE0E1C526C4D06500589891 /* StructVClass */ = {isa = PBXFileReference; lastKnownFileType = text; path = StructVClass; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				9CE0E10E26B111C100589891 /* Assets.xcassets */,
 				9CE0E11326B111C100589891 /* Info.plist */,
 				9CE0E11026B111C100589891 /* Preview Content */,
+				9CE0E1C526C4D06500589891 /* StructVClass */,
 			);
 			path = iExpense;
 			sourceTree = "<group>";
@@ -128,6 +131,7 @@
 			files = (
 				9CE0E11226B111C100589891 /* Preview Assets.xcassets in Resources */,
 				9CE0E10F26B111C100589891 /* Assets.xcassets in Resources */,
+				9CE0E1C626C4D06600589891 /* StructVClass in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
