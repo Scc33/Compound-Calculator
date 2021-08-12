@@ -17,14 +17,33 @@ class User: ObservableObject {
 struct ContentView: View {
     //@ObservedObject is the other half, it watches for changes
     @ObservedObject var user = User()
+    @State private var showingSheet = false
     
     var body: some View {
         VStack {
-                    Text("Your name is \(user.firstName) \(user.lastName).")
+            Text("Your name is \(user.firstName) \(user.lastName).")
+            
+            TextField("First name", text: $user.firstName)
+            TextField("Last name", text: $user.lastName)
+            Button("Show Sheet") {
+                self.showingSheet.toggle()
+            }.sheet(isPresented: $showingSheet) {
+                SecondView(firstName: user.firstName)
+            }
+        }
+    }
+}
 
-                    TextField("First name", text: $user.firstName)
-                    TextField("Last name", text: $user.lastName)
-                }
+struct SecondView: View {
+    @Environment(\.presentationMode) var presentationMode
+    var firstName: String
+    
+    var body: some View {
+        Text("Second View")
+        Text("\(firstName)")
+        Button("Dismiss") {
+            self.presentationMode.wrappedValue.dismiss()
+        }
     }
 }
 
