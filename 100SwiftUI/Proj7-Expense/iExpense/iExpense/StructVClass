@@ -1,3 +1,8 @@
 In practice, what this means is that if we have two SwiftUI views and we send them both the same struct to work with, they actually each have a unique copy of that struct; if one changes it, the other won’t see that change. On the other hand, if we create an instance of a class and send that to both views, they will share changes.
 
 For SwiftUI developers, what this means is that if we want to share data between multiple views – if we want two or more views to point to the same data so that when one changes they all get those changes – we need to use classes rather than structs.
+
+As you’ve seen, rather than just using @State to declare local state, we now take three steps:
+1. Make a class that conforms to the ObservableObject protocol.
+2. Mark some properties with @Published so that any views using the class get updated when they change.
+3. Create an instance of our class using the @ObservedObject property wrapper.
