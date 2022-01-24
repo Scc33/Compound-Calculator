@@ -32,93 +32,6 @@ func calcYearlyVals(rate: String, initial: String, time: String, contributionAmt
     return calcVals
 }
 
-struct MenuView: View {
-    @State private var isShareSheetShowing = false
-    
-    func shareButton() {
-        isShareSheetShowing.toggle()
-        let url = URL(string: "https://apple.com")
-        let activityView = UIActivityViewController(activityItems: [url!], applicationActivities: nil)
-        UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
-    }
-    
-    func openWebsite() {
-        if let url = URL(string: "https://www.hackingwithswift.com") {
-            UIApplication.shared.open(url)
-        }
-    }
-    
-    var body: some View {
-        List {
-            HStack {
-                Text("Share App")
-                Spacer()
-                Button(action: shareButton) {
-                    Image(systemName: "square.and.arrow.up")
-                        .font(.largeTitle)
-                }
-            }
-            HStack {
-                Text("Settings")
-                Spacer()
-                Image(systemName:  "gearshape")
-                    .font(.largeTitle)
-            }
-            HStack {
-                Text("Compound Interest")
-                Spacer()
-                Text("A = P (1 + r/n) ") + Text("nt").font(.system(.footnote)).baselineOffset(10)
-            }
-            HStack {
-                Text("Future Value of a series")
-                Spacer()
-                Text("FV = PMT (1 + r/n) ") + Text("nt").font(.system(.footnote)).baselineOffset(10) + Text("-1 / (r/n)")
-            }
-            Button(action: openWebsite) {
-                Text("Privacy Policy/Website")
-            }
-        }
-    }
-}
-
-struct DoubleView: View {
-    @State private var estBase: topLine = .seventy
-    @State private var estInterest = ""
-    
-    var excDouble: Double {
-        let convertedEstInterest = Double(estInterest) ?? 0.1
-        let num = log(2.0)
-        let dem = log(1.0 + (convertedEstInterest / 100.0))
-        return num / dem
-    }
-    
-    var estDouble: Double {
-        let convertedEstBase = Double(estBase.id) ?? 0.1
-        let convertedEstInterest = Double(estInterest) ?? 0.1
-        return convertedEstBase / convertedEstInterest
-    }
-    
-    var body: some View {
-        Form {
-            Section {
-                Picker("Base", selection: $estBase) {
-                    ForEach(topLine.allCases, id: \.id) { value in
-                        Text(value.localizedName)
-                            .tag(value)
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                TextField("Interest Rate", text: $estInterest)
-                    .keyboardType(.decimalPad)
-            }
-            Section {
-                Text("Estimated doubling time \(estDouble)")
-                Text("Exact doubling time \(excDouble)")
-            }
-        }
-    }
-}
-
 struct YearlyValues: View {
     var rate: String
     var initial: String
@@ -177,9 +90,6 @@ struct CompoundSolverView: View {
     @State private var graphing: graphType = .bar
     @State private var isContrib = false
     @State private var showContrib = false
-    @State private var selectedYear = 2019
-    @State private var barChartEntries: [BarChartDataEntry] = []
-    @State private var selectedItem = ""
     
     var body: some View {
         Form {
@@ -210,6 +120,10 @@ struct CompoundSolverView: View {
             }
             Section {
                 Text("Final Value \(calcYearlyVals(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, numberContrib: numberContrib).last ?? 0)")
+                //https://www.hackingwithswift.com/articles/216/complete-guide-to-navigationview-in-swiftui
+                NavigationLink(destination: YearlyValues(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, numberContrib: numberContrib)) {
+                    Text("Yearly Values")
+                }
             }
             Section {
                 Toggle(isOn: $showContrib) {
@@ -222,31 +136,15 @@ struct CompoundSolverView: View {
                     }
                 }
                 .pickerStyle(SegmentedPickerStyle())
-                Text("Graph selected year \(selectedYear)")
-                Button("Change Year") {
-                    if selectedYear == 2019 {
-                        selectedYear = 2020
-                    } else {
-                        selectedYear = 2019
-                    }
-                }
                 switch graphing {
-                case .bar : TransactionBarChartView(entries: Transaction.dataEntriiesForYear(selectedYear, transactions: Transaction.allTransactions),
-                                                    selectedYear: $selectedYear,
-                                                    selectedItem: $selectedItem
-                ).frame(height: 200)
-                default: TransactionLineChartView(entries: Transaction.dataEntriiesForYear(selectedYear, transactions: Transaction.allTransactions),
-                                                  selectedYear: $selectedYear,
-                                                  selectedItem: $selectedItem
-                ).frame(height: 200)
-                }
-                
-                Text(selectedItem)
-            }
-            Section {
-                //https://www.hackingwithswift.com/articles/216/complete-guide-to-navigationview-in-swiftui
-                NavigationLink(destination: YearlyValues(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, numberContrib: numberContrib)) {
-                    Text("Yearly Values")
+                case .bar : Chart(data: [0.1, 0.3, 0.2, 0.5, 0.4, 0.9, 0.1])
+                        .chartStyle(
+                            ColumnChartStyle(column: Capsule().foregroundColor(.green), spacing: 2)
+                        ).frame(height: 200)
+                default : Chart(data: [0.1, 0.3, 0.2, 0.5, 0.4, 0.9, 0.1])
+                        .chartStyle(
+                            LineChartStyle(.quadCurve, lineColor: .blue, lineWidth: 5)
+                        ).frame(height: 200)
                 }
             }
             Section {
@@ -259,33 +157,38 @@ struct CompoundSolverView: View {
 
 struct ContentView: View {
     @State private var selectedTab = 0
+    @State private var showingSettings = false
     
     var body: some View {
         TabView(selection: $selectedTab) {
             NavigationView {
                 CompoundSolverView()
                     .navigationTitle(Text("Compound Solver"))
+                    .toolbar {
+                        Button {
+                            self.showingSettings.toggle()
+                        } label: {
+                            Image(systemName: "gear")
+                        }
+                    }.sheet(isPresented: $showingSettings) {
+                        // show an AddView here
+                        MenuView()
+                    }
             }
             .tabItem {
                 Text("Compound")
                 Image(systemName:"waveform.path.ecg.rectangle")
             }.tag(0)
-            NavigationView {
-                DoubleView()
-                    .navigationTitle(Text("Doubling"))
-            }
+            DoubleView()
             .tabItem {
                 Text("Doubling Calculator")
                 Image(systemName:"waveform.path.ecg.rectangle")
             }.tag(1)
-            NavigationView {
-                MenuView()
-                    .navigationTitle(Text("Settings"))
-            }
+            FormulaView()
             .tabItem {
-                Text("Settings")
+                Text("Formula")
                 Image(systemName:"waveform.path.ecg.rectangle")
-            }.tag(1)
+            }.tag(2)
         }
     }
 }
