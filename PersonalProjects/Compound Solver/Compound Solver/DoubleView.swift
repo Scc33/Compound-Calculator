@@ -5,7 +5,21 @@
 //  Created by Sean Coughlin on 1/24/22.
 //
 
+// The rule of 72
+// https://en.wikipedia.org/wiki/Rule_of_72#E-M_rule
+// maybe include a link to this and the formulas under the settings
+
 import SwiftUI
+
+enum topLine: String, Equatable, CaseIterable, Identifiable {
+    case exact = "69.3"
+    case seventy = "70"
+    case seventyTwo = "72"
+    
+    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
+    var id: String { self.rawValue }
+}
+
 
 struct DoubleView: View {
     @State private var estBase: topLine = .seventy
@@ -26,7 +40,6 @@ struct DoubleView: View {
     
     var body: some View {
         NavigationView {
-            
             Form {
                 Section {
                     Picker("Base", selection: $estBase) {

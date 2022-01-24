@@ -8,6 +8,25 @@
 import SwiftUI
 import Charts
 
+enum graphType: String, Equatable, CaseIterable, Identifiable {
+    case bar = "Bar graph"
+    case line = "Line graph"
+    
+    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
+    var id: String { self.rawValue }
+}
+
+enum compoundType: String, Equatable, CaseIterable, Identifiable {
+    case day = "Daily"
+    case week = "Weekly"
+    case month = "Montly"
+    case quarter = "Quarterly"
+    case year = "Yearly"
+    
+    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
+    var id: String { self.rawValue }
+}
+
 struct CompoundSolverView: View {
     @State private var rate = ""
     @State private var initial = ""
@@ -23,31 +42,40 @@ struct CompoundSolverView: View {
         NavigationView {
             Form {
                 Section {
-                    TextField("Rate", text: $rate)
-                        .keyboardType(.decimalPad)
-                    HStack {
-                        TextField("Initial amount", text: $initial)
+                    VStack(alignment: .leading) {
+                        Text("Interest Rate")
+                        TextField("Rate", text: $rate)
                             .keyboardType(.decimalPad)
+                    }
+                    VStack(alignment: .leading) {
+                        Text("Initial Principal")
+                        TextField("Amount", text: $initial)
+                            .keyboardType(.decimalPad)
+                    }
+                    VStack(alignment: .leading) {
+                        Text("Years of Growing")
                         TextField("Years", text: $time)
                             .keyboardType(.decimalPad)
                     }
-                    TextField("Monthly Contribution", text: $contributionAmt)
-                        .keyboardType(.decimalPad)
+                    VStack(alignment: .leading) {
+                        Text("Monthly Contribution")
+                        TextField("Addition", text: $contributionAmt)
+                            .keyboardType(.decimalPad)
+                    }
                     VStack(alignment: .leading) {
                         Text("Compound Frequency")
-                        Picker("Base", selection: $compounding) {
+                        Picker("", selection: $compounding) {
                             ForEach(compoundType.allCases, id: \.id) { value in
                                 Text(value.localizedName)
                                     .tag(value)
                             }
                         }
-                        .pickerStyle(SegmentedPickerStyle())
                     }
                 }
                 Section {
                     Text("Final Value $\(String(format: "%.2f", calcYearlyVals(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, compounding: compounding).last ?? 0))")
                     //https://www.hackingwithswift.com/articles/216/complete-guide-to-navigationview-in-swiftui
-                    NavigationLink(destination: YearlyValues(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, compounding: compounding)) {
+                    NavigationLink(destination: YearlyValuesView(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, compounding: compounding)) {
                         Text("Yearly Values")
                     }
                 }
@@ -63,18 +91,18 @@ struct CompoundSolverView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     switch graphing {
-                    case .bar : Chart(data: [0.1, 0.3, 0.2, 0.5, 0.4, 0.9, 0.1])
+                    case .bar : Chart(data: calcYearlyVals(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, compounding: compounding))
                             .chartStyle(
                                 ColumnChartStyle(column: Capsule().foregroundColor(.green), spacing: 2)
                             ).frame(height: 200)
-                    default : Chart(data: [0.1, 0.3, 0.2, 0.5, 0.4, 0.9, 0.1])
+                    default : Chart(data: calcYearlyVals(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, compounding: compounding))
                             .chartStyle(
                                 LineChartStyle(.quadCurve, lineColor: .blue, lineWidth: 5)
                             ).frame(height: 200)
                     }
                 }
                 Section {
-                    History()
+                    HistoryView()
                 }
             }
             .toolbar {

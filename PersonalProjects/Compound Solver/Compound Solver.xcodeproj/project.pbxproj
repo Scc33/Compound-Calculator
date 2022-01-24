@@ -12,6 +12,9 @@
 		9C6FA800279F4D8F00139F20 /* DoubleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */; };
 		9C6FA802279F4DDA00139F20 /* FormulaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA801279F4DDA00139F20 /* FormulaView.swift */; };
 		9C6FA804279F501E00139F20 /* CompoundSolverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA803279F501E00139F20 /* CompoundSolverView.swift */; };
+		9C6FA806279F5B1D00139F20 /* YearlyValuesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA805279F5B1D00139F20 /* YearlyValuesView.swift */; };
+		9C6FA808279F5C1900139F20 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA807279F5C1900139F20 /* HistoryView.swift */; };
+		9C6FA80A279F5C5800139F20 /* CalcValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA809279F5C5800139F20 /* CalcValues.swift */; };
 		9CE0E15C26B741D000589891 /* Compound_SolverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E15B26B741D000589891 /* Compound_SolverApp.swift */; };
 		9CE0E15E26B741D000589891 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E15D26B741D000589891 /* ContentView.swift */; };
 		9CE0E16026B741D400589891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E15F26B741D400589891 /* Assets.xcassets */; };
@@ -73,6 +76,9 @@
 		9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleView.swift; sourceTree = "<group>"; };
 		9C6FA801279F4DDA00139F20 /* FormulaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaView.swift; sourceTree = "<group>"; };
 		9C6FA803279F501E00139F20 /* CompoundSolverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompoundSolverView.swift; sourceTree = "<group>"; };
+		9C6FA805279F5B1D00139F20 /* YearlyValuesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearlyValuesView.swift; sourceTree = "<group>"; };
+		9C6FA807279F5C1900139F20 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		9C6FA809279F5C5800139F20 /* CalcValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcValues.swift; sourceTree = "<group>"; };
 		9CE0E15826B741D000589891 /* Compound Solver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Compound Solver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE0E15B26B741D000589891 /* Compound_SolverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compound_SolverApp.swift; sourceTree = "<group>"; };
 		9CE0E15D26B741D000589891 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -143,6 +149,9 @@
 				9C6FA7FD279F4D1A00139F20 /* MenuView.swift */,
 				9C6FA801279F4DDA00139F20 /* FormulaView.swift */,
 				9C6FA803279F501E00139F20 /* CompoundSolverView.swift */,
+				9C6FA805279F5B1D00139F20 /* YearlyValuesView.swift */,
+				9C6FA807279F5C1900139F20 /* HistoryView.swift */,
+				9C6FA809279F5C5800139F20 /* CalcValues.swift */,
 			);
 			path = "Compound Solver";
 			sourceTree = "<group>";
@@ -329,6 +338,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C6FA804279F501E00139F20 /* CompoundSolverView.swift in Sources */,
+				9C6FA808279F5C1900139F20 /* HistoryView.swift in Sources */,
+				9C6FA806279F5B1D00139F20 /* YearlyValuesView.swift in Sources */,
+				9C6FA80A279F5C5800139F20 /* CalcValues.swift in Sources */,
 				9CE0E15E26B741D000589891 /* ContentView.swift in Sources */,
 				9C6FA800279F4D8F00139F20 /* DoubleView.swift in Sources */,
 				9C6FA7FE279F4D1A00139F20 /* MenuView.swift in Sources */,
