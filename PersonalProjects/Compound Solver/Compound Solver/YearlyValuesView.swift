@@ -24,6 +24,7 @@ struct YearlyValuesView: View {
                 Text("Year \(i+1) - $\(String(format: "%.2f", vals[i]))")
             }
         }
+        .navigationTitle(Text("Yearly Values"))
     }
 }
 

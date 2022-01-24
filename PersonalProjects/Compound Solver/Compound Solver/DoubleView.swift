@@ -42,22 +42,28 @@ struct DoubleView: View {
         NavigationView {
             Form {
                 Section {
-                    Picker("Base", selection: $estBase) {
-                        ForEach(topLine.allCases, id: \.id) { value in
-                            Text(value.localizedName)
-                                .tag(value)
+                    VStack(alignment: .leading) {
+                        Text("Interest Rate")
+                        TextField("", text: $estInterest)
+                            .keyboardType(.decimalPad)
+                    }
+                    VStack(alignment: .leading) {
+                        Text("Rule of 72/70/69.3")
+                        Picker("", selection: $estBase) {
+                            ForEach(topLine.allCases, id: \.id) { value in
+                                Text(value.localizedName)
+                                    .tag(value)
+                            }
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
-                    TextField("Interest Rate", text: $estInterest)
-                        .keyboardType(.decimalPad)
                 }
                 Section {
-                    Text("Estimated doubling time \(estDouble)")
-                    Text("Exact doubling time \(excDouble)")
+                    Text("Estimated doubling time \(String(format:"%.2f",estDouble)) years")
+                    Text("Exact doubling time \(String(format:"%.2f",excDouble)) years")
                 }
-            }                    .navigationTitle(Text("Doubling"))
-            
+            }
+            .navigationTitle(Text("Doubling Calculator"))
         }
     }
 }
