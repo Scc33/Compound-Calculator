@@ -8,9 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var dataStore: DataStore
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            List() {
+                ForEach(dataStore.toDos) { toDo in
+                    Button {
+                        
+                    } label: {
+                        Text(toDo.name)
+                            .font(.title3)
+                            .strikethrough(toDo.completed)
+                            .foregroundColor(toDo.completed ? .green : Color(.label))
+                    }
+                }
+            }
+            .listStyle(InsetGroupedListStyle())
+            .toolbar {
+                
+            }
+        }
     }
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C6FA7F9279E705E00139F20 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7F8279E705D00139F20 /* AddView.swift */; };
 		9CE0E10B26B111BD00589891 /* iExpenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E10A26B111BD00589891 /* iExpenseApp.swift */; };
 		9CE0E10D26B111BD00589891 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E10C26B111BD00589891 /* ContentView.swift */; };
 		9CE0E10F26B111C100589891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E10E26B111C100589891 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C6FA7F8279E705D00139F20 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		9CE0E10726B111BD00589891 /* iExpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iExpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE0E10A26B111BD00589891 /* iExpenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iExpenseApp.swift; sourceTree = "<group>"; };
 		9CE0E10C26B111BD00589891 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			children = (
 				9CE0E10A26B111BD00589891 /* iExpenseApp.swift */,
 				9CE0E10C26B111BD00589891 /* ContentView.swift */,
+				9C6FA7F8279E705D00139F20 /* AddView.swift */,
 				9CE0E10E26B111C100589891 /* Assets.xcassets */,
 				9CE0E11326B111C100589891 /* Info.plist */,
 				9CE0E11026B111C100589891 /* Preview Content */,
@@ -144,6 +147,7 @@
 			files = (
 				9CE0E10D26B111BD00589891 /* ContentView.swift in Sources */,
 				9CE0E10B26B111BD00589891 /* iExpenseApp.swift in Sources */,
+				9C6FA7F9279E705E00139F20 /* AddView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +280,7 @@
 				DEVELOPMENT_TEAM = Y46ZFSQQF3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iExpense/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,7 +302,7 @@
 				DEVELOPMENT_TEAM = Y46ZFSQQF3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iExpense/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

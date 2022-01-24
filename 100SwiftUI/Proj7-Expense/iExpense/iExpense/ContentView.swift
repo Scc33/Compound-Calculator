@@ -21,20 +21,46 @@ struct UserC: Codable {
     var lastName: String
 }
 
+class Expenses: ObservableObject {
+    init() {
+        if let savedItems = UserDefaults.standard.data(forKey: "Items") {
+            if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: savedItems) {
+                items = decodedItems
+                return
+            }
+        }
+
+        items = []
+    }
+    
+    @Published var items = [ExpenseItem]()  {
+        didSet {
+            if let encoded = try? JSONEncoder().encode(items) {
+                UserDefaults.standard.set(encoded, forKey: "Items")
+            }
+        }
+    }
+}
+
+struct ExpenseItem: Identifiable, Codable {
+    var id = UUID()
+    let name: String
+    let type: String
+    let amount: Double
+}
+
+
 struct ContentView: View {
     //@ObservedObject is the other half, it watches for changes
     @ObservedObject var user = User()
     @State private var userC = UserC(firstName: "Taylor", lastName: "Swift")
-
-    @State private var showingSheet = false
-    
-    @State private var numbers = [Int]()
-    @State private var currentNumber = 1
+    @StateObject var expenses = Expenses()
     
     @State private var tapCount = UserDefaults.standard.integer(forKey: "Tap")
-
-    func removeRows(at offsets: IndexSet) {
-        numbers.remove(atOffsets: offsets)
+    @State private var showingAddExpense = false
+    
+    func removeItems(at offsets: IndexSet) {
+        expenses.items.remove(atOffsets: offsets)
     }
     
     var body: some View {
@@ -49,10 +75,13 @@ struct ContentView: View {
                 
                 TextField("First name", text: $user.firstName)
                 TextField("Last name", text: $user.lastName)
-                Button("Show Sheet") {
-                    self.showingSheet.toggle()
-                }.sheet(isPresented: $showingSheet) {
-                    SecondView(firstName: user.firstName)
+                Button {
+                    self.showingAddExpense.toggle()
+                } label: {
+                    Image(systemName: "plus")
+                }.sheet(isPresented: $showingAddExpense) {
+                    // show an AddView here
+                    AddView(expenses: Expenses())
                 }
                 Button("Save User") {
                     let encoder = JSONEncoder()
@@ -63,15 +92,28 @@ struct ContentView: View {
                 }
                 
                 List {
-                    ForEach(numbers, id: \.self) {
-                        Text("\($0)")
+                    ForEach(expenses.items) { item in
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(item.name)
+                                    .font(.headline)
+                                Text(item.type)
+                            }
+
+                            Spacer()
+                            Text(item.amount, format: .currency(code: "USD"))
+                        }
                     }
-                    .onDelete(perform: removeRows)
+                    .onDelete(perform: removeItems)
                 }
-                
-                Button("Add Number") {
-                    self.numbers.append(self.currentNumber)
-                    self.currentNumber += 1
+                .navigationTitle("iExpense")
+                .toolbar {
+                    Button {
+                        let expense = ExpenseItem(name: "Test", type: "Personal", amount: 5)
+                        expenses.items.append(expense)
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
             }
             .navigationBarItems(leading: EditButton())
