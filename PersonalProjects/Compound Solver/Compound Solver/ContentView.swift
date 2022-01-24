@@ -26,13 +26,14 @@ func calcYearlyVals(rate: String, initial: String, time: String, contributionAmt
     default : numberCompound = 1.0
     }
     
+    var currVal = cInitial
     var calcVals = [cInitial]
     
     for _ in 0 ..< cTime {
-        var currVal = calcVals.last ?? 0
         currVal += (cContributionAmt * 12)
         currVal = currVal * pow((1 + (cRate / numberCompound)), numberCompound)
-        calcVals.append(currVal)
+        let roundedVal = round(currVal * 100) / 100.0
+        calcVals.append(roundedVal)
     }
     
     return calcVals
@@ -52,7 +53,7 @@ struct YearlyValues: View {
     var body: some View {
         return List {
             ForEach(vals, id: \.self) { val in
-                Text("\(val)")
+                Text("$\(String(format: "%.2f", val))")
             }
         }
     }
@@ -61,28 +62,6 @@ struct YearlyValues: View {
 struct History: View {
     var body: some View {
         Text("History")
-    }
-}
-
-//https://medium.com/macoclock/conditional-views-in-swiftui-dc09c808bc30
-struct EmptyModifier: ViewModifier {
-    let isEmpty: Bool
-    
-    func body(content: Content) -> some View {
-        Group {
-            if isEmpty {
-                EmptyView()
-            } else {
-                content
-            }
-        }
-    }
-}
-
-//https://medium.com/macoclock/conditional-views-in-swiftui-dc09c808bc30
-extension View {
-    func isEmpty(_ bool: Bool) -> some View {
-        modifier(EmptyModifier(isEmpty: bool))
     }
 }
 

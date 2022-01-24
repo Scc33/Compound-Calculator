@@ -16,7 +16,6 @@ struct CompoundSolverView: View {
     @State private var numberContrib = ""
     @State private var compounding: compoundType = .day
     @State private var graphing: graphType = .bar
-    @State private var isContrib = false
     @State private var showContrib = false
     @State private var showingSettings = false
     
@@ -32,22 +31,21 @@ struct CompoundSolverView: View {
                         TextField("Years", text: $time)
                             .keyboardType(.decimalPad)
                     }
-                    Toggle(isOn: $isContrib) {
-                        Text("Contributions")
-                    }
                     TextField("Monthly Contribution", text: $contributionAmt)
                         .keyboardType(.decimalPad)
-                    .isEmpty(!isContrib)
-                    Picker("Base", selection: $compounding) {
-                        ForEach(compoundType.allCases, id: \.id) { value in
-                            Text(value.localizedName)
-                                .tag(value)
+                    VStack(alignment: .leading) {
+                        Text("Compound Frequency")
+                        Picker("Base", selection: $compounding) {
+                            ForEach(compoundType.allCases, id: \.id) { value in
+                                Text(value.localizedName)
+                                    .tag(value)
+                            }
                         }
+                        .pickerStyle(SegmentedPickerStyle())
                     }
-                    .pickerStyle(SegmentedPickerStyle())
                 }
                 Section {
-                    Text("Final Value \(calcYearlyVals(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, compounding: compounding).last ?? 0)")
+                    Text("Final Value $\(String(format: "%.2f", calcYearlyVals(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, compounding: compounding).last ?? 0))")
                     //https://www.hackingwithswift.com/articles/216/complete-guide-to-navigationview-in-swiftui
                     NavigationLink(destination: YearlyValues(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, compounding: compounding)) {
                         Text("Yearly Values")
