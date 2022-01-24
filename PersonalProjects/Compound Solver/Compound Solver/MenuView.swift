@@ -13,12 +13,19 @@ struct MenuView: View {
     func shareButton() {
         isShareSheetShowing.toggle()
         let url = URL(string: "https://seancoughlin.me")
+        // Make the activityViewContoller which shows the share-view
         let activityView = UIActivityViewController(activityItems: [url!], applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
     }
     
-    func openWebsite() {
+    func openAppWebsite() {
         if let url = URL(string: "https://app.seancoughlin.me") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    func openDevWebsite() {
+        if let url = URL(string: "https://seancoughlin.me") {
             UIApplication.shared.open(url)
         }
     }
@@ -31,11 +38,13 @@ struct MenuView: View {
                     Spacer()
                     Button(action: shareButton) {
                         Image(systemName: "square.and.arrow.up")
-                            .font(.largeTitle)
                     }
                 }
-                Button(action: openWebsite) {
-                    Text("Privacy Policy/Website")
+                Button(action: openAppWebsite) {
+                    Text("Privacy Policy")
+                }
+                Button(action: openDevWebsite) {
+                    Text("Developer Website")
                 }
             }
             .navigationTitle("Settings")
