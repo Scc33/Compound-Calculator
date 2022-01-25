@@ -62,6 +62,7 @@ struct MenuView: View {
                             .tag(value)
                     }
                 }
+                //Banner()
             }
             .navigationTitle("Settings")
         }
