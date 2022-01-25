@@ -45,6 +45,7 @@ struct CompoundSolverView: View {
     @State private var graphing: graphType = .bar
     @State private var showContrib = false
     @State private var showingSettings = false
+    @State var isActive : Bool = false
     
     var body: some View {
         NavigationView {
@@ -113,9 +114,10 @@ struct CompoundSolverView: View {
                     }
                 }
                 Section {
-                    NavigationLink(destination: HistoryView(History: savedCompounds)) {
+                    NavigationLink(destination: HistoryView(currCompound: compound, History: savedCompounds, rootIsActive: $isActive), isActive: $isActive) {
                         Text("History")
                     }
+                    .isDetailLink(false)
                 }
                 //Banner()
             }
