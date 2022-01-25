@@ -14,6 +14,7 @@ final private class BannerVC: UIViewControllerRepresentable  {
         let view = GADBannerView(adSize: GADAdSizeBanner)
 
         let viewController = UIViewController()
+        //NOTE NOT MY AD ID VALUE
         view.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         view.rootViewController = viewController
         viewController.view.addSubview(view)

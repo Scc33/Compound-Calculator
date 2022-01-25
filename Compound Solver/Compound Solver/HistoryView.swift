@@ -19,6 +19,7 @@ struct HistoryView: View {
                     Text(compound.time)
                     Text(compound.contributionAmt)
                     //Text.rawValue(compound.compounding)
+                    //Maybe localized name? Like in compound calc model
                 }
             }
         }
