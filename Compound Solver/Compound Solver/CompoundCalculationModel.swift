@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct CompoundCalculationModel {
+struct CompoundCalculationModel: Identifiable {
+    var id = UUID()
     var rate: String = "0.0"
     var initial: String = "0.0"
     var time: String = "0.0"

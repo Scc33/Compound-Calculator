@@ -29,6 +29,7 @@ enum compoundType: String, Equatable, CaseIterable, Identifiable {
 
 struct CompoundSolverView: View {
     @State private var compound: CompoundCalculationModel = CompoundCalculationModel()
+    @State private var savedCompounds: SaveCompounds = SaveCompounds()
     @State private var graphing: graphType = .bar
     @State private var showContrib = false
     @State private var showingSettings = false
@@ -73,6 +74,9 @@ struct CompoundSolverView: View {
                     NavigationLink(destination: YearlyValuesView(compound: compound)) {
                         Text("Yearly Values")
                     }
+                    Button("Save") {
+                        savedCompounds.save(compoundToSave: compound)
+                    }
                 }
                 Section {
                     Toggle(isOn: $showContrib) {
@@ -97,7 +101,7 @@ struct CompoundSolverView: View {
                     }
                 }
                 Section {
-                    HistoryView()
+                    HistoryView(History: savedCompounds)
                 }
             }
             .toolbar {
