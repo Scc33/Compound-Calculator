@@ -8,14 +8,6 @@
 import SwiftUI
 import Charts
 
-enum graphType: String, Equatable, CaseIterable, Identifiable, Codable {
-    case bar = "Bar graph"
-    case line = "Line graph"
-    
-    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
-    var id: String { self.rawValue }
-}
-
 enum currencyType: String, Equatable, CaseIterable, Identifiable, Codable {
     case dollar = "$"
     case euro = "€"
@@ -42,7 +34,6 @@ enum compoundType: String, Equatable, CaseIterable, Identifiable, Codable {
 struct CompoundSolverView: View {
     @State private var compound: CompoundCalculationModel = CompoundCalculationModel()
     @State private var savedCompounds: SaveCompounds = SaveCompounds()
-    @State private var graphing: graphType = .bar
     @State private var showContrib = false
     @State private var showingSettings = false
     @State var isActive : Bool = false
@@ -92,26 +83,10 @@ struct CompoundSolverView: View {
                     }
                 }
                 Section {
-                    Toggle(isOn: $showContrib) {
-                        Text("Show contributions")
-                    }
-                    Picker("Base", selection: $graphing) {
-                        ForEach(graphType.allCases, id: \.id) { value in
-                            Text(value.localizedName)
-                                .tag(value)
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    switch graphing {
-                    case .bar : Chart(data: compound.calcYearlyVals())
+                    Chart(data: compound.calcYearlyVals())
                             .chartStyle(
                                 ColumnChartStyle(column: Capsule().foregroundColor(.green), spacing: 2)
                             ).frame(height: 200)
-                    default : Chart(data: compound.calcYearlyVals())
-                            .chartStyle(
-                                LineChartStyle(.quadCurve, lineColor: .blue, lineWidth: 5)
-                            ).frame(height: 200)
-                    }
                 }
                 Section {
                     NavigationLink(destination: HistoryView(currCompound: compound, History: savedCompounds, rootIsActive: $isActive), isActive: $isActive) {
