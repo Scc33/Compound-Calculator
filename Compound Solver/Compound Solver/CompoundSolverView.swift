@@ -16,6 +16,16 @@ enum graphType: String, Equatable, CaseIterable, Identifiable {
     var id: String { self.rawValue }
 }
 
+enum currencyType: String, Equatable, CaseIterable, Identifiable {
+    case dollar = "$"
+    case euro = "€"
+    case pound = "£"
+    case yen = "¥"
+    
+    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
+    var id: String { self.rawValue }
+}
+
 enum compoundType: String, Equatable, CaseIterable, Identifiable {
     case day = "Daily"
     case week = "Weekly"

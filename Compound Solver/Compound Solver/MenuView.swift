@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MenuView: View {
     @State private var isShareSheetShowing = false
+    @State var currType = currencyType.dollar
     
     func shareButton() {
         isShareSheetShowing.toggle()
@@ -52,8 +53,14 @@ struct MenuView: View {
                 Button(action: openDevWebsite) {
                     Text("Developer Website")
                 }
-                Button(action: openAppPage) {
+                /*Button(action: openAppPage) {
                     Text("Leave a review")
+                }*/
+                Picker("Currency Type", selection: $currType) {
+                    ForEach(currencyType.allCases, id: \.id) { value in
+                        Text(value.localizedName)
+                            .tag(value)
+                    }
                 }
             }
             .navigationTitle("Settings")
