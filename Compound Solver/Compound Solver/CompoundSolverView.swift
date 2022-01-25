@@ -101,8 +101,11 @@ struct CompoundSolverView: View {
                     }
                 }
                 Section {
-                    HistoryView(History: savedCompounds)
+                    NavigationLink(destination: HistoryView(History: savedCompounds)) {
+                        Text("History")
+                    }
                 }
+                //Banner()
             }
             .toolbar {
                 Button {

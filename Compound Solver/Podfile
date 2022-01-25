@@ -1,0 +1,27 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Compound Solver' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Compound Solver
+  pod 'Google-Mobile-Ads-SDK'
+  
+end
+
+target 'WatchCompound' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for WatchCompound
+
+end
+
+target 'WatchCompound Extension' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for WatchCompound Extension
+
+end

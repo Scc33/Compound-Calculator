@@ -22,6 +22,7 @@ struct HistoryView: View {
                 }
             }
         }
+        .navigationTitle(Text("Yearly Values"))
     }
 }
 

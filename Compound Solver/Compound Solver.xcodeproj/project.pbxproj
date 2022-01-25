@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3761120B1577076FB435304C /* Pods_Compound_Solver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490715EB0D9BF61AD391F022 /* Pods_Compound_Solver.framework */; };
 		81B4FE1E30F1AB4B78D9D4F1 /* Pods_WatchCompound.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D7DA795DE52771C18E3F194 /* Pods_WatchCompound.framework */; };
+		9C1F4A4A27A075B0003003DA /* BannerAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1F4A4927A075B0003003DA /* BannerAd.swift */; };
 		9C6FA7FC279F479000139F20 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 9C6FA7FB279F479000139F20 /* Charts */; };
 		9C6FA7FE279F4D1A00139F20 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FD279F4D1A00139F20 /* MenuView.swift */; };
 		9C6FA800279F4D8F00139F20 /* DoubleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */; };
@@ -83,6 +84,7 @@
 		455A58009774117685B41C08 /* Pods-WatchCompound Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchCompound Extension.release.xcconfig"; path = "Target Support Files/Pods-WatchCompound Extension/Pods-WatchCompound Extension.release.xcconfig"; sourceTree = "<group>"; };
 		490715EB0D9BF61AD391F022 /* Pods_Compound_Solver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Compound_Solver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D7DA795DE52771C18E3F194 /* Pods_WatchCompound.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchCompound.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C1F4A4927A075B0003003DA /* BannerAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAd.swift; sourceTree = "<group>"; };
 		9C6FA7FD279F4D1A00139F20 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleView.swift; sourceTree = "<group>"; };
 		9C6FA801279F4DDA00139F20 /* FormulaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaView.swift; sourceTree = "<group>"; };
@@ -150,7 +152,6 @@
 				2D5C6A521C3D7D3E2A8563D5 /* Pods-WatchCompound Extension.debug.xcconfig */,
 				455A58009774117685B41C08 /* Pods-WatchCompound Extension.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -192,6 +193,7 @@
 				9C6FA807279F5C1900139F20 /* HistoryView.swift */,
 				9C6FA825279F8C7B00139F20 /* CompoundCalculationModel.swift */,
 				9C6FA827279F906200139F20 /* SaveCompounds.swift */,
+				9C1F4A4927A075B0003003DA /* BannerAd.swift */,
 			);
 			path = "Compound Solver";
 			sourceTree = "<group>";
@@ -477,6 +479,7 @@
 				9C6FA828279F906200139F20 /* SaveCompounds.swift in Sources */,
 				9C6FA826279F8C7B00139F20 /* CompoundCalculationModel.swift in Sources */,
 				9CE0E15E26B741D000589891 /* ContentView.swift in Sources */,
+				9C1F4A4A27A075B0003003DA /* BannerAd.swift in Sources */,
 				9C6FA800279F4D8F00139F20 /* DoubleView.swift in Sources */,
 				9C6FA7FE279F4D1A00139F20 /* MenuView.swift in Sources */,
 				9C6FA802279F4DDA00139F20 /* FormulaView.swift in Sources */,
