@@ -28,12 +28,7 @@ enum compoundType: String, Equatable, CaseIterable, Identifiable {
 }
 
 struct CompoundSolverView: View {
-    @State private var rate = ""
-    @State private var initial = ""
-    @State private var time = ""
-    @State private var contributionAmt = ""
-    @State private var numberContrib = ""
-    @State private var compounding: compoundType = .day
+    @State private var compound: CompoundCalculationModel = CompoundCalculationModel()
     @State private var graphing: graphType = .bar
     @State private var showContrib = false
     @State private var showingSettings = false
@@ -44,27 +39,27 @@ struct CompoundSolverView: View {
                 Section {
                     VStack(alignment: .leading) {
                         Text("Interest Rate")
-                        TextField("Rate", text: $rate)
+                        TextField("Rate", text: $compound.rate)
                             .keyboardType(.decimalPad)
                     }
                     VStack(alignment: .leading) {
                         Text("Initial Principal")
-                        TextField("Amount", text: $initial)
+                        TextField("Amount", text: $compound.initial)
                             .keyboardType(.decimalPad)
                     }
                     VStack(alignment: .leading) {
                         Text("Years of Growing")
-                        TextField("Years", text: $time)
+                        TextField("Years", text: $compound.time)
                             .keyboardType(.decimalPad)
                     }
                     VStack(alignment: .leading) {
                         Text("Monthly Contribution")
-                        TextField("Addition", text: $contributionAmt)
+                        TextField("Addition", text: $compound.contributionAmt)
                             .keyboardType(.decimalPad)
                     }
                     VStack(alignment: .leading) {
                         Text("Compound Frequency")
-                        Picker("", selection: $compounding) {
+                        Picker("", selection: $compound.compounding) {
                             ForEach(compoundType.allCases, id: \.id) { value in
                                 Text(value.localizedName)
                                     .tag(value)
@@ -73,9 +68,9 @@ struct CompoundSolverView: View {
                     }
                 }
                 Section {
-                    Text("Final Value $\(String(format: "%.2f", calcYearlyVals(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, compounding: compounding).last ?? 0))")
+                    Text("Final Value $\(String(format: "%.2f", compound.calcYearlyVals().last ?? 0))")
                     //https://www.hackingwithswift.com/articles/216/complete-guide-to-navigationview-in-swiftui
-                    NavigationLink(destination: YearlyValuesView(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, compounding: compounding)) {
+                    NavigationLink(destination: YearlyValuesView(compound: compound)) {
                         Text("Yearly Values")
                     }
                 }
@@ -91,11 +86,11 @@ struct CompoundSolverView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     switch graphing {
-                    case .bar : Chart(data: calcYearlyVals(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, compounding: compounding))
+                    case .bar : Chart(data: compound.calcYearlyVals())
                             .chartStyle(
                                 ColumnChartStyle(column: Capsule().foregroundColor(.green), spacing: 2)
                             ).frame(height: 200)
-                    default : Chart(data: calcYearlyVals(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, compounding: compounding))
+                    default : Chart(data: compound.calcYearlyVals())
                             .chartStyle(
                                 LineChartStyle(.quadCurve, lineColor: .blue, lineWidth: 5)
                             ).frame(height: 200)

@@ -8,14 +8,10 @@
 import SwiftUI
 
 struct YearlyValuesView: View {
-    var rate: String
-    var initial: String
-    var time: String
-    var contributionAmt: String
-    var compounding: compoundType
+    var compound: CompoundCalculationModel
     
     var vals: [Double] {
-        return calcYearlyVals(rate: rate, initial: initial, time: time, contributionAmt: contributionAmt, compounding: compounding)
+        return compound.calcYearlyVals()
     }
     
     var body: some View {
@@ -30,6 +26,6 @@ struct YearlyValuesView: View {
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        YearlyValuesView(rate: "5", initial: "5", time: "3", contributionAmt: "2", compounding: .day)
+        YearlyValuesView(compound: CompoundCalculationModel())
     }
 }
