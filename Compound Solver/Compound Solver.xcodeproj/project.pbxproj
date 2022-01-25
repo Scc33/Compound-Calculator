@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3761120B1577076FB435304C /* Pods_Compound_Solver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490715EB0D9BF61AD391F022 /* Pods_Compound_Solver.framework */; };
+		81B4FE1E30F1AB4B78D9D4F1 /* Pods_WatchCompound.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D7DA795DE52771C18E3F194 /* Pods_WatchCompound.framework */; };
 		9C6FA7FC279F479000139F20 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 9C6FA7FB279F479000139F20 /* Charts */; };
 		9C6FA7FE279F4D1A00139F20 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FD279F4D1A00139F20 /* MenuView.swift */; };
 		9C6FA800279F4D8F00139F20 /* DoubleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */; };
@@ -28,6 +30,7 @@
 		9CE0E18126BA219B00589891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E18026BA219B00589891 /* Assets.xcassets */; };
 		9CE0E18426BA219B00589891 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E18326BA219B00589891 /* Preview Assets.xcassets */; };
 		9CE0E18826BA219B00589891 /* WatchCompound.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9CE0E16C26BA219600589891 /* WatchCompound.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C8C8C616FAB5CD93E61C15B8 /* Pods_WatchCompound_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCA8C560DA054F50EB80088 /* Pods_WatchCompound_Extension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1E20465EABA8F62B27F3506F /* Pods-WatchCompound.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchCompound.release.xcconfig"; path = "Target Support Files/Pods-WatchCompound/Pods-WatchCompound.release.xcconfig"; sourceTree = "<group>"; };
+		2D5C6A521C3D7D3E2A8563D5 /* Pods-WatchCompound Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchCompound Extension.debug.xcconfig"; path = "Target Support Files/Pods-WatchCompound Extension/Pods-WatchCompound Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		2E40A10573292D6CDECD138F /* Pods-WatchCompound.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchCompound.debug.xcconfig"; path = "Target Support Files/Pods-WatchCompound/Pods-WatchCompound.debug.xcconfig"; sourceTree = "<group>"; };
+		3D16C26E65A9F65262F6DC79 /* Pods-Compound Solver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Compound Solver.debug.xcconfig"; path = "Target Support Files/Pods-Compound Solver/Pods-Compound Solver.debug.xcconfig"; sourceTree = "<group>"; };
+		455A58009774117685B41C08 /* Pods-WatchCompound Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchCompound Extension.release.xcconfig"; path = "Target Support Files/Pods-WatchCompound Extension/Pods-WatchCompound Extension.release.xcconfig"; sourceTree = "<group>"; };
+		490715EB0D9BF61AD391F022 /* Pods_Compound_Solver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Compound_Solver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D7DA795DE52771C18E3F194 /* Pods_WatchCompound.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchCompound.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C6FA7FD279F4D1A00139F20 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleView.swift; sourceTree = "<group>"; };
 		9C6FA801279F4DDA00139F20 /* FormulaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaView.swift; sourceTree = "<group>"; };
@@ -97,14 +107,25 @@
 		9CE0E18026BA219B00589891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CE0E18326BA219B00589891 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9CE0E18526BA219B00589891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBCA8C560DA054F50EB80088 /* Pods_WatchCompound_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchCompound_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F55D75A0147474BBB05DC987 /* Pods-Compound Solver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Compound Solver.release.xcconfig"; path = "Target Support Files/Pods-Compound Solver/Pods-Compound Solver.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		870A7CBE5BDAD5E0BD032C51 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81B4FE1E30F1AB4B78D9D4F1 /* Pods_WatchCompound.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9CE0E15526B741D000589891 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				9C6FA7FC279F479000139F20 /* Charts in Frameworks */,
+				3761120B1577076FB435304C /* Pods_Compound_Solver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,12 +133,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8C8C616FAB5CD93E61C15B8 /* Pods_WatchCompound_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22D46665B3E8AB2E3B717047 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3D16C26E65A9F65262F6DC79 /* Pods-Compound Solver.debug.xcconfig */,
+				F55D75A0147474BBB05DC987 /* Pods-Compound Solver.release.xcconfig */,
+				2E40A10573292D6CDECD138F /* Pods-WatchCompound.debug.xcconfig */,
+				1E20465EABA8F62B27F3506F /* Pods-WatchCompound.release.xcconfig */,
+				2D5C6A521C3D7D3E2A8563D5 /* Pods-WatchCompound Extension.debug.xcconfig */,
+				455A58009774117685B41C08 /* Pods-WatchCompound Extension.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		9CE0E14F26B741D000589891 = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +162,7 @@
 				9CE0E17926BA219A00589891 /* WatchCompound Extension */,
 				9CE0E15926B741D000589891 /* Products */,
 				9CE0E19526BE35EC00589891 /* Frameworks */,
+				22D46665B3E8AB2E3B717047 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -200,6 +237,9 @@
 		9CE0E19526BE35EC00589891 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				490715EB0D9BF61AD391F022 /* Pods_Compound_Solver.framework */,
+				4D7DA795DE52771C18E3F194 /* Pods_WatchCompound.framework */,
+				BBCA8C560DA054F50EB80088 /* Pods_WatchCompound_Extension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -211,10 +251,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9CE0E16726B741D400589891 /* Build configuration list for PBXNativeTarget "Compound Solver" */;
 			buildPhases = (
+				0844B8C7EB0CB582CE2392F4 /* [CP] Check Pods Manifest.lock */,
 				9CE0E15426B741D000589891 /* Sources */,
 				9CE0E15526B741D000589891 /* Frameworks */,
 				9CE0E15626B741D000589891 /* Resources */,
 				9CE0E19026BA219B00589891 /* Embed Watch Content */,
+				E3DC496CD20A4B3B8FB1DEF6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -233,8 +275,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9CE0E18D26BA219B00589891 /* Build configuration list for PBXNativeTarget "WatchCompound" */;
 			buildPhases = (
+				3CF3B6646BB2C2FC07DDDA3B /* [CP] Check Pods Manifest.lock */,
 				9CE0E16A26BA219600589891 /* Resources */,
 				9CE0E18C26BA219B00589891 /* Embed App Extensions */,
+				870A7CBE5BDAD5E0BD032C51 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -250,6 +294,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9CE0E18926BA219B00589891 /* Build configuration list for PBXNativeTarget "WatchCompound Extension" */;
 			buildPhases = (
+				89BD2409B62C94F8908793D8 /* [CP] Check Pods Manifest.lock */,
 				9CE0E17126BA219A00589891 /* Sources */,
 				9CE0E17226BA219A00589891 /* Frameworks */,
 				9CE0E17326BA219A00589891 /* Resources */,
@@ -334,6 +379,92 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0844B8C7EB0CB582CE2392F4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Compound Solver-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3CF3B6646BB2C2FC07DDDA3B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WatchCompound-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		89BD2409B62C94F8908793D8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WatchCompound Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3DC496CD20A4B3B8FB1DEF6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Compound Solver/Pods-Compound Solver-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Compound Solver/Pods-Compound Solver-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Compound Solver/Pods-Compound Solver-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9CE0E15426B741D000589891 /* Sources */ = {
@@ -497,6 +628,7 @@
 		};
 		9CE0E16826B741D400589891 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D16C26E65A9F65262F6DC79 /* Pods-Compound Solver.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -519,6 +651,7 @@
 		};
 		9CE0E16926B741D400589891 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F55D75A0147474BBB05DC987 /* Pods-Compound Solver.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -541,6 +674,7 @@
 		};
 		9CE0E18A26BA219B00589891 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D5C6A521C3D7D3E2A8563D5 /* Pods-WatchCompound Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
@@ -565,6 +699,7 @@
 		};
 		9CE0E18B26BA219B00589891 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 455A58009774117685B41C08 /* Pods-WatchCompound Extension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
@@ -589,6 +724,7 @@
 		};
 		9CE0E18E26BA219B00589891 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E40A10573292D6CDECD138F /* Pods-WatchCompound.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -609,6 +745,7 @@
 		};
 		9CE0E18F26BA219B00589891 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E20465EABA8F62B27F3506F /* Pods-WatchCompound.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
