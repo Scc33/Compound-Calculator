@@ -1,2 +1,0 @@
-# DetailsPro
-https://detailspro.app

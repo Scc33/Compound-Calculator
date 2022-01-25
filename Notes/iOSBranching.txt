@@ -1,3 +1,0 @@
-# Branching with iOS files
-
-The background files that run iOS stuff change a lot so it makes working with a large repository like this a struggle.
