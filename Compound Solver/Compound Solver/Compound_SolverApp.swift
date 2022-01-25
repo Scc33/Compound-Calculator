@@ -12,7 +12,7 @@ import GoogleMobileAds
 @main
 struct Compound_SolverApp: App {
     init() {
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        //GADMobileAds.sharedInstance().start(completionHandler: nil)
     }
     
     var body: some Scene {

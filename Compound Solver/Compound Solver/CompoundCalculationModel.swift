@@ -24,8 +24,10 @@ struct CompoundCalculationModel: Identifiable {
         switch compounding {
         case .day : numberCompound = 365.0
         case .week : numberCompound = 52.0
+        case .biWeekly : numberCompound = 26.0
         case .month : numberCompound = 12.0
         case .quarter : numberCompound = 4.0
+        case .semiYearly : numberCompound = 2.0
         default : numberCompound = 1.0
         }
         

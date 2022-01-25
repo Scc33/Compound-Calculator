@@ -19,8 +19,10 @@ enum graphType: String, Equatable, CaseIterable, Identifiable {
 enum compoundType: String, Equatable, CaseIterable, Identifiable {
     case day = "Daily"
     case week = "Weekly"
-    case month = "Montly"
+    case biWeekly = "Every two weeks"
+    case month = "Monthly"
     case quarter = "Quarterly"
+    case semiYearly = "Semi-yearly"
     case year = "Yearly"
     
     var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
