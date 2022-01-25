@@ -17,17 +17,17 @@ struct ContentView: View {
             CompoundSolverView()
                 .tabItem {
                     Text("Compound")
-                    Image(systemName:"waveform.path.ecg.rectangle")
+                    Image(systemName:"align.vertical.bottom.fill")
                 }.tag(0)
             DoubleView()
                 .tabItem {
                     Text("Doubling Calculator")
-                    Image(systemName:"waveform.path.ecg.rectangle")
+                    Image(systemName:"multiply")
                 }.tag(1)
             FormulaView()
                 .tabItem {
                     Text("Formula")
-                    Image(systemName:"waveform.path.ecg.rectangle")
+                    Image(systemName:"function")
                 }.tag(2)
         }
     }
