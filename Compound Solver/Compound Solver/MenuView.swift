@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MenuView: View {
     @State private var isShareSheetShowing = false
-    @State var currType = currencyType.dollar
+    @ObservedObject var compoundCalcModel: CompoundCalculationModel
     
     func shareButton() {
         isShareSheetShowing.toggle()
@@ -56,7 +56,7 @@ struct MenuView: View {
                 /*Button(action: openAppPage) {
                     Text("Leave a review")
                 }*/
-                Picker("Currency Type", selection: $currType) {
+                Picker("Currency Type", selection: $compoundCalcModel.currency) {
                     ForEach(currencyType.allCases, id: \.id) { value in
                         Text(value.localizedName)
                             .tag(value)
@@ -70,6 +70,6 @@ struct MenuView: View {
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuView()
+        MenuView(compoundCalcModel: CompoundCalculationModel())
     }
 }

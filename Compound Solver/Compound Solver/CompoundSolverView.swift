@@ -16,7 +16,7 @@ enum graphType: String, Equatable, CaseIterable, Identifiable {
     var id: String { self.rawValue }
 }
 
-enum currencyType: String, Equatable, CaseIterable, Identifiable {
+enum currencyType: String, Equatable, CaseIterable, Identifiable, Codable {
     case dollar = "$"
     case euro = "€"
     case pound = "£"
@@ -40,7 +40,7 @@ enum compoundType: String, Equatable, CaseIterable, Identifiable {
 }
 
 struct CompoundSolverView: View {
-    @State private var compound: CompoundCalculationModel = CompoundCalculationModel()
+    @StateObject private var compound: CompoundCalculationModel = CompoundCalculationModel()
     @State private var savedCompounds: SaveCompounds = SaveCompounds()
     @State private var graphing: graphType = .bar
     @State private var showContrib = false
@@ -81,7 +81,7 @@ struct CompoundSolverView: View {
                     }
                 }
                 Section {
-                    Text("Final Value $\(String(format: "%.2f", compound.calcYearlyVals().last ?? 0))")
+                    Text("Final Value \(compound.currency.rawValue)\(String(format: "%.2f", compound.calcYearlyVals().last ?? 0))")
                     //https://www.hackingwithswift.com/articles/216/complete-guide-to-navigationview-in-swiftui
                     NavigationLink(destination: YearlyValuesView(compound: compound)) {
                         Text("Yearly Values")
@@ -127,7 +127,7 @@ struct CompoundSolverView: View {
                 }
             }.sheet(isPresented: $showingSettings) {
                 // show an AddView here
-                MenuView()
+                MenuView(compoundCalcModel: compound)
             }
             .navigationTitle(Text("Compound Solver"))
         }

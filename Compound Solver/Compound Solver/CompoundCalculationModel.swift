@@ -7,13 +7,14 @@
 
 import Foundation
 
-struct CompoundCalculationModel: Identifiable {
-    var id = UUID()
-    var rate: String = "0.0"
-    var initial: String = "0.0"
-    var time: String = "0.0"
-    var contributionAmt: String = "0.0"
-    var compounding: compoundType = compoundType.day
+class CompoundCalculationModel: Identifiable, ObservableObject {
+    @Published var id = UUID()
+    @Published var rate: String = "0.0"
+    @Published var initial: String = "0.0"
+    @Published var time: String = "0.0"
+    @Published var contributionAmt: String = "0.0"
+    @Published var compounding: compoundType = compoundType.day
+    @Published var currency: currencyType = currencyType.dollar
     
     func calcYearlyVals() -> [Double] {
         let cRate = (Double(rate) ?? 0) / 100
