@@ -8,7 +8,7 @@
 import SwiftUI
 import Charts
 
-enum graphType: String, Equatable, CaseIterable, Identifiable {
+enum graphType: String, Equatable, CaseIterable, Identifiable, Codable {
     case bar = "Bar graph"
     case line = "Line graph"
     
@@ -26,7 +26,7 @@ enum currencyType: String, Equatable, CaseIterable, Identifiable, Codable {
     var id: String { self.rawValue }
 }
 
-enum compoundType: String, Equatable, CaseIterable, Identifiable {
+enum compoundType: String, Equatable, CaseIterable, Identifiable, Codable {
     case day = "Daily"
     case week = "Weekly"
     case biWeekly = "Every two weeks"
@@ -40,7 +40,7 @@ enum compoundType: String, Equatable, CaseIterable, Identifiable {
 }
 
 struct CompoundSolverView: View {
-    @StateObject private var compound: CompoundCalculationModel = CompoundCalculationModel()
+    @State private var compound: CompoundCalculationModel = CompoundCalculationModel()
     @State private var savedCompounds: SaveCompounds = SaveCompounds()
     @State private var graphing: graphType = .bar
     @State private var showContrib = false

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SaveCompounds {
+struct SaveCompounds: Codable {
     var savedCompounds: [CompoundCalculationModel] = []
 
     mutating func save(compoundToSave: CompoundCalculationModel) {

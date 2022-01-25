@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MenuView: View {
     @State private var isShareSheetShowing = false
-    @ObservedObject var compoundCalcModel: CompoundCalculationModel
+    @State var compoundCalcModel: CompoundCalculationModel
     
     func shareButton() {
         isShareSheetShowing.toggle()

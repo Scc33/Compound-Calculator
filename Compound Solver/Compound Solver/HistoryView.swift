@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HistoryView: View {
-    @ObservedObject var currCompound: CompoundCalculationModel
+    @State var currCompound: CompoundCalculationModel
     var History: SaveCompounds
     @Binding var rootIsActive: Bool
     
