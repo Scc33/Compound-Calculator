@@ -361,7 +361,7 @@
 		5D8F5E8C0C19AB9D2CDEC5AFC5510E28 /* Pods-WatchCompound Extension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WatchCompound Extension-acknowledgements.plist"; sourceTree = "<group>"; };
 		5F8BA34DDA660BAE114AC0AB180E9925 /* Pods-Compound Solver-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Compound Solver-dummy.m"; sourceTree = "<group>"; };
 		604EFAFE4C93932A85C8DE56ECD3DDD2 /* pb_decode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = pb_decode.h; sourceTree = "<group>"; };
-		61D96EE5D8451024B4ECF403BBC845F9 /* Pods-Compound Solver */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Compound Solver"; path = Pods_Compound_Solver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		61D96EE5D8451024B4ECF403BBC845F9 /* Pods_Compound_Solver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Compound_Solver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		627358EA338DABBBD0EAAD344A2D7474 /* GULHeartbeatDateStorageUserDefaults.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GULHeartbeatDateStorageUserDefaults.m; path = GoogleUtilities/Environment/GULHeartbeatDateStorageUserDefaults.m; sourceTree = "<group>"; };
 		62D633C30A40E54845A8A14E65991B9E /* GULNetworkLoggerProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULNetworkLoggerProtocol.h; path = GoogleUtilities/Network/Public/GoogleUtilities/GULNetworkLoggerProtocol.h; sourceTree = "<group>"; };
 		64729A86FD6B7693D71053C33F0A8DC3 /* FBLPromise+Catch.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Catch.h"; path = "Sources/FBLPromises/include/FBLPromise+Catch.h"; sourceTree = "<group>"; };
@@ -371,7 +371,7 @@
 		653C9F832C883878071797C92D47F6E2 /* FBLPromiseError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBLPromiseError.h; path = Sources/FBLPromises/include/FBLPromiseError.h; sourceTree = "<group>"; };
 		69AF406BCD8383E7234B1FC9A2E3F7AA /* Pods-WatchCompound.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WatchCompound.release.xcconfig"; sourceTree = "<group>"; };
 		6CEBC212297C905FA47FC8CDA7537842 /* FBLPromise+Timeout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Timeout.h"; path = "Sources/FBLPromises/include/FBLPromise+Timeout.h"; sourceTree = "<group>"; };
-		6FA14CCC2E6F56E7888F779DE50CBA40 /* Pods-WatchCompound */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-WatchCompound"; path = Pods_WatchCompound.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FA14CCC2E6F56E7888F779DE50CBA40 /* Pods_WatchCompound.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchCompound.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		700AA1B06EB4EAF5500F16CDEA104103 /* Pods-Compound Solver-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Compound Solver-umbrella.h"; sourceTree = "<group>"; };
 		7056ED235CD63B113ED233817A429BE0 /* GULHeartbeatDateStorageUserDefaults.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULHeartbeatDateStorageUserDefaults.h; path = GoogleUtilities/Environment/Public/GoogleUtilities/GULHeartbeatDateStorageUserDefaults.h; sourceTree = "<group>"; };
 		70E1CE30B3CFEE1C0343FCB8CFECC9FD /* GULNSData+zlib.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "GULNSData+zlib.m"; path = "GoogleUtilities/NSData+zlib/GULNSData+zlib.m"; sourceTree = "<group>"; };
@@ -802,8 +802,8 @@
 			children = (
 				B43874C6CBB50E7134FBEC24BABFE14F /* GoogleUtilities.framework */,
 				06FC5C9CF96D60C50FCD47D339C91951 /* nanopb.framework */,
-				61D96EE5D8451024B4ECF403BBC845F9 /* Pods-Compound Solver */,
-				6FA14CCC2E6F56E7888F779DE50CBA40 /* Pods-WatchCompound */,
+				61D96EE5D8451024B4ECF403BBC845F9 /* Pods_Compound_Solver.framework */,
+				6FA14CCC2E6F56E7888F779DE50CBA40 /* Pods_WatchCompound.framework */,
 				88867D16207198EB17856755484B69E3 /* Pods-WatchCompound Extension */,
 				3347A1AB6546F0A3977529B8F199DC41 /* FBLPromises.framework */,
 			);
@@ -1146,7 +1146,7 @@
 			);
 			name = "Pods-Compound Solver";
 			productName = Pods_Compound_Solver;
-			productReference = 61D96EE5D8451024B4ECF403BBC845F9 /* Pods-Compound Solver */;
+			productReference = 61D96EE5D8451024B4ECF403BBC845F9 /* Pods_Compound_Solver.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		8D7F5D5DD528D21A72DC87ADA5B12E2D /* GoogleUtilities */ = {
@@ -1219,7 +1219,7 @@
 			);
 			name = "Pods-WatchCompound";
 			productName = Pods_WatchCompound;
-			productReference = 6FA14CCC2E6F56E7888F779DE50CBA40 /* Pods-WatchCompound */;
+			productReference = 6FA14CCC2E6F56E7888F779DE50CBA40 /* Pods_WatchCompound.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */

@@ -30,6 +30,12 @@ struct MenuView: View {
         }
     }
     
+    func openAppPage() {
+        if let url = URL(string: "https://seancoughlin.me") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     var body: some View {
         NavigationView {
             List {
@@ -45,6 +51,9 @@ struct MenuView: View {
                 }
                 Button(action: openDevWebsite) {
                     Text("Developer Website")
+                }
+                Button(action: openAppPage) {
+                    Text("Leave a review")
                 }
             }
             .navigationTitle("Settings")
