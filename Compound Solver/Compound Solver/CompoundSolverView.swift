@@ -88,7 +88,7 @@ struct CompoundSolverView: View {
                         }
                         VStack(alignment: .leading) {
                             Text("Graph")
-                            Chart(data: compound.calcYearlyVals())
+                            Chart(data: compound.graphYearlyVals())
                                 .chartStyle(
                                     ColumnChartStyle(column: Capsule().foregroundColor(.green), spacing: 2)
                                 ).frame(height: 200)
@@ -100,6 +100,9 @@ struct CompoundSolverView: View {
                         Text("History")
                     }
                     .isDetailLink(false)
+                }
+                NavigationLink(destination: ChartsEx()) {
+                    Text("Example")
                 }
                 //Banner()
             }

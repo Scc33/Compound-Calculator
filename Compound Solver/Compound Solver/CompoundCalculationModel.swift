@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct CompoundCalculationModel: Identifiable, Codable {
     var id = UUID()
@@ -52,5 +53,13 @@ struct CompoundCalculationModel: Identifiable, Codable {
         }
         
         return calcVals
+    }
+    
+    func graphYearlyVals() -> [Double] {
+        var graphVals = calcYearlyVals()
+        for i in 0 ..< graphVals.count {
+            graphVals[i] /= (graphVals.last ?? 1)
+        }
+        return graphVals
     }
 }
