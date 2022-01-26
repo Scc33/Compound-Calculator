@@ -15,12 +15,6 @@ struct HistoryView: View {
     var body: some View {
         List {
             ForEach(History.savedCompounds) { compound in
-                Button(action: {}) {
-                    Text("Button")
-                       .frame(maxWidth: .infinity, maxHeight: .infinity)
-                       .contentShape(Rectangle())
-                }
-                .buttonStyle(PlainButtonStyle()) 
                 Button(action: {
                     currCompound.rate = compound.rate
                     currCompound.initial = compound.initial

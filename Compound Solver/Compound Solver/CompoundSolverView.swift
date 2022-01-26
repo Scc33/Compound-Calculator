@@ -31,6 +31,14 @@ enum compoundType: String, Equatable, CaseIterable, Identifiable, Codable {
     var id: String { self.rawValue }
 }
 
+#if canImport(UIKit)
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+#endif
+
 struct CompoundSolverView: View {
     @State private var compound: CompoundCalculationModel = CompoundCalculationModel()
     @State private var savedCompounds: SaveCompounds = SaveCompounds()
@@ -39,6 +47,22 @@ struct CompoundSolverView: View {
     @State var isActive: Bool = false
     @State private var calculated: Bool = false
     
+    var disableForm: Bool {
+        compound.rate == 0.0 || compound.initial == 0.0 || compound.time == 0
+    }
+    
+    let formatterDecimal: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
+    let formatterNone: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .none
+        return formatter
+    }()
+    
     var body: some View {
         NavigationView {
             Form {
@@ -46,22 +70,22 @@ struct CompoundSolverView: View {
                     Group {
                         VStack(alignment: .leading) {
                             Text("Interest Rate")
-                            TextField("Rate", text: $compound.rate)
+                            TextField("Rate", value: $compound.rate, formatter: formatterDecimal)
                                 .keyboardType(.decimalPad)
                         }
                         VStack(alignment: .leading) {
                             Text("Initial Principal")
-                            TextField("Amount", text: $compound.initial)
+                            TextField("Amount", value: $compound.initial, formatter: formatterDecimal)
                                 .keyboardType(.decimalPad)
                         }
                         VStack(alignment: .leading) {
                             Text("Years of Growing")
-                            TextField("Years", text: $compound.time)
-                                .keyboardType(.decimalPad)
+                            TextField("Years", value: $compound.time, formatter: formatterNone)
+                                .keyboardType(.numberPad)
                         }
                         VStack(alignment: .leading) {
                             Text("Monthly Contribution")
-                            TextField("Addition", text: $compound.contributionAmt)
+                            TextField("Addition", value: $compound.contributionAmt, formatter: formatterDecimal)
                                 .keyboardType(.decimalPad)
                         }
                         VStack(alignment: .leading) {
@@ -77,29 +101,32 @@ struct CompoundSolverView: View {
                     Button("Calculate") {
                         savedCompounds.save(compoundToSave: compound)
                         calculated.toggle()
+                        hideKeyboard()
                     }
                 }
                 if calculated {
                     Section {
-                        Text("Final Value \(compound.currency.rawValue)\(String(format: "%.2f", compound.calcYearlyVals().last ?? 0))")
+                        Text("Final Value \(compound.currency.rawValue)\(String(format: "%.2f", compound.calcYearlyVals.last ?? 0))")
                         //https://www.hackingwithswift.com/articles/216/complete-guide-to-navigationview-in-swiftui
                         NavigationLink(destination: YearlyValuesView(compound: compound)) {
                             Text("Yearly Values")
                         }
                         VStack(alignment: .leading) {
                             Text("Graph")
-                            Chart(data: compound.graphYearlyVals())
+                            Chart(data: compound.graphYearlyVals)
                                 .chartStyle(
                                     ColumnChartStyle(column: Capsule().foregroundColor(.green), spacing: 2)
                                 ).frame(height: 200)
                         }
                     }
                 }
-                Section {
-                    NavigationLink(destination: HistoryView(currCompound: compound, History: savedCompounds, rootIsActive: $isActive), isActive: $isActive) {
-                        Text("History")
+                if calculated {
+                    Section {
+                        NavigationLink(destination: HistoryView(currCompound: compound, History: savedCompounds, rootIsActive: $isActive), isActive: $isActive) {
+                            Text("History")
+                        }
+                        .isDetailLink(false)
                     }
-                    .isDetailLink(false)
                 }
                 NavigationLink(destination: ChartsEx()) {
                     Text("Example")

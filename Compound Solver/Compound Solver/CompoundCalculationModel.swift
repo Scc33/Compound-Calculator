@@ -10,10 +10,10 @@ import SwiftUI
 
 struct CompoundCalculationModel: Identifiable, Codable {
     var id = UUID()
-    var rate: String = "0.0"
-    var initial: String = "0.0"
-    var time: String = "0.0"
-    var contributionAmt: String = "0.0"
+    var rate: Double = 0.0
+    var initial: Double = 0.0
+    var time: Int = 0
+    var contributionAmt: Double = 0.0
     var compounding: compoundType = compoundType.day
     var currency: currencyType = currencyType.dollar
     
@@ -26,11 +26,8 @@ struct CompoundCalculationModel: Identifiable, Codable {
      self.currency = currency
      }*/
     
-    func calcYearlyVals() -> [Double] {
-        let cRate = (Double(rate) ?? 0) / 100
-        let cInitial = Double(initial) ?? 0
-        let cTime = Int(time) ?? 0
-        let cContributionAmt = Double(contributionAmt) ?? 0
+    var calcYearlyVals: [Double] {
+        let cRate = rate / 100
         var numberCompound = 1.0;
         switch compounding {
         case .day : numberCompound = 365.0
@@ -42,11 +39,11 @@ struct CompoundCalculationModel: Identifiable, Codable {
         default : numberCompound = 1.0
         }
         
-        var currVal = cInitial
-        var calcVals = [cInitial]
+        var currVal = initial
+        var calcVals = [initial]
         
-        for _ in 0 ..< cTime {
-            currVal += (cContributionAmt * 12)
+        for _ in 0 ..< time {
+            currVal += (contributionAmt * 12)
             currVal = currVal * pow((1 + (cRate / numberCompound)), numberCompound)
             let roundedVal = round(currVal * 100) / 100.0
             calcVals.append(roundedVal)
@@ -55,8 +52,8 @@ struct CompoundCalculationModel: Identifiable, Codable {
         return calcVals
     }
     
-    func graphYearlyVals() -> [Double] {
-        var graphVals = calcYearlyVals()
+    var graphYearlyVals: [Double] {
+        var graphVals = calcYearlyVals
         for i in 0 ..< graphVals.count {
             graphVals[i] /= (graphVals.last ?? 1)
         }

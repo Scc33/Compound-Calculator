@@ -11,7 +11,7 @@ struct YearlyValuesView: View {
     var compound: CompoundCalculationModel
     
     var vals: [Double] {
-        return compound.calcYearlyVals()
+        return compound.calcYearlyVals
     }
     
     var body: some View {
