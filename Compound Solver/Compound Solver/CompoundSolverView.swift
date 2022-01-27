@@ -159,6 +159,7 @@ struct CompoundSolverView: View {
             }
             .navigationTitle(Text("Compound Solver"))
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

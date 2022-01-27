@@ -34,7 +34,8 @@ struct HistoryView: View {
                 .buttonStyle(PlainButtonStyle())
             }
         }
-        .navigationTitle(Text("Yearly Values"))
+        .navigationTitle(Text("History"))
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

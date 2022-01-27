@@ -69,6 +69,7 @@ struct DoubleView: View {
             }
             .navigationTitle(Text("Doubling Calculator"))
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

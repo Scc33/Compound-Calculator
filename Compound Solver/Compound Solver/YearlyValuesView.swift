@@ -22,6 +22,7 @@ struct YearlyValuesView: View {
             }
         }
         .navigationTitle(Text("Yearly Values"))
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
