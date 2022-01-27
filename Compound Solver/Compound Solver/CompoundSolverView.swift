@@ -42,36 +42,22 @@ extension View {
 struct CompoundSolverView: View {
     @State private var compound: CompoundCalculationModel = CompoundCalculationModel()
     @ObservedObject private var savedCompounds: SaveCompounds = SaveCompounds()
-    @State private var showContrib = false
     @State private var showingSettings = false
     @State var isActive: Bool = false
     @State private var calculated: Bool = false
     
-    var disableForm: Bool {
-        compound.rate == 0.0 || compound.initial == 0.0 || compound.time == 0
+    @State private var yearlyVals: [Double] = []
+    @State private var graphVals: [Double] = []
+    
+    func createGraph() {
+        if calculated == false {
+            calculated = true
+        }
     }
-    
-    let formatterPercent: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .percent
-        return formatter
-    }()
-    
-    let formatterCurrency: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        return formatter
-    }()
     
     let formatterDecimal: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        return formatter
-    }()
-    
-    let formatterNone: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .none
         return formatter
     }()
     
@@ -84,7 +70,7 @@ struct CompoundSolverView: View {
                             Text("Interest Rate")
                             HStack {
                                 Text("%")
-                                TextField("Rate", value: $compound.rate, formatter: formatterPercent)
+                                TextField("Rate", value: $compound.rate, formatter: formatterDecimal)
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
                             }
@@ -93,7 +79,7 @@ struct CompoundSolverView: View {
                             Text("Initial Principal")
                             HStack {
                                 Text("$")
-                                TextField("Amount", value: $compound.initial, formatter: formatterCurrency)
+                                TextField("Amount", value: $compound.initial, formatter: formatterDecimal)
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
                             }
@@ -102,16 +88,18 @@ struct CompoundSolverView: View {
                             Text("Monthly Contribution")
                             HStack {
                                 Text("$")
-                                TextField("Addition", value: $compound.contributionAmt, formatter: formatterCurrency)
+                                TextField("Addition", value: $compound.contributionAmt, formatter: formatterDecimal)
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
                             }
                         }
                         VStack(alignment: .leading) {
                             Text("Years of Growth")
-                            TextField("Years", value: $compound.time, formatter: formatterNone)
-                                .keyboardType(.numberPad)
-                                .multilineTextAlignment(.trailing)
+                            Picker("", selection: $compound.time) {
+                                ForEach(1...100, id: \.self) {
+                                    Text("\($0)")
+                                }
+                            }
                             
                         }
                         VStack(alignment: .leading) {
@@ -127,20 +115,20 @@ struct CompoundSolverView: View {
                     Button("Calculate") {
                         let newCompound = compound
                         savedCompounds.save(compoundToSave: newCompound)
-                        calculated.toggle()
+                        createGraph()
                         hideKeyboard()
-                        print(savedCompounds)
+                        yearlyVals = compound.calcYearlyVals()
+                        graphVals = compound.graphYearlyVals()
                     }
                 }
                 if calculated {
                     Section {
-                        Text("Final Value \(compound.currency.rawValue)\(String(format: "%.2f", compound.calcYearlyVals.last ?? 0))")
-                        //https://www.hackingwithswift.com/articles/216/complete-guide-to-navigationview-in-swiftui
+                        Text("Final Value \(compound.currency.rawValue)\(String(format: "%.2f", yearlyVals.last ?? 0))")
                         NavigationLink(destination: YearlyValuesView(compound: compound)) {
                             Text("Yearly Values")
                         }
                         VStack(alignment: .leading) {
-                            Chart(data: compound.graphYearlyVals)
+                            Chart(data: graphVals)
                                 .chartStyle(
                                     ColumnChartStyle(column: Capsule().foregroundColor(.green), spacing: 2)
                                 ).frame(height: 200)

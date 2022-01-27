@@ -26,7 +26,7 @@ struct CompoundCalculationModel: Identifiable, Codable {
      self.currency = currency
      }*/
     
-    var calcYearlyVals: [Double] {
+    func calcYearlyVals() -> [Double] {
         let cRate = rate / 100
         var numberCompound = 1.0;
         switch compounding {
@@ -52,8 +52,8 @@ struct CompoundCalculationModel: Identifiable, Codable {
         return calcVals
     }
     
-    var graphYearlyVals: [Double] {
-        var graphVals = calcYearlyVals
+    func graphYearlyVals() -> [Double] {
+        var graphVals = calcYearlyVals()
         for i in 0 ..< graphVals.count {
             graphVals[i] /= (graphVals.last ?? 1)
         }
