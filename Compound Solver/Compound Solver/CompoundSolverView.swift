@@ -51,6 +51,18 @@ struct CompoundSolverView: View {
         compound.rate == 0.0 || compound.initial == 0.0 || compound.time == 0
     }
     
+    let formatterPercent: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        return formatter
+    }()
+    
+    let formatterCurrency: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        return formatter
+    }()
+    
     let formatterDecimal: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -70,23 +82,37 @@ struct CompoundSolverView: View {
                     Group {
                         VStack(alignment: .leading) {
                             Text("Interest Rate")
-                            TextField("Rate", value: $compound.rate, formatter: formatterDecimal)
-                                .keyboardType(.decimalPad)
+                            HStack {
+                                Text("%")
+                                TextField("Rate", value: $compound.rate, formatter: formatterPercent)
+                                    .keyboardType(.decimalPad)
+                                    .multilineTextAlignment(.trailing)
+                            }
                         }
                         VStack(alignment: .leading) {
                             Text("Initial Principal")
-                            TextField("Amount", value: $compound.initial, formatter: formatterDecimal)
-                                .keyboardType(.decimalPad)
-                        }
-                        VStack(alignment: .leading) {
-                            Text("Years of Growing")
-                            TextField("Years", value: $compound.time, formatter: formatterNone)
-                                .keyboardType(.numberPad)
+                            HStack {
+                                Text("$")
+                                TextField("Amount", value: $compound.initial, formatter: formatterCurrency)
+                                    .keyboardType(.decimalPad)
+                                    .multilineTextAlignment(.trailing)
+                            }
                         }
                         VStack(alignment: .leading) {
                             Text("Monthly Contribution")
-                            TextField("Addition", value: $compound.contributionAmt, formatter: formatterDecimal)
-                                .keyboardType(.decimalPad)
+                            HStack {
+                                Text("$")
+                                TextField("Addition", value: $compound.contributionAmt, formatter: formatterCurrency)
+                                    .keyboardType(.decimalPad)
+                                    .multilineTextAlignment(.trailing)
+                            }
+                        }
+                        VStack(alignment: .leading) {
+                            Text("Years of Growth")
+                            TextField("Years", value: $compound.time, formatter: formatterNone)
+                                .keyboardType(.numberPad)
+                                .multilineTextAlignment(.trailing)
+                            
                         }
                         VStack(alignment: .leading) {
                             Text("Compound Frequency")
@@ -130,8 +156,8 @@ struct CompoundSolverView: View {
                     }
                 }
                 /*NavigationLink(destination: ChartsEx()) {
-                    Text("Example")
-                }*/
+                 Text("Example")
+                 }*/
                 //Banner()
             }
             .toolbar {
