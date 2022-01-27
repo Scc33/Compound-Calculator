@@ -23,12 +23,25 @@ import SwiftUI
 
 struct DoubleView: View {
     //@State private var estBase: topLine = .seventy
-    @State private var estInterest = ""
+    @State private var interest = 0.0
+    @State private var showTime = false
+    @State private var time = 0.0
     
-    var excDouble: Double {
-        let convertedEstInterest = Double(estInterest) ?? 0.1
+    func createTime() {
+        if showTime == false {
+            showTime = true
+        }
+    }
+    
+    let formatterDecimal: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
+    func excDouble() -> Double {
         let num = log(2.0)
-        let dem = log(1.0 + (convertedEstInterest / 100.0))
+        let dem = log(1.0 + (interest / 100.0))
         return num / dem
     }
     
@@ -44,11 +57,13 @@ struct DoubleView: View {
                 Section {
                     VStack(alignment: .leading) {
                         Text("Interest Rate")
-                        TextField("", text: $estInterest)
+                        TextField("", value: $interest, formatter: formatterDecimal)
                             .keyboardType(.decimalPad)
                     }
                     Button("Calculate") {
                         hideKeyboard()
+                        createTime()
+                        time = excDouble()
                     }
                     /*VStack(alignment: .leading) {
                      Text("Rule of 72/70/69.3")
@@ -60,11 +75,18 @@ struct DoubleView: View {
                      }
                      }*/
                 }
+                if showTime {
                 Section {
                     //Text("Estimated doubling time \(String(format:"%.2f",estDouble)) years")
-                    Spacer()
-                    Text("Exact doubling time \(String(format:"%.2f",excDouble)) years").font(.title)
-                    Spacer()
+                    Text("Doubling time \(String(format:"%.2f",time)) years")
+                        .contextMenu {
+                            Button(action: {
+                                UIPasteboard.general.string = String(time)
+                            }) {
+                                Text("Copy")
+                                }
+                            }
+                }
                 }
             }
             .navigationTitle(Text("Doubling Calculator"))
