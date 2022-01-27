@@ -48,6 +48,8 @@ struct CompoundSolverView: View {
     
     @State private var yearlyVals: [Double] = []
     @State private var graphVals: [Double] = []
+    @State private var contrib: Double = 0.0
+    @State private var profit: Double = 0.0
     
     func createGraph() {
         if calculated == false {
@@ -78,7 +80,7 @@ struct CompoundSolverView: View {
                         VStack(alignment: .leading) {
                             Text("Initial Principal")
                             HStack {
-                                Text("$")
+                                Text(compound.currency.rawValue)
                                 TextField("Amount", value: $compound.initial, formatter: formatterDecimal)
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
@@ -87,7 +89,7 @@ struct CompoundSolverView: View {
                         VStack(alignment: .leading) {
                             Text("Monthly Contribution")
                             HStack {
-                                Text("$")
+                                Text(compound.currency.rawValue)
                                 TextField("Addition", value: $compound.contributionAmt, formatter: formatterDecimal)
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
@@ -119,11 +121,37 @@ struct CompoundSolverView: View {
                         hideKeyboard()
                         yearlyVals = compound.calcYearlyVals()
                         graphVals = compound.graphYearlyVals()
+                        contrib = compound.calcContrib()
+                        profit = compound.calcProfit()
                     }
                 }
                 if calculated {
                     Section {
-                        Text("Final Value \(compound.currency.rawValue)\(String(format: "%.2f", yearlyVals.last ?? 0))")
+                        //https://developer.apple.com/documentation/swiftui/text/textselection(_:)
+                        Text("Final Value - \(compound.currency.rawValue)\(String(format: "%.2f", yearlyVals.last ?? 0))")
+                            .contextMenu {
+                                Button(action: {
+                                    UIPasteboard.general.string = String((yearlyVals.last ?? 0))
+                                }) {
+                                    Text("Copy")
+                                    }
+                                }
+                        Text("Total Contribution - \(String(format: "%.2f", contrib))")
+                            .contextMenu {
+                                Button(action: {
+                                    UIPasteboard.general.string = String(contrib)
+                                }) {
+                                    Text("Copy")
+                                    }
+                                }
+                        Text("Total Profit - \(String(format: "%.2f", profit))")
+                            .contextMenu {
+                                Button(action: {
+                                    UIPasteboard.general.string = String(profit)
+                                }) {
+                                    Text("Copy")
+                                    }
+                                }
                         NavigationLink(destination: YearlyValuesView(compound: compound)) {
                             Text("Yearly Values")
                         }
@@ -155,7 +183,7 @@ struct CompoundSolverView: View {
                     Image(systemName: "gear")
                 }
             }.sheet(isPresented: $showingSettings) {
-                MenuView(compoundCalcModel: compound)
+                MenuView(compoundCalcModel: $compound)
             }
             .navigationTitle(Text("Compound Solver"))
         }

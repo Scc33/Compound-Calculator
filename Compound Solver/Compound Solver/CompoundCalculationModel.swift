@@ -52,6 +52,14 @@ struct CompoundCalculationModel: Identifiable, Codable {
         return calcVals
     }
     
+    func calcContrib() -> Double {
+        return initial + ((contributionAmt * 12) * Double(time))
+    }
+    
+    func calcProfit() -> Double {
+        return (calcYearlyVals().last ?? 0.0) - calcContrib()
+    }
+    
     func graphYearlyVals() -> [Double] {
         var graphVals = calcYearlyVals()
         for i in 0 ..< graphVals.count {
