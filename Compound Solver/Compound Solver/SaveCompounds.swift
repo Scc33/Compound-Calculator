@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct SaveCompounds: Codable {
+class SaveCompounds: Codable, ObservableObject {
     var savedCompounds: [CompoundCalculationModel] = []
 
-    mutating func save(compoundToSave: CompoundCalculationModel) {
+    func save(compoundToSave: CompoundCalculationModel) {
         savedCompounds.append(compoundToSave)
     }
 }

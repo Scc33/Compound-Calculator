@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct HistoryView: View {
-    @State var currCompound: CompoundCalculationModel
-    var History: SaveCompounds
+    @Binding var currCompound: CompoundCalculationModel
+    var history: SaveCompounds
     @Binding var rootIsActive: Bool
     
     var body: some View {
         List {
-            ForEach(History.savedCompounds) { compound in
+            ForEach(history.savedCompounds) { compound in
                 Button(action: {
                     currCompound.rate = compound.rate
                     currCompound.initial = compound.initial
@@ -40,6 +40,6 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView(currCompound: CompoundCalculationModel(), History: SaveCompounds(), rootIsActive: .constant(false))
+        HistoryView(currCompound: .constant(CompoundCalculationModel()), history: SaveCompounds(), rootIsActive: .constant(false))
     }
 }

@@ -41,7 +41,7 @@ extension View {
 
 struct CompoundSolverView: View {
     @State private var compound: CompoundCalculationModel = CompoundCalculationModel()
-    @State private var savedCompounds: SaveCompounds = SaveCompounds()
+    @ObservedObject private var savedCompounds: SaveCompounds = SaveCompounds()
     @State private var showContrib = false
     @State private var showingSettings = false
     @State var isActive: Bool = false
@@ -99,9 +99,11 @@ struct CompoundSolverView: View {
                         }
                     }
                     Button("Calculate") {
-                        savedCompounds.save(compoundToSave: compound)
+                        let newCompound = compound
+                        savedCompounds.save(compoundToSave: newCompound)
                         calculated.toggle()
                         hideKeyboard()
+                        print(savedCompounds)
                     }
                 }
                 if calculated {
@@ -112,7 +114,6 @@ struct CompoundSolverView: View {
                             Text("Yearly Values")
                         }
                         VStack(alignment: .leading) {
-                            Text("Graph")
                             Chart(data: compound.graphYearlyVals)
                                 .chartStyle(
                                     ColumnChartStyle(column: Capsule().foregroundColor(.green), spacing: 2)
@@ -122,15 +123,15 @@ struct CompoundSolverView: View {
                 }
                 if calculated {
                     Section {
-                        NavigationLink(destination: HistoryView(currCompound: compound, History: savedCompounds, rootIsActive: $isActive), isActive: $isActive) {
+                        NavigationLink(destination: HistoryView(currCompound: $compound, history: savedCompounds, rootIsActive: $isActive), isActive: $isActive) {
                             Text("History")
                         }
                         .isDetailLink(false)
                     }
                 }
-                NavigationLink(destination: ChartsEx()) {
+                /*NavigationLink(destination: ChartsEx()) {
                     Text("Example")
-                }
+                }*/
                 //Banner()
             }
             .toolbar {
