@@ -17,14 +17,16 @@ struct CompoundCalculationModel: Identifiable, Codable {
     var compounding: compoundType = compoundType.day
     var currency: currencyType = currencyType.dollar
     
-    /*init(rate: String, initial: String, time: String, contributionAmt: String, compounding: compoundType, currency: currencyType) {
+    init() {}
+    
+    init(rate: Double, initial: Double, time: Int, contributionAmt: Double, compounding: compoundType, currency: currencyType) {
      self.rate = rate
      self.initial = initial
      self.time = time
      self.contributionAmt = contributionAmt
      self.compounding = compounding
      self.currency = currency
-     }*/
+     }
     
     func calcYearlyVals() -> [Double] {
         let cRate = rate / 100

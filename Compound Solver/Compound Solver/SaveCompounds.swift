@@ -11,6 +11,7 @@ class SaveCompounds: Codable, ObservableObject {
     var savedCompounds: [CompoundCalculationModel] = []
 
     func save(compoundToSave: CompoundCalculationModel) {
-        savedCompounds.append(compoundToSave)
+        let newCompound = CompoundCalculationModel(rate: compoundToSave.rate, initial: compoundToSave.initial, time: compoundToSave.time, contributionAmt: compoundToSave.contributionAmt, compounding: compoundToSave.compounding, currency: compoundToSave.currency)
+        savedCompounds.append(newCompound)
     }
 }

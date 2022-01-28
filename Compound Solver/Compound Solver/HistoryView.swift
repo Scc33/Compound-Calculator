@@ -11,6 +11,7 @@ struct HistoryView: View {
     @Binding var currCompound: CompoundCalculationModel
     var history: SaveCompounds
     @Binding var rootIsActive: Bool
+    @Binding var calculated: Bool
     
     var body: some View {
         List {
@@ -21,14 +22,15 @@ struct HistoryView: View {
                     currCompound.time = compound.time
                     currCompound.contributionAmt = compound.contributionAmt
                     currCompound.compounding = compound.compounding
-                    self.rootIsActive = false
+                    rootIsActive = false
+                    calculated
                 }) {
                     VStack(alignment: .leading) {
-                        Text("Interest rate \(compound.rate)")
-                        Text("Initial principal \(compound.initial)")
-                        Text("Years of growth \(compound.time)")
-                        Text("Monthly contribution \(compound.contributionAmt)")
-                        Text("Compounding \(compound.compounding.rawValue)")
+                        Text("Interest rate - \(compound.rate)")
+                        Text("Initial principal - \(compound.initial)")
+                        Text("Years of growth - \(compound.time)")
+                        Text("Monthly contribution - \(compound.contributionAmt)")
+                        Text("Compounding - \(compound.compounding.rawValue)")
                     }
                 }
                 .buttonStyle(PlainButtonStyle())
