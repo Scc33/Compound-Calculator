@@ -23,13 +23,13 @@ struct HistoryView: View {
                     currCompound.contributionAmt = compound.contributionAmt
                     currCompound.compounding = compound.compounding
                     rootIsActive = false
-                    calculated
+                    calculated = false
                 }) {
                     VStack(alignment: .leading) {
-                        Text("Interest rate - \(compound.rate)")
-                        Text("Initial principal - \(compound.initial)")
+                        Text("Interest rate - \(String(format: "%.2f", compound.rate))%")
+                        Text("Initial principal - \(compound.currency.rawValue)\(String(format: "%.2f", compound.initial))")
                         Text("Years of growth - \(compound.time)")
-                        Text("Monthly contribution - \(compound.contributionAmt)")
+                        Text("Monthly contribution - \(compound.currency.rawValue)\(String(format: "%.2f", compound.contributionAmt))")
                         Text("Compounding - \(compound.compounding.rawValue)")
                     }
                 }
@@ -43,6 +43,6 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView(currCompound: .constant(CompoundCalculationModel()), history: SaveCompounds(), rootIsActive: .constant(false))
+        HistoryView(currCompound: .constant(CompoundCalculationModel()), history: SaveCompounds(), rootIsActive: .constant(false), calculated: .constant(false))
     }
 }

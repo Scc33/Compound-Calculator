@@ -136,7 +136,7 @@ struct CompoundSolverView: View {
                                     Text("Copy")
                                     }
                                 }
-                        Text("Total Contribution - \(String(format: "%.2f", contrib))")
+                        Text("Total Contribution - \(compound.currency.rawValue)\(String(format: "%.2f", contrib))")
                             .contextMenu {
                                 Button(action: {
                                     UIPasteboard.general.string = String(contrib)
@@ -144,7 +144,7 @@ struct CompoundSolverView: View {
                                     Text("Copy")
                                     }
                                 }
-                        Text("Total Profit - \(String(format: "%.2f", profit))")
+                        Text("Total Profit - \(compound.currency.rawValue)\(String(format: "%.2f", profit))")
                             .contextMenu {
                                 Button(action: {
                                     UIPasteboard.general.string = String(profit)
@@ -165,7 +165,7 @@ struct CompoundSolverView: View {
                 }
                 if calculated {
                     Section {
-                        NavigationLink(destination: HistoryView(currCompound: $compound, history: savedCompounds, rootIsActive: $isActive), isActive: $isActive) {
+                        NavigationLink(destination: HistoryView(currCompound: $compound, history: savedCompounds, rootIsActive: $isActive, calculated: $calculated), isActive: $isActive) {
                             Text("History")
                         }
                         .isDetailLink(false)
