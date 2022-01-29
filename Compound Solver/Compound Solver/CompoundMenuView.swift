@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct MenuView: View {
-    @State private var isShareSheetShowing = false
+struct CompoundMenuView: View {
     @Binding var compoundCalcModel: CompoundCalculationModel
     
-    func shareButton() {
+    /*func shareButton() {
         isShareSheetShowing.toggle()
         let url = URL(string: "https://seancoughlin.me")
         // Make the activityViewContoller which shows the share-view
         let activityView = UIActivityViewController(activityItems: [url!], applicationActivities: nil)
-        UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
-    }
+        activityView.isModalInPresentation = true
+        UIApplication.shared.windows.last?.rootViewController?.present(activityView, animated: true, completion: nil)
+    }*/
     
     func openAppWebsite() {
         if let url = URL(string: "https://app.seancoughlin.me") {
@@ -40,11 +40,10 @@ struct MenuView: View {
     var body: some View {
         NavigationView {
             List {
-                HStack {
-                    Text("Share App")
-                    Spacer()
-                    Button(action: shareButton) {
-                        Image(systemName: "square.and.arrow.up")
+                Picker("Currency Type", selection: $compoundCalcModel.currency) {
+                    ForEach(currencyType.allCases, id: \.id) { value in
+                        Text(value.localizedName)
+                            .tag(value)
                     }
                 }
                 Button(action: openAppWebsite) {
@@ -56,12 +55,6 @@ struct MenuView: View {
                 /*Button(action: openAppPage) {
                     Text("Leave a review")
                 }*/
-                Picker("Currency Type", selection: $compoundCalcModel.currency) {
-                    ForEach(currencyType.allCases, id: \.id) { value in
-                        Text(value.localizedName)
-                            .tag(value)
-                    }
-                }
                 //Banner()
             }
             .navigationTitle("Settings")
@@ -69,8 +62,8 @@ struct MenuView: View {
     }
 }
 
-struct MenuView_Previews: PreviewProvider {
+struct CompoundMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuView(compoundCalcModel: .constant(CompoundCalculationModel()))
+        CompoundMenuView(compoundCalcModel: .constant(CompoundCalculationModel()))
     }
 }

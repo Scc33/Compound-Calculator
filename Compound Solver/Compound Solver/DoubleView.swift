@@ -28,6 +28,7 @@ struct DoubleView: View {
     @State private var time = 0.0
     @State private var saveDoubles = SaveDoubles()
     @State var isActive: Bool = false
+    @State private var showingSettings = false
     
     func createTime() {
         if showTime == false {
@@ -103,6 +104,15 @@ struct DoubleView: View {
                         .isDetailLink(false)
                     }
                 }
+            }
+            .toolbar {
+                Button {
+                    self.showingSettings.toggle()
+                } label: {
+                    Image(systemName: "gear")
+                }
+            }.sheet(isPresented: $showingSettings) {
+                DoubleMenuView()
             }
             .navigationTitle(Text("Doubling Calculator"))
         }

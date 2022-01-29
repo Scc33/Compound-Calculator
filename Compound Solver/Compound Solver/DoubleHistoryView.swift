@@ -12,6 +12,7 @@ struct DoubleHistoryView: View {
     var history: SaveDoubles
     @Binding var rootIsActive: Bool
     @Binding var showTime: Bool
+    @State private var showingSettings = false
     
     var body: some View {
         List {
