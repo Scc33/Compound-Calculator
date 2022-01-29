@@ -134,38 +134,36 @@ struct CompoundSolverView: View {
                                     UIPasteboard.general.string = String((yearlyVals.last ?? 0))
                                 }) {
                                     Text("Copy")
-                                    }
                                 }
+                            }
                         Text("Total Contribution - \(compound.currency.rawValue)\(String(format: "%.2f", contrib))")
                             .contextMenu {
                                 Button(action: {
                                     UIPasteboard.general.string = String(contrib)
                                 }) {
                                     Text("Copy")
-                                    }
                                 }
+                            }
                         Text("Total Profit - \(compound.currency.rawValue)\(String(format: "%.2f", profit))")
                             .contextMenu {
                                 Button(action: {
                                     UIPasteboard.general.string = String(profit)
                                 }) {
                                     Text("Copy")
-                                    }
                                 }
+                            }
                         NavigationLink(destination: YearlyValuesView(compound: compound)) {
                             Text("Yearly Values")
                         }
-                        VStack(alignment: .leading) {
-                            Chart(data: graphVals)
-                                .chartStyle(
-                                    ColumnChartStyle(column: Capsule().foregroundColor(.green), spacing: 2)
-                                ).frame(height: 200)
-                        }
+                        Chart(data: graphVals)
+                            .chartStyle(
+                                ColumnChartStyle(column: Capsule().foregroundColor(.green), spacing: 2)
+                            ).frame(height: 200)
                     }
                 }
                 if calculated {
                     Section {
-                        NavigationLink(destination: HistoryView(currCompound: $compound, history: savedCompounds, rootIsActive: $isActive, calculated: $calculated), isActive: $isActive) {
+                        NavigationLink(destination: CompoundHistoryView(currCompound: $compound, history: savedCompounds, rootIsActive: $isActive, calculated: $calculated), isActive: $isActive) {
                             Text("History")
                         }
                         .isDetailLink(false)

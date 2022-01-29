@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HistoryView: View {
+struct CompoundHistoryView: View {
     @Binding var currCompound: CompoundCalculationModel
     var history: SaveCompounds
     @Binding var rootIsActive: Bool
@@ -41,8 +41,8 @@ struct HistoryView: View {
     }
 }
 
-struct HistoryView_Previews: PreviewProvider {
+struct CompoundHistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView(currCompound: .constant(CompoundCalculationModel()), history: SaveCompounds(), rootIsActive: .constant(false), calculated: .constant(false))
+        CompoundHistoryView(currCompound: .constant(CompoundCalculationModel()), history: SaveCompounds(), rootIsActive: .constant(false), calculated: .constant(false))
     }
 }

@@ -26,6 +26,8 @@ struct DoubleView: View {
     @State private var interest = 0.0
     @State private var showTime = false
     @State private var time = 0.0
+    @State private var saveDoubles = SaveDoubles()
+    @State var isActive: Bool = false
     
     func createTime() {
         if showTime == false {
@@ -57,10 +59,15 @@ struct DoubleView: View {
                 Section {
                     VStack(alignment: .leading) {
                         Text("Interest Rate")
-                        TextField("", value: $interest, formatter: formatterDecimal)
-                            .keyboardType(.decimalPad)
+                        HStack {
+                            Text("%")
+                            TextField("", value: $interest, formatter: formatterDecimal)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                        }
                     }
                     Button("Calculate") {
+                        saveDoubles.save(doubleToSave: interest)
                         hideKeyboard()
                         createTime()
                         time = excDouble()
@@ -76,17 +83,25 @@ struct DoubleView: View {
                      }*/
                 }
                 if showTime {
-                Section {
-                    //Text("Estimated doubling time \(String(format:"%.2f",estDouble)) years")
-                    Text("Doubling time \(String(format:"%.2f",time)) years")
-                        .contextMenu {
-                            Button(action: {
-                                UIPasteboard.general.string = String(time)
-                            }) {
-                                Text("Copy")
+                    Section {
+                        //Text("Estimated doubling time \(String(format:"%.2f",estDouble)) years")
+                        Text("Doubling time \(String(format:"%.2f",time)) years")
+                            .contextMenu {
+                                Button(action: {
+                                    UIPasteboard.general.string = String(time)
+                                }) {
+                                    Text("Copy")
                                 }
                             }
+                    }
                 }
+                if showTime {
+                    Section {
+                        NavigationLink(destination: DoubleHistoryView(interest: $interest, history: saveDoubles, rootIsActive: $isActive, showTime: $showTime), isActive: $isActive) {
+                            Text("History")
+                        }
+                        .isDetailLink(false)
+                    }
                 }
             }
             .navigationTitle(Text("Doubling Calculator"))
