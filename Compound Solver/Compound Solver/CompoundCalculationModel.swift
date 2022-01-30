@@ -10,23 +10,30 @@ import SwiftUI
 
 struct CompoundCalculationModel: Identifiable, Codable {
     var id = UUID()
-    var rate: Double = 0.0
-    var initial: Double = 0.0
-    var time: Int = 0
-    var contributionAmt: Double = 0.0
-    var compounding: compoundType = compoundType.day
-    var currency: currencyType = currencyType.dollar
+    var rate: Double
+    var initial: Double
+    var time: Int
+    var contributionAmt: Double
+    var compounding: compoundType
+    var currency: currencyType
     
-    init() {}
+    init() {
+        rate = 0.0
+        initial = 0.0
+        time = 0
+        contributionAmt = 0.0
+        compounding = compoundType.day
+        currency = currencyType.dollar
+    }
     
     init(rate: Double, initial: Double, time: Int, contributionAmt: Double, compounding: compoundType, currency: currencyType) {
-     self.rate = rate
-     self.initial = initial
-     self.time = time
-     self.contributionAmt = contributionAmt
-     self.compounding = compounding
-     self.currency = currency
-     }
+        self.rate = rate
+        self.initial = initial
+        self.time = time
+        self.contributionAmt = contributionAmt
+        self.compounding = compounding
+        self.currency = currency
+    }
     
     func calcYearlyVals() -> [Double] {
         let cRate = rate / 100

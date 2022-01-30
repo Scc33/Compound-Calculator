@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Charts
+import Combine
 
 enum currencyType: String, Equatable, CaseIterable, Identifiable, Codable {
     case dollar = "$"
@@ -51,17 +52,15 @@ struct CompoundSolverView: View {
     @State private var contrib: Double = 0.0
     @State private var profit: Double = 0.0
     
+    @State private var rate = ""
+    @State private var initial = ""
+    @State private var contributionAmt = ""
+    
     func createGraph() {
         if calculated == false {
             calculated = true
         }
     }
-    
-    let formatterDecimal: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        return formatter
-    }()
     
     var body: some View {
         NavigationView {
@@ -72,27 +71,45 @@ struct CompoundSolverView: View {
                             Text("Interest Rate")
                             HStack {
                                 Text("%")
-                                TextField("Rate", value: $compound.rate, formatter: formatterDecimal)
+                                TextField("Rate", text: $rate)
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
+                                    .onReceive(Just(rate)) { newValue in
+                                                    let filtered = newValue.filter { "0123456789.".contains($0) }
+                                                    if filtered != newValue {
+                                                        rate = filtered
+                                                    }
+                                    }
                             }
                         }
                         VStack(alignment: .leading) {
                             Text("Initial Principal")
                             HStack {
                                 Text(compound.currency.rawValue)
-                                TextField("Amount", value: $compound.initial, formatter: formatterDecimal)
+                                TextField("Amount", text: $initial)
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
+                                    .onReceive(Just(initial)) { newValue in
+                                                    let filtered = newValue.filter { "0123456789.".contains($0) }
+                                                    if filtered != newValue {
+                                                        initial = filtered
+                                                    }
+                                    }
                             }
                         }
                         VStack(alignment: .leading) {
                             Text("Monthly Contribution")
                             HStack {
                                 Text(compound.currency.rawValue)
-                                TextField("Addition", value: $compound.contributionAmt, formatter: formatterDecimal)
+                                TextField("Addition", text: $contributionAmt)
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
+                                    .onReceive(Just(contributionAmt)) { newValue in
+                                                    let filtered = newValue.filter { "0123456789.".contains($0) }
+                                                    if filtered != newValue {
+                                                        contributionAmt = filtered
+                                                    }
+                                    }
                             }
                         }
                         VStack(alignment: .leading) {
@@ -115,6 +132,9 @@ struct CompoundSolverView: View {
                         }
                     }
                     Button("Calculate") {
+                        compound.rate = Double(rate) ?? 0.0
+                        compound.initial = Double(initial) ?? 0.0
+                        compound.contributionAmt = Double(contributionAmt) ?? 0.0
                         let newCompound = compound
                         savedCompounds.save(compoundToSave: newCompound)
                         createGraph()
