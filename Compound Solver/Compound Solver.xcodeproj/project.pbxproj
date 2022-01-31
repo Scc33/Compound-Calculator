@@ -23,6 +23,7 @@
 		9C83921B27A5D45C00C9F2C4 /* DoubleHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83921A27A5D45C00C9F2C4 /* DoubleHistoryView.swift */; };
 		9C83921D27A5D4BF00C9F2C4 /* SaveDoubles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83921C27A5D4BF00C9F2C4 /* SaveDoubles.swift */; };
 		9C83921F27A5DA9200C9F2C4 /* DoubleMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83921E27A5DA9200C9F2C4 /* DoubleMenuView.swift */; };
+		9C83922427A8590100C9F2C4 /* SwiftUI Apple Watch Decimal Pad in Frameworks */ = {isa = PBXBuildFile; productRef = 9C83922327A8590100C9F2C4 /* SwiftUI Apple Watch Decimal Pad */; };
 		9CE0E15C26B741D000589891 /* Compound_SolverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E15B26B741D000589891 /* Compound_SolverApp.swift */; };
 		9CE0E15E26B741D000589891 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E15D26B741D000589891 /* ContentView.swift */; };
 		9CE0E16026B741D400589891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E15F26B741D400589891 /* Assets.xcassets */; };
@@ -31,7 +32,6 @@
 		9CE0E17626BA219A00589891 /* WatchCompound Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9CE0E17526BA219A00589891 /* WatchCompound Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9CE0E17B26BA219A00589891 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E17A26BA219A00589891 /* ContentView.swift */; };
 		9CE0E17D26BA219A00589891 /* Compound_SolverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E17C26BA219A00589891 /* Compound_SolverApp.swift */; };
-		9CE0E17F26BA219A00589891 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E17E26BA219A00589891 /* ComplicationController.swift */; };
 		9CE0E18126BA219B00589891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E18026BA219B00589891 /* Assets.xcassets */; };
 		9CE0E18426BA219B00589891 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E18326BA219B00589891 /* Preview Assets.xcassets */; };
 		9CE0E18826BA219B00589891 /* WatchCompound.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9CE0E16C26BA219600589891 /* WatchCompound.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -113,7 +113,6 @@
 		9CE0E17526BA219A00589891 /* WatchCompound Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WatchCompound Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE0E17A26BA219A00589891 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9CE0E17C26BA219A00589891 /* Compound_SolverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compound_SolverApp.swift; sourceTree = "<group>"; };
-		9CE0E17E26BA219A00589891 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		9CE0E18026BA219B00589891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CE0E18326BA219B00589891 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9CE0E18526BA219B00589891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -144,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8C8C616FAB5CD93E61C15B8 /* Pods_WatchCompound_Extension.framework in Frameworks */,
+				9C83922427A8590100C9F2C4 /* SwiftUI Apple Watch Decimal Pad in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,7 +232,6 @@
 			children = (
 				9CE0E17A26BA219A00589891 /* ContentView.swift */,
 				9CE0E17C26BA219A00589891 /* Compound_SolverApp.swift */,
-				9CE0E17E26BA219A00589891 /* ComplicationController.swift */,
 				9CE0E18026BA219B00589891 /* Assets.xcassets */,
 				9CE0E18526BA219B00589891 /* Info.plist */,
 				9CE0E18226BA219B00589891 /* Preview Content */,
@@ -318,6 +317,9 @@
 			dependencies = (
 			);
 			name = "WatchCompound Extension";
+			packageProductDependencies = (
+				9C83922327A8590100C9F2C4 /* SwiftUI Apple Watch Decimal Pad */,
+			);
 			productName = "WatchCompound Extension";
 			productReference = 9CE0E17526BA219A00589891 /* WatchCompound Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
@@ -353,6 +355,7 @@
 			mainGroup = 9CE0E14F26B741D000589891;
 			packageReferences = (
 				9C6FA7FA279F479000139F20 /* XCRemoteSwiftPackageReference "swiftui-charts" */,
+				9C83922027A858AE00C9F2C4 /* XCRemoteSwiftPackageReference "SwiftUI-Apple-Watch-Decimal-Pad" */,
 			);
 			productRefGroup = 9CE0E15926B741D000589891 /* Products */;
 			projectDirPath = "";
@@ -509,7 +512,6 @@
 			files = (
 				9CE0E17B26BA219A00589891 /* ContentView.swift in Sources */,
 				9CE0E17D26BA219A00589891 /* Compound_SolverApp.swift in Sources */,
-				9CE0E17F26BA219A00589891 /* ComplicationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,7 +697,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2D5C6A521C3D7D3E2A8563D5 /* Pods-WatchCompound Extension.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"WatchCompound Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = Y46ZFSQQF3;
@@ -720,7 +721,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 455A58009774117685B41C08 /* Pods-WatchCompound Extension.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"WatchCompound Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = Y46ZFSQQF3;
@@ -833,6 +833,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		9C83922027A858AE00C9F2C4 /* XCRemoteSwiftPackageReference "SwiftUI-Apple-Watch-Decimal-Pad" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ApplebaumIan/SwiftUI-Apple-Watch-Decimal-Pad.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -840,6 +848,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9C6FA7FA279F479000139F20 /* XCRemoteSwiftPackageReference "swiftui-charts" */;
 			productName = Charts;
+		};
+		9C83922327A8590100C9F2C4 /* SwiftUI Apple Watch Decimal Pad */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C83922027A858AE00C9F2C4 /* XCRemoteSwiftPackageReference "SwiftUI-Apple-Watch-Decimal-Pad" */;
+			productName = "SwiftUI Apple Watch Decimal Pad";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
