@@ -12,5 +12,8 @@ class SaveDoubles: Codable, ObservableObject {
 
     func save(doubleToSave: Double) {
         savedDoubles.append(doubleToSave)
+        if (savedDoubles.count > 10) {
+            savedDoubles.remove(at: 0)
+        }
     }
 }

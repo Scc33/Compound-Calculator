@@ -24,5 +24,8 @@ class SaveCompounds: Codable, ObservableObject {
     func save(compoundToSave: CompoundCalculationModel) {
         let newCompound = CompoundCalculationModel(rate: compoundToSave.rate, initial: compoundToSave.initial, time: compoundToSave.time, contributionAmt: compoundToSave.contributionAmt, compounding: compoundToSave.compounding, currency: compoundToSave.currency)
         savedCompounds.append(newCompound)
+        if (savedCompounds.count > 10) {
+            savedCompounds.remove(at: 0)
+        }
     }
 }
