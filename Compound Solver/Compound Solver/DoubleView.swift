@@ -99,7 +99,7 @@ struct DoubleView: View {
                 }
                 if showTime {
                     Section {
-                        NavigationLink(destination: DoubleHistoryView(interest: $interest, history: saveDoubles, rootIsActive: $isActive, showTime: $showTime), isActive: $isActive) {
+                        NavigationLink(destination: DoubleHistoryView(interest: $interest, history: saveDoubles, rootIsActive: $isActive, showTime: $showTime, stringInterest: $stringInterest), isActive: $isActive) {
                             Text("History")
                         }
                         .isDetailLink(false)

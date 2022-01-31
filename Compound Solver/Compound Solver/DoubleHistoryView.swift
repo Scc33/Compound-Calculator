@@ -14,6 +14,8 @@ struct DoubleHistoryView: View {
     @Binding var showTime: Bool
     @State private var showingSettings = false
     
+    @Binding var stringInterest: String
+    
     var body: some View {
         List {
             ForEach(0..<history.savedDoubles.count) { i in
@@ -21,6 +23,7 @@ struct DoubleHistoryView: View {
                     interest = history.savedDoubles[i]
                     showTime = false
                     rootIsActive = false
+                    stringInterest = String(interest)
                 }) {
                     VStack(alignment: .leading) {
                         Text("Interest rate - \(String(format: "%.2f", history.savedDoubles[i]))%")
@@ -36,6 +39,6 @@ struct DoubleHistoryView: View {
 
 struct DoubleHistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        DoubleHistoryView(interest: .constant(0.0), history: SaveDoubles(), rootIsActive: .constant(false), showTime: .constant(false))
+        DoubleHistoryView(interest: .constant(0.0), history: SaveDoubles(), rootIsActive: .constant(false), showTime: .constant(false), stringInterest: .constant(""))
     }
 }
