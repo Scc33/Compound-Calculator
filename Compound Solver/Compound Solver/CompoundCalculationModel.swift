@@ -6,21 +6,37 @@
 //
 
 import Foundation
+import SwiftUI
 
-class CompoundCalculationModel: Identifiable, ObservableObject {
-    @Published var id = UUID()
-    @Published var rate: String = "0.0"
-    @Published var initial: String = "0.0"
-    @Published var time: String = "0.0"
-    @Published var contributionAmt: String = "0.0"
-    @Published var compounding: compoundType = compoundType.day
-    @Published var currency: currencyType = currencyType.dollar
+struct CompoundCalculationModel: Identifiable, Codable {
+    var id = UUID()
+    var rate: Double
+    var initial: Double
+    var time: Int
+    var contributionAmt: Double
+    var compounding: compoundType
+    var currency: currencyType
+    
+    init() {
+        rate = 0.0
+        initial = 0.0
+        time = 0
+        contributionAmt = 0.0
+        compounding = compoundType.day
+        currency = currencyType.dollar
+    }
+    
+    init(rate: Double, initial: Double, time: Int, contributionAmt: Double, compounding: compoundType, currency: currencyType) {
+        self.rate = rate
+        self.initial = initial
+        self.time = time
+        self.contributionAmt = contributionAmt
+        self.compounding = compounding
+        self.currency = currency
+    }
     
     func calcYearlyVals() -> [Double] {
-        let cRate = (Double(rate) ?? 0) / 100
-        let cInitial = Double(initial) ?? 0
-        let cTime = Int(time) ?? 0
-        let cContributionAmt = Double(contributionAmt) ?? 0
+        let cRate = rate / 100
         var numberCompound = 1.0;
         switch compounding {
         case .day : numberCompound = 365.0
@@ -32,16 +48,32 @@ class CompoundCalculationModel: Identifiable, ObservableObject {
         default : numberCompound = 1.0
         }
         
-        var currVal = cInitial
-        var calcVals = [cInitial]
+        var currVal = initial
+        var calcVals = [initial]
         
-        for _ in 0 ..< cTime {
-            currVal += (cContributionAmt * 12)
+        for _ in 0 ..< time {
+            currVal += (contributionAmt * 12)
             currVal = currVal * pow((1 + (cRate / numberCompound)), numberCompound)
             let roundedVal = round(currVal * 100) / 100.0
             calcVals.append(roundedVal)
         }
         
         return calcVals
+    }
+    
+    func calcContrib() -> Double {
+        return initial + ((contributionAmt * 12) * Double(time))
+    }
+    
+    func calcProfit() -> Double {
+        return (calcYearlyVals().last ?? 0.0) - calcContrib()
+    }
+    
+    func graphYearlyVals() -> [Double] {
+        var graphVals = calcYearlyVals()
+        for i in 0 ..< graphVals.count {
+            graphVals[i] /= (graphVals.last ?? 1)
+        }
+        return graphVals
     }
 }

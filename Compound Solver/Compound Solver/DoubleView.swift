@@ -10,32 +10,37 @@
 // maybe include a link to this and the formulas under the settings
 
 import SwiftUI
-
-enum topLine: String, Equatable, CaseIterable, Identifiable {
-    case exact = "69.3"
-    case seventy = "70"
-    case seventyTwo = "72"
-    
-    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
-    var id: String { self.rawValue }
-}
-
+import Combine
 
 struct DoubleView: View {
-    @State private var estBase: topLine = .seventy
-    @State private var estInterest = ""
+    @State private var interest = 0.0
+    @State private var showTime = false
+    @State private var invalid = false
+    @State private var time = 0.0
+    @State private var saveDoubles = SaveDoubles()
+    @State var isActive: Bool = false
+    @State private var showingSettings = false
     
-    var excDouble: Double {
-        let convertedEstInterest = Double(estInterest) ?? 0.1
-        let num = log(2.0)
-        let dem = log(1.0 + (convertedEstInterest / 100.0))
-        return num / dem
+    @State private var stringInterest = ""
+    
+    func createTime() {
+        if showTime == false {
+            invalid = false
+            showTime = true
+        }
     }
     
-    var estDouble: Double {
-        let convertedEstBase = Double(estBase.id) ?? 0.1
-        let convertedEstInterest = Double(estInterest) ?? 0.1
-        return convertedEstBase / convertedEstInterest
+    func makeInvalid() {
+        if invalid == false {
+            invalid = true
+            showTime = false
+        }
+    }
+    
+    func excDouble() -> Double {
+        let num = log(2.0)
+        let dem = log(1.0 + (interest / 100.0))
+        return num / dem
     }
     
     var body: some View {
@@ -44,27 +49,75 @@ struct DoubleView: View {
                 Section {
                     VStack(alignment: .leading) {
                         Text("Interest Rate")
-                        TextField("", text: $estInterest)
-                            .keyboardType(.decimalPad)
+                        HStack {
+                            Text("%")
+                            TextField("Rate", text: $stringInterest)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                                .onReceive(Just(stringInterest)) { newValue in
+                                    let filtered = newValue.filter { "0123456789.".contains($0) }
+                                    if filtered != newValue {
+                                        stringInterest = filtered
+                                    }
+                                }
+                        }
                     }
-                    VStack(alignment: .leading) {
-                        Text("Rule of 72/70/69.3")
-                        Picker("", selection: $estBase) {
-                            ForEach(topLine.allCases, id: \.id) { value in
-                                Text(value.localizedName)
-                                    .tag(value)
+                    Button("Calculate") {
+                        interest = Double(stringInterest) ?? 0.0
+                        hideKeyboard()
+                        print(interest)
+                        if (interest == 0.0) {
+                            makeInvalid()
+                        } else {
+                            createTime()
+                            saveDoubles.save(doubleToSave: interest)
+                            time = excDouble()
+                            if let encoded = try? JSONEncoder().encode(saveDoubles.savedDoubles) {
+                                UserDefaults.standard.set(encoded, forKey: "SavedDouble")
                             }
                         }
                     }
-                    .pickerStyle(SegmentedPickerStyle())
+                    .alert(isPresented: $invalid) {
+                        Alert(
+                            title: Text("Invalid"),
+                            message: Text("The interest rate must be greater than 0% to double"),
+                            dismissButton: .default(Text("Got it!"))
+                        )
+                    }
                 }
-                Section {
-                    Text("Estimated doubling time \(String(format:"%.2f",estDouble)) years")
-                    Text("Exact doubling time \(String(format:"%.2f",excDouble)) years")
+                if showTime {
+                    Section {
+                        Text("Doubling time \(String(format:"%.2f",time)) years")
+                            .contextMenu {
+                                Button(action: {
+                                    UIPasteboard.general.string = String(time)
+                                }) {
+                                    Text("Copy")
+                                }
+                            }
+                    }
                 }
+                if showTime {
+                    Section {
+                        NavigationLink(destination: DoubleHistoryView(interest: $interest, history: saveDoubles, rootIsActive: $isActive, showTime: $showTime, stringInterest: $stringInterest), isActive: $isActive) {
+                            Text("History")
+                        }
+                        .isDetailLink(false)
+                    }
+                }
+            }
+            .toolbar {
+                Button {
+                    self.showingSettings.toggle()
+                } label: {
+                    Image(systemName: "gear")
+                }
+            }.sheet(isPresented: $showingSettings) {
+                DoubleMenuView()
             }
             .navigationTitle(Text("Doubling Calculator"))
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

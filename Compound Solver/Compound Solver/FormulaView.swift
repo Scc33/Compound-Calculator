@@ -11,14 +11,12 @@ struct FormulaView: View {
     var body: some View {
         NavigationView {
             List {
-                HStack {
+                VStack(alignment: .leading) {
                     Text("Compound Interest")
-                    Spacer()
                     Text("A = P (1 + r/n) ") + Text("nt").font(.system(.footnote)).baselineOffset(10)
                 }
-                HStack {
+                VStack(alignment: .leading) {
                     Text("Future Value of a series")
-                    Spacer()
                     Text("FV = PMT (1 + r/n) ") + Text("nt").font(.system(.footnote)).baselineOffset(10) + Text("-1 / (r/n)")
                 }
             }

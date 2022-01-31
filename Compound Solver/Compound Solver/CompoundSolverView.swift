@@ -7,14 +7,7 @@
 
 import SwiftUI
 import Charts
-
-enum graphType: String, Equatable, CaseIterable, Identifiable {
-    case bar = "Bar graph"
-    case line = "Line graph"
-    
-    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
-    var id: String { self.rawValue }
-}
+import Combine
 
 enum currencyType: String, Equatable, CaseIterable, Identifiable, Codable {
     case dollar = "$"
@@ -26,7 +19,7 @@ enum currencyType: String, Equatable, CaseIterable, Identifiable, Codable {
     var id: String { self.rawValue }
 }
 
-enum compoundType: String, Equatable, CaseIterable, Identifiable {
+enum compoundType: String, Equatable, CaseIterable, Identifiable, Codable {
     case day = "Daily"
     case week = "Weekly"
     case biWeekly = "Every two weeks"
@@ -39,84 +32,186 @@ enum compoundType: String, Equatable, CaseIterable, Identifiable {
     var id: String { self.rawValue }
 }
 
+#if canImport(UIKit)
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+#endif
+
 struct CompoundSolverView: View {
-    @StateObject private var compound: CompoundCalculationModel = CompoundCalculationModel()
-    @State private var savedCompounds: SaveCompounds = SaveCompounds()
-    @State private var graphing: graphType = .bar
-    @State private var showContrib = false
+    @State private var compound: CompoundCalculationModel = CompoundCalculationModel()
+    @ObservedObject private var savedCompounds: SaveCompounds = SaveCompounds()
     @State private var showingSettings = false
+    @State var isActive: Bool = false
+    @State private var calculated: Bool = false
+    
+    @State private var yearlyVals: [Double] = []
+    @State private var graphVals: [Double] = []
+    @State private var contrib: Double = 0.0
+    @State private var profit: Double = 0.0
+    
+    @State private var rate = ""
+    @State private var initial = ""
+    @State private var contributionAmt = ""
+    @State private var setTime = 0
+    
+    @State private var invalid = false
+    
+    func createGraph() {
+        if calculated == false {
+            calculated = true
+        }
+    }
     
     var body: some View {
         NavigationView {
             Form {
                 Section {
-                    VStack(alignment: .leading) {
-                        Text("Interest Rate")
-                        TextField("Rate", text: $compound.rate)
-                            .keyboardType(.decimalPad)
-                    }
-                    VStack(alignment: .leading) {
-                        Text("Initial Principal")
-                        TextField("Amount", text: $compound.initial)
-                            .keyboardType(.decimalPad)
-                    }
-                    VStack(alignment: .leading) {
-                        Text("Years of Growing")
-                        TextField("Years", text: $compound.time)
-                            .keyboardType(.decimalPad)
-                    }
-                    VStack(alignment: .leading) {
-                        Text("Monthly Contribution")
-                        TextField("Addition", text: $compound.contributionAmt)
-                            .keyboardType(.decimalPad)
-                    }
-                    VStack(alignment: .leading) {
-                        Text("Compound Frequency")
-                        Picker("", selection: $compound.compounding) {
-                            ForEach(compoundType.allCases, id: \.id) { value in
-                                Text(value.localizedName)
-                                    .tag(value)
+                    Group {
+                        VStack(alignment: .leading) {
+                            Text("Interest Rate")
+                            HStack {
+                                Text("%")
+                                TextField("Rate", text: $rate)
+                                    .keyboardType(.decimalPad)
+                                    .multilineTextAlignment(.trailing)
+                                    .onReceive(Just(rate)) { newValue in
+                                        let filtered = newValue.filter { "0123456789.".contains($0) }
+                                        if filtered != newValue {
+                                            rate = filtered
+                                        }
+                                    }
+                            }
+                        }
+                        VStack(alignment: .leading) {
+                            Text("Initial Principal")
+                            HStack {
+                                Text(compound.currency.rawValue)
+                                TextField("Amount", text: $initial)
+                                    .keyboardType(.decimalPad)
+                                    .multilineTextAlignment(.trailing)
+                                    .onReceive(Just(initial)) { newValue in
+                                        let filtered = newValue.filter { "0123456789.".contains($0) }
+                                        if filtered != newValue {
+                                            initial = filtered
+                                        }
+                                    }
+                            }
+                        }
+                        VStack(alignment: .leading) {
+                            Text("Monthly Contribution")
+                            HStack {
+                                Text(compound.currency.rawValue)
+                                TextField("Addition", text: $contributionAmt)
+                                    .keyboardType(.decimalPad)
+                                    .multilineTextAlignment(.trailing)
+                                    .onReceive(Just(contributionAmt)) { newValue in
+                                        let filtered = newValue.filter { "0123456789.".contains($0) }
+                                        if filtered != newValue {
+                                            contributionAmt = filtered
+                                        }
+                                    }
+                            }
+                        }
+                        VStack(alignment: .leading) {
+                            Text("Years of Growth")
+                            Picker("", selection: $setTime) {
+                                ForEach(1...100, id: \.self) {
+                                    Text("\($0)")
+                                }
+                            }
+                            
+                        }
+                        VStack(alignment: .leading) {
+                            Text("Compound Frequency")
+                            Picker("", selection: $compound.compounding) {
+                                ForEach(compoundType.allCases, id: \.id) { value in
+                                    Text(value.localizedName)
+                                        .tag(value)
+                                }
                             }
                         }
                     }
-                }
-                Section {
-                    Text("Final Value \(compound.currency.rawValue)\(String(format: "%.2f", compound.calcYearlyVals().last ?? 0))")
-                    //https://www.hackingwithswift.com/articles/216/complete-guide-to-navigationview-in-swiftui
-                    NavigationLink(destination: YearlyValuesView(compound: compound)) {
-                        Text("Yearly Values")
-                    }
-                    Button("Save") {
-                        savedCompounds.save(compoundToSave: compound)
-                    }
-                }
-                Section {
-                    Toggle(isOn: $showContrib) {
-                        Text("Show contributions")
-                    }
-                    Picker("Base", selection: $graphing) {
-                        ForEach(graphType.allCases, id: \.id) { value in
-                            Text(value.localizedName)
-                                .tag(value)
+                    Button("Calculate") {
+                        compound.rate = Double(rate) ?? 0.0
+                        compound.initial = Double(initial) ?? 0.0
+                        compound.contributionAmt = Double(contributionAmt) ?? 0.0
+                        compound.time = setTime
+                        if (compound.time <= 0) {
+                            invalid = true
+                        } else {
+                            let newCompound = compound
+                            savedCompounds.save(compoundToSave: newCompound)
+                            createGraph()
+                            hideKeyboard()
+                            yearlyVals = compound.calcYearlyVals()
+                            graphVals = compound.graphYearlyVals()
+                            contrib = compound.calcContrib()
+                            profit = compound.calcProfit()
+                        }
+                        if let encoded = try? JSONEncoder().encode(savedCompounds.savedCompounds) {
+                            UserDefaults.standard.set(encoded, forKey: "SavedCompound")
                         }
                     }
-                    .pickerStyle(SegmentedPickerStyle())
-                    switch graphing {
-                    case .bar : Chart(data: compound.calcYearlyVals())
-                            .chartStyle(
-                                ColumnChartStyle(column: Capsule().foregroundColor(.green), spacing: 2)
-                            ).frame(height: 200)
-                    default : Chart(data: compound.calcYearlyVals())
-                            .chartStyle(
-                                LineChartStyle(.quadCurve, lineColor: .blue, lineWidth: 5)
-                            ).frame(height: 200)
+                    .alert(isPresented: $invalid) {
+                        Alert(
+                            title: Text("Invalid"),
+                            message: Text("The years of growth must be selected"),
+                            dismissButton: .default(Text("Got it!"))
+                        )
                     }
                 }
-                Section {
-                    NavigationLink(destination: HistoryView(History: savedCompounds)) {
-                        Text("History")
+                if calculated {
+                    Section {
+                        //https://developer.apple.com/documentation/swiftui/text/textselection(_:)
+                        Text("Final Value - \(compound.currency.rawValue)\(String(format: "%.2f", yearlyVals.last ?? 0))")
+                            .contextMenu {
+                                Button(action: {
+                                    UIPasteboard.general.string = String((yearlyVals.last ?? 0))
+                                }) {
+                                    Text("Copy")
+                                }
+                            }
+                        Text("Total Contribution - \(compound.currency.rawValue)\(String(format: "%.2f", contrib))")
+                            .contextMenu {
+                                Button(action: {
+                                    UIPasteboard.general.string = String(contrib)
+                                }) {
+                                    Text("Copy")
+                                }
+                            }
+                        Text("Total Profit - \(compound.currency.rawValue)\(String(format: "%.2f", profit))")
+                            .contextMenu {
+                                Button(action: {
+                                    UIPasteboard.general.string = String(profit)
+                                }) {
+                                    Text("Copy")
+                                }
+                            }
+                        if compound.time > 0 {
+                            NavigationLink(destination: YearlyValuesView(compound: compound)) {
+                                Text("Yearly Values")
+                            }
+                            Chart(data: graphVals)
+                                .chartStyle(
+                                    ColumnChartStyle(column: Capsule().foregroundColor(.green), spacing: 2)
+                                ).frame(height: 200)
+                        }
                     }
                 }
+                if calculated {
+                    Section {
+                        NavigationLink(destination: CompoundHistoryView(currCompound: $compound, history: savedCompounds, rootIsActive: $isActive, calculated: $calculated, rate: $rate, initial: $initial, contributionAmt: $contributionAmt, setTime: $setTime), isActive: $isActive) {
+                            Text("History")
+                        }
+                        .isDetailLink(false)
+                    }
+                }
+                /*NavigationLink(destination: ChartsEx()) {
+                 Text("Example")
+                 }*/
                 //Banner()
             }
             .toolbar {
@@ -126,11 +221,11 @@ struct CompoundSolverView: View {
                     Image(systemName: "gear")
                 }
             }.sheet(isPresented: $showingSettings) {
-                // show an AddView here
-                MenuView(compoundCalcModel: compound)
+                CompoundMenuView(compoundCalcModel: $compound)
             }
             .navigationTitle(Text("Compound Solver"))
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
