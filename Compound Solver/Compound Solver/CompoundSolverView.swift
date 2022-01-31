@@ -57,6 +57,8 @@ struct CompoundSolverView: View {
     @State private var contributionAmt = ""
     @State private var setTime = 0
     
+    @State private var invalid = false
+    
     func createGraph() {
         if calculated == false {
             calculated = true
@@ -137,17 +139,28 @@ struct CompoundSolverView: View {
                         compound.initial = Double(initial) ?? 0.0
                         compound.contributionAmt = Double(contributionAmt) ?? 0.0
                         compound.time = setTime
-                        let newCompound = compound
-                        savedCompounds.save(compoundToSave: newCompound)
-                        createGraph()
-                        hideKeyboard()
-                        yearlyVals = compound.calcYearlyVals()
-                        graphVals = compound.graphYearlyVals()
-                        contrib = compound.calcContrib()
-                        profit = compound.calcProfit()
+                        if (compound.time <= 0) {
+                            invalid = true
+                        } else {
+                            let newCompound = compound
+                            savedCompounds.save(compoundToSave: newCompound)
+                            createGraph()
+                            hideKeyboard()
+                            yearlyVals = compound.calcYearlyVals()
+                            graphVals = compound.graphYearlyVals()
+                            contrib = compound.calcContrib()
+                            profit = compound.calcProfit()
+                        }
                         if let encoded = try? JSONEncoder().encode(savedCompounds.savedCompounds) {
                             UserDefaults.standard.set(encoded, forKey: "SavedData")
                         }
+                    }
+                    .alert(isPresented: $invalid) {
+                        Alert(
+                            title: Text("Invalid"),
+                            message: Text("The years of growth must be selected"),
+                            dismissButton: .default(Text("Got it!"))
+                        )
                     }
                 }
                 if calculated {
