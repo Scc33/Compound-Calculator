@@ -152,7 +152,7 @@ struct CompoundSolverView: View {
                             profit = compound.calcProfit()
                         }
                         if let encoded = try? JSONEncoder().encode(savedCompounds.savedCompounds) {
-                            UserDefaults.standard.set(encoded, forKey: "SavedData")
+                            UserDefaults.standard.set(encoded, forKey: "SavedCompound")
                         }
                     }
                     .alert(isPresented: $invalid) {

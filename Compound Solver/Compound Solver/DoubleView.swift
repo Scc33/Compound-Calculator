@@ -72,6 +72,9 @@ struct DoubleView: View {
                             createTime()
                             saveDoubles.save(doubleToSave: interest)
                             time = excDouble()
+                            if let encoded = try? JSONEncoder().encode(saveDoubles.savedDoubles) {
+                                UserDefaults.standard.set(encoded, forKey: "SavedDouble")
+                            }
                         }
                     }
                     .alert(isPresented: $invalid) {

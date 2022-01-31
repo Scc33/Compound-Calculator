@@ -8,7 +8,18 @@
 import Foundation
 
 class SaveDoubles: Codable, ObservableObject {
-    var savedDoubles: [Double] = []
+    var savedDoubles: [Double]
+    
+    init() {
+        if let data = UserDefaults.standard.data(forKey: "SavedDouble") {
+                if let decoded = try? JSONDecoder().decode([Double].self, from: data) {
+                    savedDoubles = decoded
+                    return
+                }
+            }
+        
+        savedDoubles = []
+    }
 
     func save(doubleToSave: Double) {
         savedDoubles.append(doubleToSave)
