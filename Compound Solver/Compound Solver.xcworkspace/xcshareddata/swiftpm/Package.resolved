@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "SwiftUI Apple Watch Decimal Pad",
+        "repositoryURL": "https://github.com/ApplebaumIan/SwiftUI-Apple-Watch-Decimal-Pad.git",
+        "state": {
+          "branch": null,
+          "revision": "e83396230a383dcd8c675befb55edc2be8ccd01b",
+          "version": "1.0.2"
+        }
+      },
+      {
         "package": "Charts",
         "repositoryURL": "https://github.com/spacenation/swiftui-charts",
         "state": {

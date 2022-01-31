@@ -6,11 +6,20 @@
 //
 
 import SwiftUI
+import SwiftUI_Apple_Watch_Decimal_Pad
 
 struct ContentView: View {
+    @State public var presentingModal: Bool = true
+    private var placeholder = "0"
+    @State private var text = "text"
+    
     var body: some View {
-        Text("Hello, World!")
-            .padding()
+        DigiTextView(placeholder: placeholder,
+                     text: $text,
+                     presentingModal: presentingModal,
+                     alignment: .leading,
+                     style: .decimal
+        )
     }
 }
 
