@@ -21,11 +21,21 @@ class SaveCompounds: Codable, ObservableObject {
         savedCompounds = []
     }
     
+    func delete(at offsets: IndexSet) {
+        savedCompounds.remove(atOffsets: offsets)
+        if let encoded = try? JSONEncoder().encode(savedCompounds) {
+            UserDefaults.standard.set(encoded, forKey: "SavedCompound")
+        }
+    }
+    
     func save(compoundToSave: CompoundCalculationModel) {
         let newCompound = CompoundCalculationModel(rate: compoundToSave.rate, initial: compoundToSave.initial, time: compoundToSave.time, contributionAmt: compoundToSave.contributionAmt, compounding: compoundToSave.compounding, currency: compoundToSave.currency)
         savedCompounds.append(newCompound)
         if (savedCompounds.count > 10) {
             savedCompounds.remove(at: 0)
+        }
+        if let encoded = try? JSONEncoder().encode(savedCompounds) {
+            UserDefaults.standard.set(encoded, forKey: "SavedCompound")
         }
     }
 }

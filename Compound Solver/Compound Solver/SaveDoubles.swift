@@ -20,11 +20,21 @@ class SaveDoubles: Codable, ObservableObject {
         
         savedDoubles = []
     }
+    
+    func delete(at offsets: IndexSet) {
+        savedDoubles.remove(atOffsets: offsets)
+        if let encoded = try? JSONEncoder().encode(savedDoubles) {
+            UserDefaults.standard.set(encoded, forKey: "SavedDouble")
+        }
+    }
 
     func save(doubleToSave: Double) {
         savedDoubles.append(doubleToSave)
         if (savedDoubles.count > 10) {
             savedDoubles.remove(at: 0)
+        }
+        if let encoded = try? JSONEncoder().encode(savedDoubles) {
+            UserDefaults.standard.set(encoded, forKey: "SavedDouble")
         }
     }
 }

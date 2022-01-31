@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CompoundHistoryView: View {
     @Binding var currCompound: CompoundCalculationModel
-    var history: SaveCompounds
+    @State var history: SaveCompounds
     @Binding var rootIsActive: Bool
     @Binding var calculated: Bool
     
@@ -17,6 +17,8 @@ struct CompoundHistoryView: View {
     @Binding var initial: String
     @Binding var contributionAmt: String
     @Binding var setTime: Int
+    
+    @Environment(\.editMode) private var editMode
     
     var body: some View {
         List {
@@ -44,7 +46,19 @@ struct CompoundHistoryView: View {
                 }
                 .buttonStyle(PlainButtonStyle())
             }
+            .onDelete(perform: history.delete)
         }
+        .toolbar {
+            EditButton()
+        }
+        .onChange(of: editMode!.wrappedValue, perform: { value in
+            if value.isEditing {
+                // Entering edit mode (e.g. 'Edit' tapped)
+            } else {
+                // Leaving edit mode (e.g. 'Done' tapped)
+                history = SaveCompounds.init()
+            }
+        })
         .navigationTitle(Text("History"))
         .navigationBarTitleDisplayMode(.inline)
     }

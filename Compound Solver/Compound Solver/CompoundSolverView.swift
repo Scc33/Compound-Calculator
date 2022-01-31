@@ -40,6 +40,13 @@ extension View {
 }
 #endif
 
+func stringify(value: Double) -> String{
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .decimal
+    formatter.maximumFractionDigits = 2;
+    return formatter.string(from: NSNumber(value: value)) ?? ""
+}
+
 struct CompoundSolverView: View {
     @State private var compound: CompoundCalculationModel = CompoundCalculationModel()
     @ObservedObject private var savedCompounds: SaveCompounds = SaveCompounds()
@@ -166,7 +173,7 @@ struct CompoundSolverView: View {
                 if calculated {
                     Section {
                         //https://developer.apple.com/documentation/swiftui/text/textselection(_:)
-                        Text("Final Value - \(compound.currency.rawValue)\(String(format: "%.2f", yearlyVals.last ?? 0))")
+                        Text("Final Value - \(compound.currency.rawValue)\(stringify(value: yearlyVals.last ?? 0))")
                             .contextMenu {
                                 Button(action: {
                                     UIPasteboard.general.string = String((yearlyVals.last ?? 0))
@@ -174,7 +181,7 @@ struct CompoundSolverView: View {
                                     Text("Copy")
                                 }
                             }
-                        Text("Total Contribution - \(compound.currency.rawValue)\(String(format: "%.2f", contrib))")
+                        Text("Total Contribution - \(compound.currency.rawValue)\(stringify(value: contrib))")
                             .contextMenu {
                                 Button(action: {
                                     UIPasteboard.general.string = String(contrib)
@@ -182,7 +189,7 @@ struct CompoundSolverView: View {
                                     Text("Copy")
                                 }
                             }
-                        Text("Total Profit - \(compound.currency.rawValue)\(String(format: "%.2f", profit))")
+                        Text("Total Profit - \(compound.currency.rawValue)\(stringify(value: profit))")
                             .contextMenu {
                                 Button(action: {
                                     UIPasteboard.general.string = String(profit)
@@ -197,7 +204,7 @@ struct CompoundSolverView: View {
                             Chart(data: graphVals)
                                 .chartStyle(
                                     ColumnChartStyle(column: Capsule().foregroundColor(.green), spacing: 2)
-                                ).frame(height: 200)
+                                ).frame(height: 400)
                         }
                     }
                 }
