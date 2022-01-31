@@ -13,6 +13,11 @@ struct CompoundHistoryView: View {
     @Binding var rootIsActive: Bool
     @Binding var calculated: Bool
     
+    @Binding var rate: String
+    @Binding var initial: String
+    @Binding var contributionAmt: String
+    @Binding var setTime: Int
+    
     var body: some View {
         List {
             ForEach(history.savedCompounds) { compound in
@@ -24,6 +29,10 @@ struct CompoundHistoryView: View {
                     currCompound.compounding = compound.compounding
                     rootIsActive = false
                     calculated = false
+                    rate = String(compound.rate)
+                    initial = String(compound.initial)
+                    contributionAmt = String(compound.contributionAmt)
+                    setTime = compound.time
                 }) {
                     VStack(alignment: .leading) {
                         Text("Interest rate - \(String(format: "%.2f", compound.rate))%")
@@ -43,6 +52,6 @@ struct CompoundHistoryView: View {
 
 struct CompoundHistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        CompoundHistoryView(currCompound: .constant(CompoundCalculationModel()), history: SaveCompounds(), rootIsActive: .constant(false), calculated: .constant(false))
+        CompoundHistoryView(currCompound: .constant(CompoundCalculationModel()), history: SaveCompounds(), rootIsActive: .constant(false), calculated: .constant(false), rate: .constant(""), initial: .constant(""), contributionAmt: .constant(""), setTime: .constant(0))
     }
 }

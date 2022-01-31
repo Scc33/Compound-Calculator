@@ -74,10 +74,12 @@ struct DoubleView: View {
                             time = excDouble()
                         }
                     }
-                }
-                if invalid {
-                    Section {
-                        Text("The interest rate must be greater than 0% to double")
+                    .alert(isPresented: $invalid) {
+                        Alert(
+                            title: Text("Invalid"),
+                            message: Text("The interest rate must be greater than 0% to double"),
+                            dismissButton: .default(Text("Got it!"))
+                        )
                     }
                 }
                 if showTime {

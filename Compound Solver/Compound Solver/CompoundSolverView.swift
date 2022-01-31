@@ -145,6 +145,9 @@ struct CompoundSolverView: View {
                         graphVals = compound.graphYearlyVals()
                         contrib = compound.calcContrib()
                         profit = compound.calcProfit()
+                        if let encoded = try? JSONEncoder().encode(savedCompounds.savedCompounds) {
+                            UserDefaults.standard.set(encoded, forKey: "SavedData")
+                        }
                     }
                 }
                 if calculated {
@@ -187,7 +190,7 @@ struct CompoundSolverView: View {
                 }
                 if calculated {
                     Section {
-                        NavigationLink(destination: CompoundHistoryView(currCompound: $compound, history: savedCompounds, rootIsActive: $isActive, calculated: $calculated), isActive: $isActive) {
+                        NavigationLink(destination: CompoundHistoryView(currCompound: $compound, history: savedCompounds, rootIsActive: $isActive, calculated: $calculated, rate: $rate, initial: $initial, contributionAmt: $contributionAmt, setTime: $setTime), isActive: $isActive) {
                             Text("History")
                         }
                         .isDetailLink(false)
