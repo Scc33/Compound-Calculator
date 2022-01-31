@@ -15,6 +15,7 @@ import Combine
 struct DoubleView: View {
     @State private var interest = 0.0
     @State private var showTime = false
+    @State private var invalid = false
     @State private var time = 0.0
     @State private var saveDoubles = SaveDoubles()
     @State var isActive: Bool = false
@@ -24,7 +25,15 @@ struct DoubleView: View {
     
     func createTime() {
         if showTime == false {
+            invalid = false
             showTime = true
+        }
+    }
+    
+    func makeInvalid() {
+        if invalid == false {
+            invalid = true
+            showTime = false
         }
     }
     
@@ -42,23 +51,33 @@ struct DoubleView: View {
                         Text("Interest Rate")
                         HStack {
                             Text("%")
-                            TextField("", text: $stringInterest)
+                            TextField("Rate", text: $stringInterest)
                                 .keyboardType(.decimalPad)
                                 .multilineTextAlignment(.trailing)
                                 .onReceive(Just(stringInterest)) { newValue in
-                                                let filtered = newValue.filter { "0123456789.".contains($0) }
-                                                if filtered != newValue {
-                                                    stringInterest = filtered
-                                                }
+                                    let filtered = newValue.filter { "0123456789.".contains($0) }
+                                    if filtered != newValue {
+                                        stringInterest = filtered
+                                    }
                                 }
                         }
                     }
                     Button("Calculate") {
                         interest = Double(stringInterest) ?? 0.0
-                        saveDoubles.save(doubleToSave: interest)
                         hideKeyboard()
-                        createTime()
-                        time = excDouble()
+                        print(interest)
+                        if (interest == 0.0) {
+                            makeInvalid()
+                        } else {
+                            createTime()
+                            saveDoubles.save(doubleToSave: interest)
+                            time = excDouble()
+                        }
+                    }
+                }
+                if invalid {
+                    Section {
+                        Text("The interest rate must be greater than 0% to double")
                     }
                 }
                 if showTime {

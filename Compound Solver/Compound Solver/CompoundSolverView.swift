@@ -55,6 +55,7 @@ struct CompoundSolverView: View {
     @State private var rate = ""
     @State private var initial = ""
     @State private var contributionAmt = ""
+    @State private var setTime = 0
     
     func createGraph() {
         if calculated == false {
@@ -75,10 +76,10 @@ struct CompoundSolverView: View {
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
                                     .onReceive(Just(rate)) { newValue in
-                                                    let filtered = newValue.filter { "0123456789.".contains($0) }
-                                                    if filtered != newValue {
-                                                        rate = filtered
-                                                    }
+                                        let filtered = newValue.filter { "0123456789.".contains($0) }
+                                        if filtered != newValue {
+                                            rate = filtered
+                                        }
                                     }
                             }
                         }
@@ -90,10 +91,10 @@ struct CompoundSolverView: View {
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
                                     .onReceive(Just(initial)) { newValue in
-                                                    let filtered = newValue.filter { "0123456789.".contains($0) }
-                                                    if filtered != newValue {
-                                                        initial = filtered
-                                                    }
+                                        let filtered = newValue.filter { "0123456789.".contains($0) }
+                                        if filtered != newValue {
+                                            initial = filtered
+                                        }
                                     }
                             }
                         }
@@ -105,16 +106,16 @@ struct CompoundSolverView: View {
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
                                     .onReceive(Just(contributionAmt)) { newValue in
-                                                    let filtered = newValue.filter { "0123456789.".contains($0) }
-                                                    if filtered != newValue {
-                                                        contributionAmt = filtered
-                                                    }
+                                        let filtered = newValue.filter { "0123456789.".contains($0) }
+                                        if filtered != newValue {
+                                            contributionAmt = filtered
+                                        }
                                     }
                             }
                         }
                         VStack(alignment: .leading) {
                             Text("Years of Growth")
-                            Picker("", selection: $compound.time) {
+                            Picker("", selection: $setTime) {
                                 ForEach(1...100, id: \.self) {
                                     Text("\($0)")
                                 }
@@ -135,6 +136,7 @@ struct CompoundSolverView: View {
                         compound.rate = Double(rate) ?? 0.0
                         compound.initial = Double(initial) ?? 0.0
                         compound.contributionAmt = Double(contributionAmt) ?? 0.0
+                        compound.time = setTime
                         let newCompound = compound
                         savedCompounds.save(compoundToSave: newCompound)
                         createGraph()
@@ -172,13 +174,15 @@ struct CompoundSolverView: View {
                                     Text("Copy")
                                 }
                             }
-                        NavigationLink(destination: YearlyValuesView(compound: compound)) {
-                            Text("Yearly Values")
+                        if compound.time > 0 {
+                            NavigationLink(destination: YearlyValuesView(compound: compound)) {
+                                Text("Yearly Values")
+                            }
+                            Chart(data: graphVals)
+                                .chartStyle(
+                                    ColumnChartStyle(column: Capsule().foregroundColor(.green), spacing: 2)
+                                ).frame(height: 200)
                         }
-                        Chart(data: graphVals)
-                            .chartStyle(
-                                ColumnChartStyle(column: Capsule().foregroundColor(.green), spacing: 2)
-                            ).frame(height: 200)
                     }
                 }
                 if calculated {
