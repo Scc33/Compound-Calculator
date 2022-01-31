@@ -10,19 +10,9 @@
 // maybe include a link to this and the formulas under the settings
 
 import SwiftUI
-
-/*enum topLine: String, Equatable, CaseIterable, Identifiable {
- case exact = "69.3"
- case seventy = "70"
- case seventyTwo = "72"
- 
- var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
- var id: String { self.rawValue }
- }*/
-
+import Combine
 
 struct DoubleView: View {
-    //@State private var estBase: topLine = .seventy
     @State private var interest = 0.0
     @State private var showTime = false
     @State private var time = 0.0
@@ -30,29 +20,19 @@ struct DoubleView: View {
     @State var isActive: Bool = false
     @State private var showingSettings = false
     
+    @State private var stringInterest = ""
+    
     func createTime() {
         if showTime == false {
             showTime = true
         }
     }
     
-    let formatterDecimal: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        return formatter
-    }()
-    
     func excDouble() -> Double {
         let num = log(2.0)
         let dem = log(1.0 + (interest / 100.0))
         return num / dem
     }
-    
-    /*var estDouble: Double {
-     let convertedEstBase = Double(estBase.id) ?? 0.1
-     let convertedEstInterest = Double(estInterest) ?? 0.1
-     return convertedEstBase / convertedEstInterest
-     }*/
     
     var body: some View {
         NavigationView {
@@ -62,30 +42,27 @@ struct DoubleView: View {
                         Text("Interest Rate")
                         HStack {
                             Text("%")
-                            TextField("", value: $interest, formatter: formatterDecimal)
+                            TextField("", text: $stringInterest)
                                 .keyboardType(.decimalPad)
                                 .multilineTextAlignment(.trailing)
+                                .onReceive(Just(stringInterest)) { newValue in
+                                                let filtered = newValue.filter { "0123456789.".contains($0) }
+                                                if filtered != newValue {
+                                                    stringInterest = filtered
+                                                }
+                                }
                         }
                     }
                     Button("Calculate") {
+                        interest = Double(stringInterest) ?? 0.0
                         saveDoubles.save(doubleToSave: interest)
                         hideKeyboard()
                         createTime()
                         time = excDouble()
                     }
-                    /*VStack(alignment: .leading) {
-                     Text("Rule of 72/70/69.3")
-                     Picker("", selection: $estBase) {
-                     ForEach(topLine.allCases, id: \.id) { value in
-                     Text(value.localizedName)
-                     .tag(value)
-                     }.pickerStyle(SegmentedPickerStyle())
-                     }
-                     }*/
                 }
                 if showTime {
                     Section {
-                        //Text("Estimated doubling time \(String(format:"%.2f",estDouble)) years")
                         Text("Doubling time \(String(format:"%.2f",time)) years")
                             .contextMenu {
                                 Button(action: {
