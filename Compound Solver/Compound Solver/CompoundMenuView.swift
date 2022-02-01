@@ -19,20 +19,14 @@ struct CompoundMenuView: View {
         UIApplication.shared.windows.last?.rootViewController?.present(activityView, animated: true, completion: nil)
     }*/
     
-    func openAppWebsite() {
-        if let url = URL(string: "https://app.seancoughlin.me") {
+    func openPrivacy() {
+        if let url = URL(string: "https://app.seancoughlin.me/compoundsolver/privacy.html") {
             UIApplication.shared.open(url)
         }
     }
     
     func openDevWebsite() {
-        if let url = URL(string: "https://seancoughlin.me") {
-            UIApplication.shared.open(url)
-        }
-    }
-    
-    func openAppPage() {
-        if let url = URL(string: "https://seancoughlin.me") {
+        if let url = URL(string: "https://app.seancoughlin.me/compoundsolver/") {
             UIApplication.shared.open(url)
         }
     }
@@ -46,16 +40,12 @@ struct CompoundMenuView: View {
                             .tag(value)
                     }
                 }
-                Button(action: openAppWebsite) {
+                Button(action: openPrivacy) {
                     Text("Privacy Policy")
                 }
                 Button(action: openDevWebsite) {
                     Text("Developer Website")
                 }
-                /*Button(action: openAppPage) {
-                    Text("Leave a review")
-                }*/
-                //Banner()
             }
             .navigationTitle("Settings")
         }
