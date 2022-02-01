@@ -178,7 +178,7 @@ struct CompoundSolverView: View {
                                 Button(action: {
                                     UIPasteboard.general.string = String((yearlyVals.last ?? 0))
                                 }) {
-                                    Text("Copy")
+                                    Text("Copy final value")
                                 }
                             }
                         Text("Total Contribution - \(compound.currency.rawValue)\(stringify(value: contrib))")
@@ -186,7 +186,7 @@ struct CompoundSolverView: View {
                                 Button(action: {
                                     UIPasteboard.general.string = String(contrib)
                                 }) {
-                                    Text("Copy")
+                                    Text("Copy total contribution")
                                 }
                             }
                         Text("Total Profit - \(compound.currency.rawValue)\(stringify(value: profit))")
@@ -194,7 +194,7 @@ struct CompoundSolverView: View {
                                 Button(action: {
                                     UIPasteboard.general.string = String(profit)
                                 }) {
-                                    Text("Copy")
+                                    Text("Copy total profit")
                                 }
                             }
                         if compound.time > 0 {

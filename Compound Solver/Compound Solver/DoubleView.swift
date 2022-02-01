@@ -92,7 +92,7 @@ struct DoubleView: View {
                                 Button(action: {
                                     UIPasteboard.general.string = String(time)
                                 }) {
-                                    Text("Copy")
+                                    Text("Copy doubling time")
                                 }
                             }
                     }

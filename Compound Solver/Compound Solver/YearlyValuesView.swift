@@ -30,7 +30,7 @@ struct YearlyValuesView: View {
                         Button(action: {
                             UIPasteboard.general.string = String(vals[i])
                         }) {
-                            Text("Copy")
+                            Text("Copy year \(i) value")
                         }
                     }
             }
