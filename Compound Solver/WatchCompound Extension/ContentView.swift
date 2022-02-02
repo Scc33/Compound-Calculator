@@ -8,10 +8,19 @@
 import SwiftUI
 import SwiftUI_Apple_Watch_Decimal_Pad
 
-struct ContentView: View {
+enum calculateType: String, Equatable, CaseIterable, Identifiable, Codable {
+    case double = "double"
+    case compound = "compound"
+    
+    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
+    var id: String { self.rawValue }
+}
+
+struct CalculateView: View {
     @State public var presentingModal: Bool = false
-    private var placeholder = ""
+    @State private var placeholder = ""
     @State private var stringInterest = ""
+    let type: calculateType
     
     func excDouble() -> Double {
         let interest = Double(stringInterest) ?? 0.0
@@ -20,7 +29,11 @@ struct ContentView: View {
         return num / dem
     }
     
-    var body: some View {
+    var compoundView: some View {
+        Text("Compound View")
+    }
+    
+    var doubleView: some View {
         VStack {
             if (stringInterest == "") {
                 Text("Enter an interest rate")
@@ -33,17 +46,43 @@ struct ContentView: View {
                          alignment: .leading,
                          style: .decimal
             )
-        }.contextMenu(menuItems: {
-            Button(action: {
-                print("Refresh")
-            }, label: {
-                VStack{
-                    Image(systemName: "arrow.clockwise")
-                        .font(.title)
-                    Text("Refresh view")
-                }
-            })
-        })
+        }
+    }
+    
+    var body: some View {
+        if type == calculateType.compound {
+            compoundView
+        } else {
+            doubleView
+        }
+    }
+}
+
+struct RowView: View {
+    let title: String
+    let image: String
+    let type: calculateType
+    
+    var body: some View {
+        NavigationLink(destination: CalculateView(type: type)) {
+            HStack {
+                Text(title)
+                Spacer()
+                Image(systemName: image)
+                    .resizable()
+                    .frame(width: 32.0, height: 32.0)
+            }
+        }
+    }
+}
+
+struct ContentView: View {
+    var body: some View {
+        List{
+            RowView(title: "Compound Solver", image: "align.vertical.bottom.fill", type: calculateType.compound)
+            RowView(title: "Double Calculator", image: "multiply", type: calculateType.double)
+        }
+        .listStyle(.carousel)
     }
 }
 
