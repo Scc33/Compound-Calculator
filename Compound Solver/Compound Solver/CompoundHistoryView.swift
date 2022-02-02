@@ -37,11 +37,11 @@ struct CompoundHistoryView: View {
                     setTime = compound.time
                 }) {
                     VStack(alignment: .leading) {
-                        Text("Interest rate - \(String(format: "%.2f", compound.rate))%")
-                        Text("Initial principal - \(compound.currency.rawValue)\(String(format: "%.2f", compound.initial))")
-                        Text("Years of growth - \(compound.time)")
-                        Text("Monthly contribution - \(compound.currency.rawValue)\(String(format: "%.2f", compound.contributionAmt))")
-                        Text("Compounding - \(compound.compounding.rawValue)")
+                        Text("Interest rate: \(String(format: "%.2f", compound.rate))%")
+                        Text("Initial principal: \(compound.currency.rawValue)\(String(format: "%.2f", compound.initial))")
+                        Text("Years of growth: \(compound.time)")
+                        Text("Monthly contribution: \(compound.currency.rawValue)\(String(format: "%.2f", compound.contributionAmt))")
+                        Text("Compounding: \(compound.compounding.rawValue)")
                     }
                 }
                 .buttonStyle(PlainButtonStyle())

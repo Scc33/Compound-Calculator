@@ -16,7 +16,7 @@ struct YearlyValuesView: View {
     
     var body: some View {
         return List {
-            Text("Initial Principal - \(compound.currency.rawValue)\(String(format: "%.2f", vals[0]))")
+            Text("Initial Principal: \(compound.currency.rawValue)\(String(format: "%.2f", vals[0]))")
                 .contextMenu {
                     Button(action: {
                         UIPasteboard.general.string = String(vals[0])
@@ -25,7 +25,7 @@ struct YearlyValuesView: View {
                     }
                 }
             ForEach(1..<vals.count) { i in
-                Text("Year \(i) - \(compound.currency.rawValue)\(String(format: "%.2f", vals[i]))")
+                Text("Year \(i): \(compound.currency.rawValue)\(String(format: "%.2f", vals[i]))")
                     .contextMenu {
                         Button(action: {
                             UIPasteboard.general.string = String(vals[i])

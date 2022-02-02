@@ -150,7 +150,7 @@ struct CompoundSolverView: View {
                 if calculated {
                     Section {
                         //https://developer.apple.com/documentation/swiftui/text/textselection(_:)
-                        Text("Final Value - \(compound.currency.rawValue)\(stringify(value: yearlyVals.last ?? 0))")
+                        Text("Final Value: \(compound.currency.rawValue)\(stringify(value: yearlyVals.last ?? 0))")
                             .contextMenu {
                                 Button(action: {
                                     UIPasteboard.general.string = String((yearlyVals.last ?? 0))
@@ -158,7 +158,7 @@ struct CompoundSolverView: View {
                                     Text("Copy final value")
                                 }
                             }
-                        Text("Total Contribution - \(compound.currency.rawValue)\(stringify(value: contrib))")
+                        Text("Total Contribution: \(compound.currency.rawValue)\(stringify(value: contrib))")
                             .contextMenu {
                                 Button(action: {
                                     UIPasteboard.general.string = String(contrib)
@@ -166,7 +166,7 @@ struct CompoundSolverView: View {
                                     Text("Copy total contribution")
                                 }
                             }
-                        Text("Total Profit - \(compound.currency.rawValue)\(stringify(value: profit))")
+                        Text("Total Profit: \(compound.currency.rawValue)\(stringify(value: profit))")
                             .contextMenu {
                                 Button(action: {
                                     UIPasteboard.general.string = String(profit)
