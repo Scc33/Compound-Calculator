@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftUI_Apple_Watch_Decimal_Pad
-//import CompoundCalculationModel
 
 extension View {
     @ViewBuilder
@@ -39,9 +38,16 @@ struct CalculateView: View {
     @State private var time = ""
     @State private var contributionAmt = ""
     
-    /*var compound: CompoundCalculationModel {
-        CompoundCalculationModel(rate: Double(rate) ?? 0.0, initial: Double(initial) ?? 0.0, time: Double(time) ?? 0.0, contributionAmt: Double(contributionAmt) ?? 0.0)
-    }*/
+    var compound: CompoundCalculationModel {
+        CompoundCalculationModel(rate: Double(rate) ?? 0.0, initial: Double(initial) ?? 0.0, time: Int(time) ?? 0, contributionAmt: Double(contributionAmt) ?? 0.0)
+    }
+    
+    func stringify(value: Double) -> String{
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2;
+        return formatter.string(from: NSNumber(value: value)) ?? ""
+    }
     
     var compoundView: some View {
         List {
@@ -92,6 +98,13 @@ struct CalculateView: View {
                              alignment: .leading
                 )
             }
+            NavigationLink(destination: List {
+                Text("Final Value: \(compound.currency.rawValue)\(stringify(value: compound.calcYearlyVals().last ?? 0))")
+                Text("Total Contribution: \(compound.currency.rawValue)\(stringify(value: compound.calcContrib()))")
+                Text("Total Profit: \(compound.currency.rawValue)\(stringify(value: compound.calcProfit()))")
+            }) {
+                Text("Calculate")
+            }
         }
         .navigationTitle(Text(title))
         .navBarTitleDisplayMode(.inline)
@@ -108,7 +121,7 @@ struct CalculateView: View {
         List {
             HStack {
                 Text("Interest Rate")
-                DigiTextView(placeholder: placeholderRate,
+                DigiTextView(placeholder: rate,
                              text: $rate,
                              presentingModal: presentingModal,
                              alignment: .leading,
