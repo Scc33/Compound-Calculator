@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SwiftUI_Apple_Watch_Decimal_Pad
-import CompoundCalculationModel
+//import CompoundCalculationModel
 
 extension View {
     @ViewBuilder
@@ -31,8 +31,6 @@ enum calculateType: String, Equatable, CaseIterable, Identifiable, Codable {
 
 struct CalculateView: View {
     @State public var presentingModal: Bool = false
-    @State private var placeholder = ""
-    @State private var stringInterest = ""
     let type: calculateType
     let title: String
     
@@ -41,21 +39,18 @@ struct CalculateView: View {
     @State private var time = ""
     @State private var contributionAmt = ""
     
-    var compound: CompoundCalculationModel {
+    /*var compound: CompoundCalculationModel {
         CompoundCalculationModel(rate: Double(rate) ?? 0.0, initial: Double(initial) ?? 0.0, time: Double(time) ?? 0.0, contributionAmt: Double(contributionAmt) ?? 0.0)
-    }
+    }*/
     
     var compoundView: some View {
         List {
-            if (stringInterest != "") {
-                Text("Doubling time \(String(format:"%.2f",excDouble())) years")
-            }
             HStack {
                 VStack {
                     Text("Interest")
                     Text("Rate")
                 }
-                DigiTextView(placeholder: placeholder,
+                DigiTextView(placeholder: rate,
                              text: $rate,
                              presentingModal: presentingModal,
                              alignment: .leading,
@@ -67,7 +62,7 @@ struct CalculateView: View {
                     Text("Initial")
                     Text("Principal")
                 }
-                DigiTextView(placeholder: placeholder,
+                DigiTextView(placeholder: initial,
                              text: $initial,
                              presentingModal: presentingModal,
                              alignment: .leading,
@@ -79,7 +74,7 @@ struct CalculateView: View {
                     Text("Monthly")
                     Text("Addition")
                 }
-                DigiTextView(placeholder: placeholder,
+                DigiTextView(placeholder: contributionAmt,
                              text: $contributionAmt,
                              presentingModal: presentingModal,
                              alignment: .leading,
@@ -91,7 +86,7 @@ struct CalculateView: View {
                     Text("Years")
                     Text("of Growth")
                 }
-                DigiTextView(placeholder: placeholder,
+                DigiTextView(placeholder: time,
                              text: $time,
                              presentingModal: presentingModal,
                              alignment: .leading
@@ -103,7 +98,7 @@ struct CalculateView: View {
     }
     
     func excDouble() -> Double {
-        let interest = Double(stringInterest) ?? 0.0
+        let interest = Double(rate) ?? 0.0
         let num = log(2.0)
         let dem = log(1.0 + (interest / 100.0))
         return num / dem
@@ -113,14 +108,14 @@ struct CalculateView: View {
         List {
             HStack {
                 Text("Interest Rate")
-                DigiTextView(placeholder: placeholder,
-                             text: $stringInterest,
+                DigiTextView(placeholder: placeholderRate,
+                             text: $rate,
                              presentingModal: presentingModal,
                              alignment: .leading,
                              style: .decimal
                 )
             }
-            if (stringInterest != "") {
+            if (rate != "") {
                 Text("Doubling time \(String(format:"%.2f",excDouble())) years")
             }
         }

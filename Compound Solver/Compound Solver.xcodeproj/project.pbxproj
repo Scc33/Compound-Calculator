@@ -24,6 +24,7 @@
 		9C83921D27A5D4BF00C9F2C4 /* SaveDoubles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83921C27A5D4BF00C9F2C4 /* SaveDoubles.swift */; };
 		9C83921F27A5DA9200C9F2C4 /* DoubleMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83921E27A5DA9200C9F2C4 /* DoubleMenuView.swift */; };
 		9C83922427A8590100C9F2C4 /* SwiftUI Apple Watch Decimal Pad in Frameworks */ = {isa = PBXBuildFile; productRef = 9C83922327A8590100C9F2C4 /* SwiftUI Apple Watch Decimal Pad */; };
+		9C83923027AB2E4400C9F2C4 /* CompoundCalculationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA825279F8C7B00139F20 /* CompoundCalculationModel.swift */; };
 		9CE0E15C26B741D000589891 /* Compound_SolverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E15B26B741D000589891 /* Compound_SolverApp.swift */; };
 		9CE0E15E26B741D000589891 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E15D26B741D000589891 /* ContentView.swift */; };
 		9CE0E16026B741D400589891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E15F26B741D400589891 /* Assets.xcassets */; };
@@ -510,6 +511,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C83923027AB2E4400C9F2C4 /* CompoundCalculationModel.swift in Sources */,
 				9CE0E17B26BA219A00589891 /* ContentView.swift in Sources */,
 				9CE0E17D26BA219A00589891 /* Compound_SolverApp.swift in Sources */,
 			);
