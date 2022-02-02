@@ -33,7 +33,17 @@ struct ContentView: View {
                          alignment: .leading,
                          style: .decimal
             )
-        }
+        }.contextMenu(menuItems: {
+            Button(action: {
+                print("Refresh")
+            }, label: {
+                VStack{
+                    Image(systemName: "arrow.clockwise")
+                        .font(.title)
+                    Text("Refresh view")
+                }
+            })
+        })
     }
 }
 
