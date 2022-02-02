@@ -26,6 +26,16 @@ struct CompoundCalculationModel: Identifiable, Codable {
         currency = currencyType.dollar
     }
     
+    init(rate: Double, initial: Double, time: Int, contributionAmt: Double) {
+        self.rate = rate
+        self.initial = initial
+        self.time = time
+        self.contributionAmt = contributionAmt
+        self.compounding = compoundType.year
+        self.currency = currencyType.dollar
+    }
+    
+    
     init(rate: Double, initial: Double, time: Int, contributionAmt: Double, compounding: compoundType, currency: currencyType) {
         self.rate = rate
         self.initial = initial

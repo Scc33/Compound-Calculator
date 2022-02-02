@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftUI_Apple_Watch_Decimal_Pad
+import CompoundCalculationModel
 
 extension View {
     @ViewBuilder
@@ -34,7 +35,15 @@ struct CalculateView: View {
     @State private var stringInterest = ""
     let type: calculateType
     let title: String
-    @State private var setTime = ""
+    
+    @State private var rate = ""
+    @State private var initial = ""
+    @State private var time = ""
+    @State private var contributionAmt = ""
+    
+    var compound: CompoundCalculationModel {
+        CompoundCalculationModel(rate: Double(rate) ?? 0.0, initial: Double(initial) ?? 0.0, time: Double(time) ?? 0.0, contributionAmt: Double(contributionAmt) ?? 0.0)
+    }
     
     var compoundView: some View {
         List {
@@ -47,7 +56,7 @@ struct CalculateView: View {
                     Text("Rate")
                 }
                 DigiTextView(placeholder: placeholder,
-                             text: $stringInterest,
+                             text: $rate,
                              presentingModal: presentingModal,
                              alignment: .leading,
                              style: .decimal
@@ -59,7 +68,7 @@ struct CalculateView: View {
                     Text("Principal")
                 }
                 DigiTextView(placeholder: placeholder,
-                             text: $stringInterest,
+                             text: $initial,
                              presentingModal: presentingModal,
                              alignment: .leading,
                              style: .decimal
@@ -71,7 +80,7 @@ struct CalculateView: View {
                     Text("Addition")
                 }
                 DigiTextView(placeholder: placeholder,
-                             text: $stringInterest,
+                             text: $contributionAmt,
                              presentingModal: presentingModal,
                              alignment: .leading,
                              style: .decimal
@@ -83,7 +92,7 @@ struct CalculateView: View {
                     Text("of Growth")
                 }
                 DigiTextView(placeholder: placeholder,
-                             text: $setTime,
+                             text: $time,
                              presentingModal: presentingModal,
                              alignment: .leading
                 )
