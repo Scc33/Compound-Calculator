@@ -81,10 +81,10 @@ struct CompoundCalculationModel: Identifiable, Codable {
     }
     
     func calcYearlyProfit() -> [Double] {
-        var yearlyProfit: [Double] = [0.0]
+        var yearlyProfit: [Double] = []
         let contribs = calcYearlyContrib()
         let total = calcYearlyVals()
-        for i in 0 ..< time {
+        for i in 0 ..< (time+1) {
             yearlyProfit.append(total[i] - contribs[i])
         }
         return yearlyProfit

@@ -57,19 +57,21 @@ struct complexView: View {
         Section {
             GeometryReader { metrics in
                 HStack {
-                    Spacer()
-                    Text("Total").frame(width: metrics.size.width * 0.3)
-                    Text("Contribution")
-                    Text("Profit")
+                    Spacer().frame(width: metrics.size.width * 0.19)
+                    Text("Total").frame(width: metrics.size.width * 0.27)
+                        .alignmentGuide(.leading) { d in d[.trailing] }
+                    Text("Contribution").frame(width: metrics.size.width * 0.27)
+                        .alignmentGuide(.leading) { d in d[.trailing] }
+                    Text("Profit").frame(width: metrics.size.width * 0.27)
+                        .alignmentGuide(.leading) { d in d[.trailing] }
                 }
+            }
+            GeometryReader { metrics in
                 HStack {
-                    Text("Initial:")
-                    Spacer()
-                    Text("\(compound.currency.rawValue)\(stringify(value: vals[0]))")
-                    Spacer()
-                    Text("\(compound.currency.rawValue)\(stringify(value: contribs[0]))")
-                    Spacer()
-                    Text("\(compound.currency.rawValue)\(stringify(value: profits[0]))")
+                    Text("Initial:").frame(width: metrics.size.width * 0.19)
+                    Text("\(compound.currency.rawValue)\(stringify(value: vals[0]))").frame(width: metrics.size.width * 0.27)
+                    Text("\(compound.currency.rawValue)\(stringify(value: contribs[0]))").frame(width: metrics.size.width * 0.27)
+                    Text("\(compound.currency.rawValue)\(stringify(value: profits[0]))").frame(width: metrics.size.width * 0.27)
                 }
                 .contextMenu {
                     Button(action: {
@@ -78,15 +80,14 @@ struct complexView: View {
                         Text("Copy initial values")
                     }
                 }
-                ForEach(1 ..< vals.count) { i in
+            }
+            ForEach(1 ..< vals.count) { i in
+                GeometryReader { metrics in
                     HStack {
-                        Text("Year \(i):")
-                        Spacer()
-                        Text("\(compound.currency.rawValue)\(stringify(value: vals[i]))")
-                        Spacer()
-                        Text("\(compound.currency.rawValue)\(stringify(value: contribs[i]))")
-                        Spacer()
-                        Text("\(compound.currency.rawValue)\(stringify(value: profits[i]))")
+                        Text("Year \(i):").frame(width: metrics.size.width * 0.19)
+                        Text("\(compound.currency.rawValue)\(stringify(value: vals[i]))").frame(width: metrics.size.width * 0.27)
+                        Text("\(compound.currency.rawValue)\(stringify(value: contribs[i]))").frame(width: metrics.size.width * 0.27)
+                        Text("\(compound.currency.rawValue)\(stringify(value: profits[i]))").frame(width: metrics.size.width * 0.27)
                     }
                     .contextMenu {
                         Button(action: {
