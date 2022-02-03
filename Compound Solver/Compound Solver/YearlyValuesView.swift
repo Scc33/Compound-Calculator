@@ -57,25 +57,26 @@ struct complexView: View {
         Section {
             GeometryReader { metrics in
                 HStack {
-                    Spacer().frame(width: metrics.size.width * 0.19)
-                    Text("Total").frame(width: metrics.size.width * 0.27)
-                        .alignmentGuide(.leading) { d in d[.trailing] }
-                    Text("Contribution").frame(width: metrics.size.width * 0.27)
-                        .alignmentGuide(.leading) { d in d[.trailing] }
-                    Text("Profit").frame(width: metrics.size.width * 0.27)
-                        .alignmentGuide(.leading) { d in d[.trailing] }
+                    Spacer().frame(width: metrics.size.width * 0.18)
+                    VStack(alignment: .center) {
+                        Text("Contribution")
+                    }
+                    .frame(width: metrics.size.width * 0.41)
+                    VStack(alignment: .center) {
+                        Text("Profit")
+                    }
+                    .frame(width: metrics.size.width * 0.41)
                 }
             }
             GeometryReader { metrics in
                 HStack {
-                    Text("Initial:").frame(width: metrics.size.width * 0.19)
-                    Text("\(compound.currency.rawValue)\(stringify(value: vals[0]))").frame(width: metrics.size.width * 0.27)
-                    Text("\(compound.currency.rawValue)\(stringify(value: contribs[0]))").frame(width: metrics.size.width * 0.27)
-                    Text("\(compound.currency.rawValue)\(stringify(value: profits[0]))").frame(width: metrics.size.width * 0.27)
+                    Text("Initial:").frame(width: metrics.size.width * 0.18)
+                    Text("\(compound.currency.rawValue)\(stringify(value: contribs[0]))").frame(width: metrics.size.width * 0.41)
+                    Text("\(compound.currency.rawValue)\(stringify(value: profits[0]))").frame(width: metrics.size.width * 0.41)
                 }
                 .contextMenu {
                     Button(action: {
-                        UIPasteboard.general.string = "profit: " + String(profits[0]) + ", contribution: " + String(contribs[0]) + ", profits: " + String(profits[0])
+                        UIPasteboard.general.string = "contribution: " + String(contribs[0]) + ", profits: " + String(profits[0])
                     }) {
                         Text("Copy initial values")
                     }
@@ -84,14 +85,13 @@ struct complexView: View {
             ForEach(1 ..< vals.count) { i in
                 GeometryReader { metrics in
                     HStack {
-                        Text("Year \(i):").frame(width: metrics.size.width * 0.19)
-                        Text("\(compound.currency.rawValue)\(stringify(value: vals[i]))").frame(width: metrics.size.width * 0.27)
-                        Text("\(compound.currency.rawValue)\(stringify(value: contribs[i]))").frame(width: metrics.size.width * 0.27)
-                        Text("\(compound.currency.rawValue)\(stringify(value: profits[i]))").frame(width: metrics.size.width * 0.27)
+                        Text("Year \(i):").frame(width: metrics.size.width * 0.18)
+                        Text("\(compound.currency.rawValue)\(stringify(value: contribs[i]))").frame(width: metrics.size.width * 0.41)
+                        Text("\(compound.currency.rawValue)\(stringify(value: profits[i]))").frame(width: metrics.size.width * 0.41)
                     }
                     .contextMenu {
                         Button(action: {
-                            UIPasteboard.general.string = "profit: " + String(profits[i]) + ", contribution: " + String(contribs[i]) + ", profits: " + String(profits[i])
+                            UIPasteboard.general.string = "contribution: " + String(contribs[i]) + ", profits: " + String(profits[i])
                         }) {
                             Text("Copy year \(i) values")
                         }
@@ -110,7 +110,7 @@ struct YearlyValuesView: View {
         return List {
             Section {
                 Toggle(isOn: $complex) {
-                    Text("Show complex view")
+                    Text("Show contributions and profits")
                 }
             }
             if complex {

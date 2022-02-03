@@ -19,8 +19,7 @@ extension View {
 
 func stringify(value: Double) -> String{
     let formatter = NumberFormatter()
-    formatter.numberStyle = .decimal
-    formatter.maximumFractionDigits = 2;
+    formatter.numberStyle = .currency
     return formatter.string(from: NSNumber(value: value)) ?? ""
 }
 
