@@ -58,15 +58,15 @@ struct complexView: View {
             GeometryReader { metrics in
                 HStack {
                     Spacer()
-                        .frame(width: metrics.size.width * 0.20)
+                        .frame(width: metrics.size.width * 0.20, height: metrics.size.height)
                     VStack(alignment: .center) {
                         Text("Contribution")
                     }
-                    .frame(width: metrics.size.width * 0.40)
+                    .frame(width: metrics.size.width * 0.40, height: metrics.size.height)
                     VStack(alignment: .center) {
                         Text("Profit")
                     }
-                    .frame(width: metrics.size.width * 0.40)
+                    .frame(width: metrics.size.width * 0.40, height: metrics.size.height)
                 }
             }
             GeometryReader { metrics in
@@ -75,11 +75,11 @@ struct complexView: View {
                     VStack(alignment: .center) {
                         Text("\(stringify(value: contribs[0]))")
                     }
-                    .frame(width: metrics.size.width * 0.40)
+                    .frame(width: metrics.size.width * 0.40, height: metrics.size.height)
                     VStack(alignment: .center) {
                         Text("\(stringify(value: profits[0]))")
                     }
-                    .frame(width: metrics.size.width * 0.40)
+                    .frame(width: metrics.size.width * 0.40, height: metrics.size.height)
                 }
                 .contextMenu {
                     Button(action: {
@@ -92,16 +92,17 @@ struct complexView: View {
             ForEach(1 ..< vals.count) { i in
                 GeometryReader { metrics in
                     HStack {
-                        Text("Year \(i):").frame(width: metrics.size.width * 0.20)
+                        Text("Year \(i):").frame(width: metrics.size.width * 0.20, height: metrics.size.height)
                         VStack(alignment: .center) {
                             Text("\(stringify(value: contribs[i]))")
                         }
-                        .frame(width: metrics.size.width * 0.40)
+                        .frame(width: metrics.size.width * 0.40, height: metrics.size.height)
                         VStack(alignment: .center) {
                             Text("\(stringify(value: profits[i]))")
                         }
-                        .frame(width: metrics.size.width * 0.40)
+                        .frame(width: metrics.size.width * 0.40, height: metrics.size.height)
                     }
+                    .padding(.top, 6)
                     .contextMenu {
                         Button(action: {
                             UIPasteboard.general.string = "contribution: " + stringify(value: contribs[i]) + ", profits: " + stringify(value: profits[i])
