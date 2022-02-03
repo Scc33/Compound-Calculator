@@ -16,7 +16,7 @@ struct simpleView: View {
     
     var body: some View {
         Section {
-            Text("Initial: \(compound.currency.rawValue)\(stringify(value: vals[0]))")
+            Text("Initial: \(stringify(value: vals[0]))")
                 .contextMenu {
                     Button(action: {
                         UIPasteboard.general.string = String(vals[0])
@@ -25,7 +25,7 @@ struct simpleView: View {
                     }
                 }
             ForEach(1..<vals.count) { i in
-                Text("Year \(i): \(compound.currency.rawValue)\(stringify(value: vals[i]))")
+                Text("Year \(i): \(stringify(value: vals[i]))")
                     .contextMenu {
                         Button(action: {
                             UIPasteboard.general.string = String(vals[i])
@@ -57,26 +57,33 @@ struct complexView: View {
         Section {
             GeometryReader { metrics in
                 HStack {
-                    Spacer().frame(width: metrics.size.width * 0.18)
+                    Spacer()
+                        .frame(width: metrics.size.width * 0.20)
                     VStack(alignment: .center) {
                         Text("Contribution")
                     }
-                    .frame(width: metrics.size.width * 0.41)
+                    .frame(width: metrics.size.width * 0.40)
                     VStack(alignment: .center) {
                         Text("Profit")
                     }
-                    .frame(width: metrics.size.width * 0.41)
+                    .frame(width: metrics.size.width * 0.40)
                 }
             }
             GeometryReader { metrics in
                 HStack {
-                    Text("Initial:").frame(width: metrics.size.width * 0.18)
-                    Text("\(compound.currency.rawValue)\(stringify(value: contribs[0]))").frame(width: metrics.size.width * 0.41)
-                    Text("\(compound.currency.rawValue)\(stringify(value: profits[0]))").frame(width: metrics.size.width * 0.41)
+                    Text("Initial:").frame(width: metrics.size.width * 0.20)
+                    VStack(alignment: .center) {
+                        Text("\(stringify(value: contribs[0]))")
+                    }
+                    .frame(width: metrics.size.width * 0.40)
+                    VStack(alignment: .center) {
+                        Text("\(stringify(value: profits[0]))")
+                    }
+                    .frame(width: metrics.size.width * 0.40)
                 }
                 .contextMenu {
                     Button(action: {
-                        UIPasteboard.general.string = "contribution: " + String(contribs[0]) + ", profits: " + String(profits[0])
+                        UIPasteboard.general.string = "contribution: " + stringify(value: contribs[0]) + ", profits: " + stringify(value: profits[0])
                     }) {
                         Text("Copy initial values")
                     }
@@ -85,13 +92,19 @@ struct complexView: View {
             ForEach(1 ..< vals.count) { i in
                 GeometryReader { metrics in
                     HStack {
-                        Text("Year \(i):").frame(width: metrics.size.width * 0.18)
-                        Text("\(compound.currency.rawValue)\(stringify(value: contribs[i]))").frame(width: metrics.size.width * 0.41)
-                        Text("\(compound.currency.rawValue)\(stringify(value: profits[i]))").frame(width: metrics.size.width * 0.41)
+                        Text("Year \(i):").frame(width: metrics.size.width * 0.20)
+                        VStack(alignment: .center) {
+                            Text("\(stringify(value: contribs[i]))")
+                        }
+                        .frame(width: metrics.size.width * 0.40)
+                        VStack(alignment: .center) {
+                            Text("\(stringify(value: profits[i]))")
+                        }
+                        .frame(width: metrics.size.width * 0.40)
                     }
                     .contextMenu {
                         Button(action: {
-                            UIPasteboard.general.string = "contribution: " + String(contribs[i]) + ", profits: " + String(profits[i])
+                            UIPasteboard.general.string = "contribution: " + stringify(value: contribs[i]) + ", profits: " + stringify(value: profits[i])
                         }) {
                             Text("Copy year \(i) values")
                         }
