@@ -11,7 +11,7 @@
 		81B4FE1E30F1AB4B78D9D4F1 /* Pods_WatchCompound.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D7DA795DE52771C18E3F194 /* Pods_WatchCompound.framework */; };
 		9C1F4A4A27A075B0003003DA /* BannerAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1F4A4927A075B0003003DA /* BannerAd.swift */; };
 		9C6FA7FC279F479000139F20 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 9C6FA7FB279F479000139F20 /* Charts */; };
-		9C6FA7FE279F4D1A00139F20 /* CompoundMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FD279F4D1A00139F20 /* CompoundMenuView.swift */; };
+		9C6FA7FE279F4D1A00139F20 /* SettingMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FD279F4D1A00139F20 /* SettingMenuView.swift */; };
 		9C6FA800279F4D8F00139F20 /* DoubleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */; };
 		9C6FA802279F4DDA00139F20 /* FormulaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA801279F4DDA00139F20 /* FormulaView.swift */; };
 		9C6FA804279F501E00139F20 /* CompoundSolverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA803279F501E00139F20 /* CompoundSolverView.swift */; };
@@ -22,8 +22,10 @@
 		9C83921927A1F14500C9F2C4 /* ChartsEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83921827A1F14500C9F2C4 /* ChartsEx.swift */; };
 		9C83921B27A5D45C00C9F2C4 /* DoubleHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83921A27A5D45C00C9F2C4 /* DoubleHistoryView.swift */; };
 		9C83921D27A5D4BF00C9F2C4 /* SaveDoubles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83921C27A5D4BF00C9F2C4 /* SaveDoubles.swift */; };
-		9C83921F27A5DA9200C9F2C4 /* DoubleMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83921E27A5DA9200C9F2C4 /* DoubleMenuView.swift */; };
 		9C83922427A8590100C9F2C4 /* SwiftUI Apple Watch Decimal Pad in Frameworks */ = {isa = PBXBuildFile; productRef = 9C83922327A8590100C9F2C4 /* SwiftUI Apple Watch Decimal Pad */; };
+		9C83923127AB2E6200C9F2C4 /* CompoundCalculationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA825279F8C7B00139F20 /* CompoundCalculationModel.swift */; };
+		9C83923427AB2E9A00C9F2C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83923327AB2E9A00C9F2C4 /* Enums.swift */; };
+		9C83923527AB2EAB00C9F2C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83923327AB2E9A00C9F2C4 /* Enums.swift */; };
 		9CE0E15C26B741D000589891 /* Compound_SolverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E15B26B741D000589891 /* Compound_SolverApp.swift */; };
 		9CE0E15E26B741D000589891 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E15D26B741D000589891 /* ContentView.swift */; };
 		9CE0E16026B741D400589891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E15F26B741D400589891 /* Assets.xcassets */; };
@@ -89,7 +91,7 @@
 		490715EB0D9BF61AD391F022 /* Pods_Compound_Solver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Compound_Solver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D7DA795DE52771C18E3F194 /* Pods_WatchCompound.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchCompound.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C1F4A4927A075B0003003DA /* BannerAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAd.swift; sourceTree = "<group>"; };
-		9C6FA7FD279F4D1A00139F20 /* CompoundMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompoundMenuView.swift; sourceTree = "<group>"; };
+		9C6FA7FD279F4D1A00139F20 /* SettingMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMenuView.swift; sourceTree = "<group>"; };
 		9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleView.swift; sourceTree = "<group>"; };
 		9C6FA801279F4DDA00139F20 /* FormulaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaView.swift; sourceTree = "<group>"; };
 		9C6FA803279F501E00139F20 /* CompoundSolverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompoundSolverView.swift; sourceTree = "<group>"; };
@@ -100,7 +102,7 @@
 		9C83921827A1F14500C9F2C4 /* ChartsEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsEx.swift; sourceTree = "<group>"; };
 		9C83921A27A5D45C00C9F2C4 /* DoubleHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleHistoryView.swift; sourceTree = "<group>"; };
 		9C83921C27A5D4BF00C9F2C4 /* SaveDoubles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDoubles.swift; sourceTree = "<group>"; };
-		9C83921E27A5DA9200C9F2C4 /* DoubleMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleMenuView.swift; sourceTree = "<group>"; };
+		9C83923327AB2E9A00C9F2C4 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		9CE0E15826B741D000589891 /* Compound Solver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Compound Solver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE0E15B26B741D000589891 /* Compound_SolverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compound_SolverApp.swift; sourceTree = "<group>"; };
 		9CE0E15D26B741D000589891 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -194,7 +196,7 @@
 				9CE0E15F26B741D400589891 /* Assets.xcassets */,
 				9CE0E16426B741D400589891 /* Info.plist */,
 				9CE0E16126B741D400589891 /* Preview Content */,
-				9C6FA7FD279F4D1A00139F20 /* CompoundMenuView.swift */,
+				9C6FA7FD279F4D1A00139F20 /* SettingMenuView.swift */,
 				9C6FA801279F4DDA00139F20 /* FormulaView.swift */,
 				9C6FA803279F501E00139F20 /* CompoundSolverView.swift */,
 				9C6FA805279F5B1D00139F20 /* YearlyValuesView.swift */,
@@ -205,7 +207,7 @@
 				9C83921827A1F14500C9F2C4 /* ChartsEx.swift */,
 				9C83921A27A5D45C00C9F2C4 /* DoubleHistoryView.swift */,
 				9C83921C27A5D4BF00C9F2C4 /* SaveDoubles.swift */,
-				9C83921E27A5DA9200C9F2C4 /* DoubleMenuView.swift */,
+				9C83923327AB2E9A00C9F2C4 /* Enums.swift */,
 			);
 			path = "Compound Solver";
 			sourceTree = "<group>";
@@ -488,7 +490,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C83921F27A5DA9200C9F2C4 /* DoubleMenuView.swift in Sources */,
 				9C83921927A1F14500C9F2C4 /* ChartsEx.swift in Sources */,
 				9C83921D27A5D4BF00C9F2C4 /* SaveDoubles.swift in Sources */,
 				9C6FA804279F501E00139F20 /* CompoundSolverView.swift in Sources */,
@@ -500,8 +501,9 @@
 				9C1F4A4A27A075B0003003DA /* BannerAd.swift in Sources */,
 				9C83921B27A5D45C00C9F2C4 /* DoubleHistoryView.swift in Sources */,
 				9C6FA800279F4D8F00139F20 /* DoubleView.swift in Sources */,
-				9C6FA7FE279F4D1A00139F20 /* CompoundMenuView.swift in Sources */,
+				9C6FA7FE279F4D1A00139F20 /* SettingMenuView.swift in Sources */,
 				9C6FA802279F4DDA00139F20 /* FormulaView.swift in Sources */,
+				9C83923427AB2E9A00C9F2C4 /* Enums.swift in Sources */,
 				9CE0E15C26B741D000589891 /* Compound_SolverApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,7 +512,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C83923127AB2E6200C9F2C4 /* CompoundCalculationModel.swift in Sources */,
 				9CE0E17B26BA219A00589891 /* ContentView.swift in Sources */,
+				9C83923527AB2EAB00C9F2C4 /* Enums.swift in Sources */,
 				9CE0E17D26BA219A00589891 /* Compound_SolverApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -654,7 +658,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Compound Solver/Preview Content\"";
 				DEVELOPMENT_TEAM = Y46ZFSQQF3;
 				ENABLE_PREVIEWS = YES;
@@ -664,6 +668,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SeanCoughlin.Compound-Solver";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -678,7 +683,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Compound Solver/Preview Content\"";
 				DEVELOPMENT_TEAM = Y46ZFSQQF3;
 				ENABLE_PREVIEWS = YES;
@@ -688,6 +693,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SeanCoughlin.Compound-Solver";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -700,7 +706,7 @@
 			baseConfigurationReference = 2D5C6A521C3D7D3E2A8563D5 /* Pods-WatchCompound Extension.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WatchCompound Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = Y46ZFSQQF3;
 				ENABLE_PREVIEWS = YES;
@@ -710,6 +716,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SeanCoughlin.Compound-Solver.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -725,7 +732,7 @@
 			baseConfigurationReference = 455A58009774117685B41C08 /* Pods-WatchCompound Extension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WatchCompound Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = Y46ZFSQQF3;
 				ENABLE_PREVIEWS = YES;
@@ -735,6 +742,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SeanCoughlin.Compound-Solver.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -753,10 +761,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y46ZFSQQF3;
 				IBSC_MODULE = WatchCompound_Extension;
 				INFOPLIST_FILE = WatchCompound/Info.plist;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SeanCoughlin.Compound-Solver.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -775,10 +784,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y46ZFSQQF3;
 				IBSC_MODULE = WatchCompound_Extension;
 				INFOPLIST_FILE = WatchCompound/Info.plist;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SeanCoughlin.Compound-Solver.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;

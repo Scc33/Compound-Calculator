@@ -26,6 +26,16 @@ struct CompoundCalculationModel: Identifiable, Codable {
         currency = currencyType.dollar
     }
     
+    init(rate: Double, initial: Double, time: Int, contributionAmt: Double) {
+        self.rate = rate
+        self.initial = initial
+        self.time = time
+        self.contributionAmt = contributionAmt
+        self.compounding = compoundType.year
+        self.currency = currencyType.dollar
+    }
+    
+    
     init(rate: Double, initial: Double, time: Int, contributionAmt: Double, compounding: compoundType, currency: currencyType) {
         self.rate = rate
         self.initial = initial
@@ -59,6 +69,25 @@ struct CompoundCalculationModel: Identifiable, Codable {
         }
         
         return calcVals
+    }
+    
+    func calcYearlyContrib() -> [Double] {
+        var yearlyContrib: [Double] = []
+        yearlyContrib.append(initial)
+        for _ in 0 ..< time {
+            yearlyContrib.append((yearlyContrib.last ?? 0.0) + (contributionAmt * 12))
+        }
+        return yearlyContrib
+    }
+    
+    func calcYearlyProfit() -> [Double] {
+        var yearlyProfit: [Double] = []
+        let contribs = calcYearlyContrib()
+        let total = calcYearlyVals()
+        for i in 0 ..< (time+1) {
+            yearlyProfit.append(total[i] - contribs[i])
+        }
+        return yearlyProfit
     }
     
     func calcContrib() -> Double {

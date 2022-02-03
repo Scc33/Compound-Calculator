@@ -113,7 +113,7 @@ struct DoubleView: View {
                     Image(systemName: "gear")
                 }
             }.sheet(isPresented: $showingSettings) {
-                DoubleMenuView()
+                SettingMenuView()
             }
             .navigationTitle(Text("Doubling Calculator"))
         }

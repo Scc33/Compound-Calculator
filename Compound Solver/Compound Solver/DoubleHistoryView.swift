@@ -28,7 +28,7 @@ struct DoubleHistoryView: View {
                     stringInterest = String(interest)
                 }) {
                     VStack(alignment: .leading) {
-                        Text("Interest rate - \(String(format: "%.2f", doub))%")
+                        Text("Interest rate: \(String(format: "%.2f", doub))%")
                     }
                 }
                 .buttonStyle(PlainButtonStyle())
