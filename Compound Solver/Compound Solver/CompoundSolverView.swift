@@ -204,7 +204,7 @@ struct CompoundSolverView: View {
                     Image(systemName: "gear")
                 }
             }.sheet(isPresented: $showingSettings) {
-                CompoundMenuView(compoundCalcModel: $compound)
+                SettingMenuView()
             }
             .navigationTitle(Text("Compound Solver"))
         }
