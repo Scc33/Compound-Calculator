@@ -16,6 +16,11 @@ struct simpleView: View {
     
     var body: some View {
         Section {
+            HStack {
+                Spacer()
+                Text("Total Balance")
+                Spacer()
+            }
             Text("Initial: \(stringify(value: vals[0]))")
                 .contextMenu {
                     Button(action: {
@@ -60,11 +65,11 @@ struct complexView: View {
                     Spacer()
                         .frame(width: metrics.size.width * 0.20, height: metrics.size.height)
                     VStack(alignment: .center) {
-                        Text("Contribution")
+                        Text("Contributions")
                     }
                     .frame(width: metrics.size.width * 0.40, height: metrics.size.height)
                     VStack(alignment: .center) {
-                        Text("Profit")
+                        Text("Total Profit")
                     }
                     .frame(width: metrics.size.width * 0.40, height: metrics.size.height)
                 }
