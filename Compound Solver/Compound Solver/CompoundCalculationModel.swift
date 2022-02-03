@@ -71,6 +71,25 @@ struct CompoundCalculationModel: Identifiable, Codable {
         return calcVals
     }
     
+    func calcYearlyContrib() -> [Double] {
+        var yearlyContrib: [Double] = []
+        yearlyContrib.append(initial)
+        for _ in 0 ..< time {
+            yearlyContrib.append((yearlyContrib.last ?? 0.0) + (contributionAmt * 12))
+        }
+        return yearlyContrib
+    }
+    
+    func calcYearlyProfit() -> [Double] {
+        var yearlyProfit: [Double] = [0.0]
+        let contribs = calcYearlyContrib()
+        let total = calcYearlyVals()
+        for i in 0 ..< time {
+            yearlyProfit.append(total[i] - contribs[i])
+        }
+        return yearlyProfit
+    }
+    
     func calcContrib() -> Double {
         return initial + ((contributionAmt * 12) * Double(time))
     }
