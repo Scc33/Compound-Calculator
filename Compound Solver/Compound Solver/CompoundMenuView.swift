@@ -34,12 +34,6 @@ struct CompoundMenuView: View {
     var body: some View {
         NavigationView {
             List {
-                Picker("Currency Type", selection: $compoundCalcModel.currency) {
-                    ForEach(currencyType.allCases, id: \.id) { value in
-                        Text(value.localizedName)
-                            .tag(value)
-                    }
-                }
                 Button(action: openPrivacy) {
                     Text("Privacy Policy")
                 }

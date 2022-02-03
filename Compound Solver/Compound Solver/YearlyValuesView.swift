@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct YearlyValuesView: View {
+struct simpleView: View {
     var compound: CompoundCalculationModel
     
     var vals: [Double] {
@@ -15,17 +15,17 @@ struct YearlyValuesView: View {
     }
     
     var body: some View {
-        return List {
-            Text("Initial Principal: \(compound.currency.rawValue)\(String(format: "%.2f", vals[0]))")
+        Section {
+            Text("Initial: \(stringify(value: vals[0]))")
                 .contextMenu {
                     Button(action: {
                         UIPasteboard.general.string = String(vals[0])
                     }) {
-                        Text("Copy")
+                        Text("Copy initial value")
                     }
                 }
             ForEach(1..<vals.count) { i in
-                Text("Year \(i): \(compound.currency.rawValue)\(String(format: "%.2f", vals[i]))")
+                Text("Year \(i): \(stringify(value: vals[i]))")
                     .contextMenu {
                         Button(action: {
                             UIPasteboard.general.string = String(vals[i])
@@ -33,6 +33,103 @@ struct YearlyValuesView: View {
                             Text("Copy year \(i) value")
                         }
                     }
+            }
+        }
+    }
+}
+
+struct complexView: View {
+    var compound: CompoundCalculationModel
+    
+    var vals: [Double] {
+        return compound.calcYearlyVals()
+    }
+    
+    var contribs: [Double] {
+        return compound.calcYearlyContrib()
+    }
+    
+    var profits: [Double] {
+        return compound.calcYearlyProfit()
+    }
+    
+    var body: some View {
+        Section {
+            GeometryReader { metrics in
+                HStack {
+                    Spacer()
+                        .frame(width: metrics.size.width * 0.20)
+                    VStack(alignment: .center) {
+                        Text("Contribution")
+                    }
+                    .frame(width: metrics.size.width * 0.40)
+                    VStack(alignment: .center) {
+                        Text("Profit")
+                    }
+                    .frame(width: metrics.size.width * 0.40)
+                }
+            }
+            GeometryReader { metrics in
+                HStack {
+                    Text("Initial:").frame(width: metrics.size.width * 0.20)
+                    VStack(alignment: .center) {
+                        Text("\(stringify(value: contribs[0]))")
+                    }
+                    .frame(width: metrics.size.width * 0.40)
+                    VStack(alignment: .center) {
+                        Text("\(stringify(value: profits[0]))")
+                    }
+                    .frame(width: metrics.size.width * 0.40)
+                }
+                .contextMenu {
+                    Button(action: {
+                        UIPasteboard.general.string = "contribution: " + stringify(value: contribs[0]) + ", profits: " + stringify(value: profits[0])
+                    }) {
+                        Text("Copy initial values")
+                    }
+                }
+            }
+            ForEach(1 ..< vals.count) { i in
+                GeometryReader { metrics in
+                    HStack {
+                        Text("Year \(i):").frame(width: metrics.size.width * 0.20)
+                        VStack(alignment: .center) {
+                            Text("\(stringify(value: contribs[i]))")
+                        }
+                        .frame(width: metrics.size.width * 0.40)
+                        VStack(alignment: .center) {
+                            Text("\(stringify(value: profits[i]))")
+                        }
+                        .frame(width: metrics.size.width * 0.40)
+                    }
+                    .contextMenu {
+                        Button(action: {
+                            UIPasteboard.general.string = "contribution: " + stringify(value: contribs[i]) + ", profits: " + stringify(value: profits[i])
+                        }) {
+                            Text("Copy year \(i) values")
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct YearlyValuesView: View {
+    @State private var complex = false
+    var compound: CompoundCalculationModel
+    
+    var body: some View {
+        return List {
+            Section {
+                Toggle(isOn: $complex) {
+                    Text("Show contributions and profits")
+                }
+            }
+            if complex {
+                complexView(compound: compound)
+            } else {
+                simpleView(compound: compound)
             }
         }
         .navigationTitle(Text("Yearly Values"))
