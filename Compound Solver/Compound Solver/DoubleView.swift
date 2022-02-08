@@ -44,80 +44,78 @@ struct DoubleView: View {
     }
     
     var body: some View {
-        NavigationView {
-            Form {
+        Form {
+            Section {
+                VStack(alignment: .leading) {
+                    Text("Interest Rate")
+                    HStack {
+                        Text("%")
+                        TextField("Rate", text: $stringInterest)
+                            .keyboardType(.decimalPad)
+                            .multilineTextAlignment(.trailing)
+                            .onReceive(Just(stringInterest)) { newValue in
+                                let filtered = newValue.filter { "0123456789.".contains($0) }
+                                if filtered != newValue {
+                                    stringInterest = filtered
+                                }
+                            }
+                    }
+                }
+                Button("Calculate") {
+                    interest = Double(stringInterest) ?? 0.0
+                    hideKeyboard()
+                    print(interest)
+                    if (interest == 0.0) {
+                        makeInvalid()
+                    } else {
+                        createTime()
+                        saveDoubles.save(doubleToSave: interest)
+                        time = excDouble()
+                        if let encoded = try? JSONEncoder().encode(saveDoubles.savedDoubles) {
+                            UserDefaults.standard.set(encoded, forKey: "SavedDouble")
+                        }
+                    }
+                }
+                .alert(isPresented: $invalid) {
+                    Alert(
+                        title: Text("Invalid"),
+                        message: Text("The interest rate must be greater than 0% to double"),
+                        dismissButton: .default(Text("Got it!"))
+                    )
+                }
+            }
+            if showTime {
                 Section {
-                    VStack(alignment: .leading) {
-                        Text("Interest Rate")
-                        HStack {
-                            Text("%")
-                            TextField("Rate", text: $stringInterest)
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.trailing)
-                                .onReceive(Just(stringInterest)) { newValue in
-                                    let filtered = newValue.filter { "0123456789.".contains($0) }
-                                    if filtered != newValue {
-                                        stringInterest = filtered
-                                    }
-                                }
-                        }
-                    }
-                    Button("Calculate") {
-                        interest = Double(stringInterest) ?? 0.0
-                        hideKeyboard()
-                        print(interest)
-                        if (interest == 0.0) {
-                            makeInvalid()
-                        } else {
-                            createTime()
-                            saveDoubles.save(doubleToSave: interest)
-                            time = excDouble()
-                            if let encoded = try? JSONEncoder().encode(saveDoubles.savedDoubles) {
-                                UserDefaults.standard.set(encoded, forKey: "SavedDouble")
+                    Text("Doubling time \(String(format:"%.2f",time)) years")
+                        .contextMenu {
+                            Button(action: {
+                                UIPasteboard.general.string = String(time)
+                            }) {
+                                Text("Copy doubling time")
                             }
                         }
-                    }
-                    .alert(isPresented: $invalid) {
-                        Alert(
-                            title: Text("Invalid"),
-                            message: Text("The interest rate must be greater than 0% to double"),
-                            dismissButton: .default(Text("Got it!"))
-                        )
-                    }
-                }
-                if showTime {
-                    Section {
-                        Text("Doubling time \(String(format:"%.2f",time)) years")
-                            .contextMenu {
-                                Button(action: {
-                                    UIPasteboard.general.string = String(time)
-                                }) {
-                                    Text("Copy doubling time")
-                                }
-                            }
-                    }
-                }
-                if showTime {
-                    Section {
-                        NavigationLink(destination: DoubleHistoryView(interest: $interest, history: saveDoubles, rootIsActive: $isActive, showTime: $showTime, stringInterest: $stringInterest), isActive: $isActive) {
-                            Text("History")
-                        }
-                        .isDetailLink(false)
-                    }
                 }
             }
-            .toolbar {
-                Button {
-                    self.showingSettings.toggle()
-                } label: {
-                    Image(systemName: "gear")
+            if showTime {
+                Section {
+                    NavigationLink(destination: DoubleHistoryView(interest: $interest, history: saveDoubles, rootIsActive: $isActive, showTime: $showTime, stringInterest: $stringInterest), isActive: $isActive) {
+                        Text("History")
+                    }
+                    .isDetailLink(false)
                 }
-            }.sheet(isPresented: $showingSettings) {
-                SettingMenuView()
             }
-            .navigationTitle(Text("Doubling Calculator"))
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+        .toolbar {
+            Button {
+                self.showingSettings.toggle()
+            } label: {
+                Image(systemName: "gear")
+            }
+        }.sheet(isPresented: $showingSettings) {
+            SettingMenuView()
+        }
+        .navigationTitle(Text("Doubling Calculator"))
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

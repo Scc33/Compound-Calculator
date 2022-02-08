@@ -19,9 +19,9 @@ struct ContentView: View {
                     Text("Compound Solver")
                     Image(systemName:"align.vertical.bottom.fill")
                 }.tag(0)
-            DoubleView()
+            OtherCalcView()
                 .tabItem {
-                    Text("Doubling Calculator")
+                    Text("Other Calculators")
                     Image(systemName:"multiply")
                 }.tag(1)
         }

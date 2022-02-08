@@ -10,6 +10,8 @@
 		3761120B1577076FB435304C /* Pods_Compound_Solver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490715EB0D9BF61AD391F022 /* Pods_Compound_Solver.framework */; };
 		81B4FE1E30F1AB4B78D9D4F1 /* Pods_WatchCompound.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D7DA795DE52771C18E3F194 /* Pods_WatchCompound.framework */; };
 		9C1F4A4A27A075B0003003DA /* BannerAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1F4A4927A075B0003003DA /* BannerAd.swift */; };
+		9C213B5A27B2E10E000F91C0 /* OtherCalcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C213B5927B2E10E000F91C0 /* OtherCalcView.swift */; };
+		9C213B5C27B2E15C000F91C0 /* SimpleInterestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C213B5B27B2E15C000F91C0 /* SimpleInterestView.swift */; };
 		9C6FA7FC279F479000139F20 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 9C6FA7FB279F479000139F20 /* Charts */; };
 		9C6FA7FE279F4D1A00139F20 /* SettingMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FD279F4D1A00139F20 /* SettingMenuView.swift */; };
 		9C6FA800279F4D8F00139F20 /* DoubleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */; };
@@ -91,6 +93,8 @@
 		490715EB0D9BF61AD391F022 /* Pods_Compound_Solver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Compound_Solver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D7DA795DE52771C18E3F194 /* Pods_WatchCompound.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchCompound.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C1F4A4927A075B0003003DA /* BannerAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAd.swift; sourceTree = "<group>"; };
+		9C213B5927B2E10E000F91C0 /* OtherCalcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCalcView.swift; sourceTree = "<group>"; };
+		9C213B5B27B2E15C000F91C0 /* SimpleInterestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleInterestView.swift; sourceTree = "<group>"; };
 		9C6FA7FD279F4D1A00139F20 /* SettingMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMenuView.swift; sourceTree = "<group>"; };
 		9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleView.swift; sourceTree = "<group>"; };
 		9C6FA801279F4DDA00139F20 /* FormulaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaView.swift; sourceTree = "<group>"; };
@@ -208,6 +212,8 @@
 				9C83921A27A5D45C00C9F2C4 /* DoubleHistoryView.swift */,
 				9C83921C27A5D4BF00C9F2C4 /* SaveDoubles.swift */,
 				9C83923327AB2E9A00C9F2C4 /* Enums.swift */,
+				9C213B5927B2E10E000F91C0 /* OtherCalcView.swift */,
+				9C213B5B27B2E15C000F91C0 /* SimpleInterestView.swift */,
 			);
 			path = "Compound Solver";
 			sourceTree = "<group>";
@@ -490,6 +496,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C213B5C27B2E15C000F91C0 /* SimpleInterestView.swift in Sources */,
 				9C83921927A1F14500C9F2C4 /* ChartsEx.swift in Sources */,
 				9C83921D27A5D4BF00C9F2C4 /* SaveDoubles.swift in Sources */,
 				9C6FA804279F501E00139F20 /* CompoundSolverView.swift in Sources */,
@@ -504,6 +511,7 @@
 				9C6FA7FE279F4D1A00139F20 /* SettingMenuView.swift in Sources */,
 				9C6FA802279F4DDA00139F20 /* FormulaView.swift in Sources */,
 				9C83923427AB2E9A00C9F2C4 /* Enums.swift in Sources */,
+				9C213B5A27B2E10E000F91C0 /* OtherCalcView.swift in Sources */,
 				9CE0E15C26B741D000589891 /* Compound_SolverApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
