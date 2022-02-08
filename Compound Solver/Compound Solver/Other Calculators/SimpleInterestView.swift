@@ -6,10 +6,67 @@
 //
 
 import SwiftUI
+import Combine
 
 struct SimpleInterestView: View {
+    @State private var showingSettings = false
+    @State private var stringInterest = ""
+    @State private var principal = ""
+    @State private var setTime = 0
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Form {
+            VStack(alignment: .leading) {
+                Text("Interest Rate")
+                HStack {
+                    Text("%")
+                    TextField("Rate", text: $stringInterest)
+                        .keyboardType(.decimalPad)
+                        .multilineTextAlignment(.trailing)
+                        .onReceive(Just(stringInterest)) { newValue in
+                            let filtered = newValue.filter { "0123456789.".contains($0) }
+                            if filtered != newValue {
+                                stringInterest = filtered
+                            }
+                        }
+                }
+            }
+            VStack(alignment: .leading) {
+                Text("Principal")
+                HStack {
+                    Text("$")
+                    TextField("Amount", text: $principal)
+                        .keyboardType(.decimalPad)
+                        .multilineTextAlignment(.trailing)
+                        .onReceive(Just(principal)) { newValue in
+                            let filtered = newValue.filter { "0123456789.".contains($0) }
+                            if filtered != newValue {
+                                stringInterest = filtered
+                            }
+                        }
+                }
+            }
+            VStack(alignment: .leading) {
+                Text("Years of Growth")
+                Picker("", selection: $setTime) {
+                    ForEach(1...100, id: \.self) {
+                        Text("\($0)")
+                    }
+                }
+                
+            }
+        }
+        .toolbar {
+            Button {
+                self.showingSettings.toggle()
+            } label: {
+                Image(systemName: "gear")
+            }
+        }.sheet(isPresented: $showingSettings) {
+            SettingMenuView()
+        }
+        .navigationTitle(Text("Doubling Calculator"))
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
