@@ -14,6 +14,7 @@
 		9C213B5C27B2E15C000F91C0 /* SimpleInterestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C213B5B27B2E15C000F91C0 /* SimpleInterestView.swift */; };
 		9C213B5E27B2E3DA000F91C0 /* CompoundTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C213B5D27B2E3DA000F91C0 /* CompoundTargetView.swift */; };
 		9C213B6027B2E415000F91C0 /* PercentageGrowthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C213B5F27B2E415000F91C0 /* PercentageGrowthView.swift */; };
+		9C213B6327B2E60B000F91C0 /* CompoundCalculationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA825279F8C7B00139F20 /* CompoundCalculationModel.swift */; };
 		9C6FA7FC279F479000139F20 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 9C6FA7FB279F479000139F20 /* Charts */; };
 		9C6FA7FE279F4D1A00139F20 /* SettingMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FD279F4D1A00139F20 /* SettingMenuView.swift */; };
 		9C6FA800279F4D8F00139F20 /* DoubleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */; };
@@ -27,7 +28,6 @@
 		9C83921B27A5D45C00C9F2C4 /* DoubleHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83921A27A5D45C00C9F2C4 /* DoubleHistoryView.swift */; };
 		9C83921D27A5D4BF00C9F2C4 /* SaveDoubles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83921C27A5D4BF00C9F2C4 /* SaveDoubles.swift */; };
 		9C83922427A8590100C9F2C4 /* SwiftUI Apple Watch Decimal Pad in Frameworks */ = {isa = PBXBuildFile; productRef = 9C83922327A8590100C9F2C4 /* SwiftUI Apple Watch Decimal Pad */; };
-		9C83923127AB2E6200C9F2C4 /* CompoundCalculationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA825279F8C7B00139F20 /* CompoundCalculationModel.swift */; };
 		9C83923427AB2E9A00C9F2C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83923327AB2E9A00C9F2C4 /* Enums.swift */; };
 		9C83923527AB2EAB00C9F2C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83923327AB2E9A00C9F2C4 /* Enums.swift */; };
 		9CE0E15C26B741D000589891 /* Compound_SolverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E15B26B741D000589891 /* Compound_SolverApp.swift */; };
@@ -173,6 +173,18 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		9C213B6127B2E58F000F91C0 /* Compound Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				9C6FA825279F8C7B00139F20 /* CompoundCalculationModel.swift */,
+				9C6FA807279F5C1900139F20 /* CompoundHistoryView.swift */,
+				9C6FA827279F906200139F20 /* SaveCompounds.swift */,
+				9C6FA805279F5B1D00139F20 /* YearlyValuesView.swift */,
+				9C6FA803279F501E00139F20 /* CompoundSolverView.swift */,
+			);
+			path = "Compound Calculator";
+			sourceTree = "<group>";
+		};
 		9CE0E14F26B741D000589891 = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +210,7 @@
 		9CE0E15A26B741D000589891 /* Compound Solver */ = {
 			isa = PBXGroup;
 			children = (
+				9C213B6127B2E58F000F91C0 /* Compound Calculator */,
 				9CE0E15B26B741D000589891 /* Compound_SolverApp.swift */,
 				9CE0E15D26B741D000589891 /* ContentView.swift */,
 				9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */,
@@ -206,11 +219,6 @@
 				9CE0E16126B741D400589891 /* Preview Content */,
 				9C6FA7FD279F4D1A00139F20 /* SettingMenuView.swift */,
 				9C6FA801279F4DDA00139F20 /* FormulaView.swift */,
-				9C6FA803279F501E00139F20 /* CompoundSolverView.swift */,
-				9C6FA805279F5B1D00139F20 /* YearlyValuesView.swift */,
-				9C6FA807279F5C1900139F20 /* CompoundHistoryView.swift */,
-				9C6FA825279F8C7B00139F20 /* CompoundCalculationModel.swift */,
-				9C6FA827279F906200139F20 /* SaveCompounds.swift */,
 				9C1F4A4927A075B0003003DA /* BannerAd.swift */,
 				9C83921827A1F14500C9F2C4 /* ChartsEx.swift */,
 				9C83921A27A5D45C00C9F2C4 /* DoubleHistoryView.swift */,
@@ -528,9 +536,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C83923127AB2E6200C9F2C4 /* CompoundCalculationModel.swift in Sources */,
 				9CE0E17B26BA219A00589891 /* ContentView.swift in Sources */,
 				9C83923527AB2EAB00C9F2C4 /* Enums.swift in Sources */,
+				9C213B6327B2E60B000F91C0 /* CompoundCalculationModel.swift in Sources */,
 				9CE0E17D26BA219A00589891 /* Compound_SolverApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
