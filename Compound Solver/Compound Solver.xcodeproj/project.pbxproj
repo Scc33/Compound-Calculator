@@ -185,6 +185,23 @@
 			path = "Compound Calculator";
 			sourceTree = "<group>";
 		};
+		9C213B6427B2E673000F91C0 /* Double Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */,
+				9C83921A27A5D45C00C9F2C4 /* DoubleHistoryView.swift */,
+				9C83921C27A5D4BF00C9F2C4 /* SaveDoubles.swift */,
+			);
+			path = "Double Calculator";
+			sourceTree = "<group>";
+		};
+		9C213B6627B2E6CC000F91C0 /* Other Calculators */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Other Calculators";
+			sourceTree = "<group>";
+		};
 		9CE0E14F26B741D000589891 = {
 			isa = PBXGroup;
 			children = (
@@ -210,10 +227,11 @@
 		9CE0E15A26B741D000589891 /* Compound Solver */ = {
 			isa = PBXGroup;
 			children = (
+				9C213B6627B2E6CC000F91C0 /* Other Calculators */,
+				9C213B6427B2E673000F91C0 /* Double Calculator */,
 				9C213B6127B2E58F000F91C0 /* Compound Calculator */,
 				9CE0E15B26B741D000589891 /* Compound_SolverApp.swift */,
 				9CE0E15D26B741D000589891 /* ContentView.swift */,
-				9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */,
 				9CE0E15F26B741D400589891 /* Assets.xcassets */,
 				9CE0E16426B741D400589891 /* Info.plist */,
 				9CE0E16126B741D400589891 /* Preview Content */,
@@ -221,8 +239,6 @@
 				9C6FA801279F4DDA00139F20 /* FormulaView.swift */,
 				9C1F4A4927A075B0003003DA /* BannerAd.swift */,
 				9C83921827A1F14500C9F2C4 /* ChartsEx.swift */,
-				9C83921A27A5D45C00C9F2C4 /* DoubleHistoryView.swift */,
-				9C83921C27A5D4BF00C9F2C4 /* SaveDoubles.swift */,
 				9C83923327AB2E9A00C9F2C4 /* Enums.swift */,
 				9C213B5927B2E10E000F91C0 /* OtherCalcView.swift */,
 				9C213B5B27B2E15C000F91C0 /* SimpleInterestView.swift */,
