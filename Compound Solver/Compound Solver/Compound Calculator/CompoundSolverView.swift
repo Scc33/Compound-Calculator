@@ -206,7 +206,7 @@ struct CompoundSolverView: View {
             }.sheet(isPresented: $showingSettings) {
                 SettingMenuView()
             }
-            .navigationTitle(Text("Compound Solver"))
+            .navigationTitle(Text("Compound Calculator"))
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
