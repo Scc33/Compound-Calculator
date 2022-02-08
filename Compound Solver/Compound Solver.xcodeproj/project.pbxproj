@@ -15,6 +15,7 @@
 		9C213B5E27B2E3DA000F91C0 /* CompoundTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C213B5D27B2E3DA000F91C0 /* CompoundTargetView.swift */; };
 		9C213B6027B2E415000F91C0 /* PercentageGrowthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C213B5F27B2E415000F91C0 /* PercentageGrowthView.swift */; };
 		9C213B6327B2E60B000F91C0 /* CompoundCalculationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA825279F8C7B00139F20 /* CompoundCalculationModel.swift */; };
+		9C213B6827B2E8A0000F91C0 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C213B6727B2E8A0000F91C0 /* SplashScreen.storyboard */; };
 		9C6FA7FC279F479000139F20 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 9C6FA7FB279F479000139F20 /* Charts */; };
 		9C6FA7FE279F4D1A00139F20 /* SettingMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FD279F4D1A00139F20 /* SettingMenuView.swift */; };
 		9C6FA800279F4D8F00139F20 /* DoubleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */; };
@@ -99,6 +100,7 @@
 		9C213B5B27B2E15C000F91C0 /* SimpleInterestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleInterestView.swift; sourceTree = "<group>"; };
 		9C213B5D27B2E3DA000F91C0 /* CompoundTargetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompoundTargetView.swift; sourceTree = "<group>"; };
 		9C213B5F27B2E415000F91C0 /* PercentageGrowthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageGrowthView.swift; sourceTree = "<group>"; };
+		9C213B6727B2E8A0000F91C0 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		9C6FA7FD279F4D1A00139F20 /* SettingMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMenuView.swift; sourceTree = "<group>"; };
 		9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleView.swift; sourceTree = "<group>"; };
 		9C6FA801279F4DDA00139F20 /* FormulaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaView.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				9C1F4A4927A075B0003003DA /* BannerAd.swift */,
 				9C83921827A1F14500C9F2C4 /* ChartsEx.swift */,
 				9C83923327AB2E9A00C9F2C4 /* Enums.swift */,
+				9C213B6727B2E8A0000F91C0 /* SplashScreen.storyboard */,
 			);
 			path = "Compound Solver";
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CE0E16326B741D400589891 /* Preview Assets.xcassets in Resources */,
+				9C213B6827B2E8A0000F91C0 /* SplashScreen.storyboard in Resources */,
 				9CE0E16026B741D400589891 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
