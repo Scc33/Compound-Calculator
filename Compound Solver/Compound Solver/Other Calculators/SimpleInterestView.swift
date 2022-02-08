@@ -60,12 +60,12 @@ struct SimpleInterestView: View {
             Button {
                 self.showingSettings.toggle()
             } label: {
-                Image(systemName: "gear")
+                Image(systemName: "questionmark.circle")
             }
         }.sheet(isPresented: $showingSettings) {
             SettingMenuView()
         }
-        .navigationTitle(Text("Doubling Calculator"))
+        .navigationTitle(Text("Simple Interest"))
         .navigationBarTitleDisplayMode(.inline)
     }
 }
