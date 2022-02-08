@@ -19,6 +19,12 @@ struct OtherCalcView: View {
                 NavigationLink(destination: SimpleInterestView()) {
                     Text("Simple Interest Calculator")
                 }
+                NavigationLink(destination: CompoundTargetView()) {
+                    Text("Compound Target Calculator")
+                }
+                NavigationLink(destination: PercentageGrowthView()) {
+                    Text("Percent Growth Calculator")
+                }
             }
             .navigationTitle(Text("Other Calculator"))
             .toolbar {
