@@ -8,6 +8,7 @@
 import SwiftUI
 import Charts
 import Combine
+import StoreKit
 
 #if canImport(UIKit)
 extension View {
@@ -133,6 +134,9 @@ struct CompoundSolverView: View {
                             graphVals = compound.graphYearlyVals()
                             contrib = compound.calcContrib()
                             profit = compound.calcProfit()
+                            if let windowScene = UIApplication.shared.windows.first?.windowScene {
+                                SKStoreReviewController.requestReview(in: windowScene)
+                            }
                         }
                         if let encoded = try? JSONEncoder().encode(savedCompounds.savedCompounds) {
                             UserDefaults.standard.set(encoded, forKey: "SavedCompound")
