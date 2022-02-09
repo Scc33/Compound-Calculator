@@ -16,6 +16,7 @@
 		9C213B6027B2E415000F91C0 /* PercentageGrowthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C213B5F27B2E415000F91C0 /* PercentageGrowthView.swift */; };
 		9C213B6327B2E60B000F91C0 /* CompoundCalculationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA825279F8C7B00139F20 /* CompoundCalculationModel.swift */; };
 		9C213B6827B2E8A0000F91C0 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C213B6727B2E8A0000F91C0 /* SplashScreen.storyboard */; };
+		9C213B6E27B46AD3000F91C0 /* SaveSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C213B6A27B467AD000F91C0 /* SaveSimple.swift */; };
 		9C6FA7FC279F479000139F20 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 9C6FA7FB279F479000139F20 /* Charts */; };
 		9C6FA7FE279F4D1A00139F20 /* SettingMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FD279F4D1A00139F20 /* SettingMenuView.swift */; };
 		9C6FA800279F4D8F00139F20 /* DoubleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */; };
@@ -101,6 +102,8 @@
 		9C213B5D27B2E3DA000F91C0 /* CompoundTargetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompoundTargetView.swift; sourceTree = "<group>"; };
 		9C213B5F27B2E415000F91C0 /* PercentageGrowthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageGrowthView.swift; sourceTree = "<group>"; };
 		9C213B6727B2E8A0000F91C0 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
+		9C213B6A27B467AD000F91C0 /* SaveSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveSimple.swift; sourceTree = "<group>"; };
+		9C213B6C27B467ED000F91C0 /* SimpleHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHistoryView.swift; sourceTree = "<group>"; };
 		9C6FA7FD279F4D1A00139F20 /* SettingMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMenuView.swift; sourceTree = "<group>"; };
 		9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleView.swift; sourceTree = "<group>"; };
 		9C6FA801279F4DDA00139F20 /* FormulaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaView.swift; sourceTree = "<group>"; };
@@ -200,14 +203,24 @@
 		9C213B6627B2E6CC000F91C0 /* Other Calculators */ = {
 			isa = PBXGroup;
 			children = (
+				9C213B6927B46788000F91C0 /* Simple Interest Calculator */,
 				9C213B6427B2E673000F91C0 /* Double Calculator */,
 				9C6FA801279F4DDA00139F20 /* FormulaView.swift */,
 				9C213B5927B2E10E000F91C0 /* OtherCalcView.swift */,
-				9C213B5B27B2E15C000F91C0 /* SimpleInterestView.swift */,
 				9C213B5D27B2E3DA000F91C0 /* CompoundTargetView.swift */,
 				9C213B5F27B2E415000F91C0 /* PercentageGrowthView.swift */,
 			);
 			path = "Other Calculators";
+			sourceTree = "<group>";
+		};
+		9C213B6927B46788000F91C0 /* Simple Interest Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				9C213B5B27B2E15C000F91C0 /* SimpleInterestView.swift */,
+				9C213B6A27B467AD000F91C0 /* SaveSimple.swift */,
+				9C213B6C27B467ED000F91C0 /* SimpleHistoryView.swift */,
+			);
+			path = "Simple Interest Calculator";
 			sourceTree = "<group>";
 		};
 		9CE0E14F26B741D000589891 = {
@@ -538,6 +551,7 @@
 				9C6FA806279F5B1D00139F20 /* YearlyValuesView.swift in Sources */,
 				9C213B6027B2E415000F91C0 /* PercentageGrowthView.swift in Sources */,
 				9C6FA828279F906200139F20 /* SaveCompounds.swift in Sources */,
+				9C213B6E27B46AD3000F91C0 /* SaveSimple.swift in Sources */,
 				9C6FA826279F8C7B00139F20 /* CompoundCalculationModel.swift in Sources */,
 				9CE0E15E26B741D000589891 /* ContentView.swift in Sources */,
 				9C1F4A4A27A075B0003003DA /* BannerAd.swift in Sources */,

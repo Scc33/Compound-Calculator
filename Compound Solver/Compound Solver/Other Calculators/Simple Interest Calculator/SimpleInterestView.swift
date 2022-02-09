@@ -13,6 +13,7 @@ struct SimpleInterestView: View {
     @State private var stringInterest = ""
     @State private var principal = ""
     @State private var setTime = 0
+    //@State private var savedSimple = SaveSimple()
 
     var body: some View {
         Form {
@@ -53,6 +54,11 @@ struct SimpleInterestView: View {
                         Text("\($0)")
                     }
                 }
+            }
+            Button("Calculate") {
+                /*if let encoded = try? JSONEncoder().encode(savedSimple.history) {
+                    UserDefaults.standard.set(encoded, forKey: "SavedSimple")
+                }*/
                 
             }
         }
