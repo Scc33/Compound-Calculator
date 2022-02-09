@@ -109,7 +109,7 @@ struct SimpleInterestView: View {
                 }
             }
         }
-        .toolbar {
+        /*.toolbar {
             Button {
                 self.showingSettings.toggle()
             } label: {
@@ -117,7 +117,7 @@ struct SimpleInterestView: View {
             }
         }.sheet(isPresented: $showingSettings) {
             SettingMenuView()
-        }
+        }*/
         .navigationTitle(Text("Simple Interest"))
         .navigationBarTitleDisplayMode(.inline)
     }
