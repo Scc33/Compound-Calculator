@@ -11,9 +11,28 @@ import Combine
 struct SimpleInterestView: View {
     @State private var showingSettings = false
     @State private var stringInterest = ""
-    @State private var principal = ""
+    @State private var stringPrincipal = ""
+    @State private var interest = 0.0
+    @State private var principal = 0.0
     @State private var setTime = 0
     //@State private var savedSimple = SaveSimple()
+    @State private var showCalc = false
+    @State private var invalid = false
+    @State private var finalValue = 0.0
+    
+    func createCalc() {
+        if showCalc == false {
+            invalid = false
+            showCalc = true
+        }
+    }
+    
+    func makeInvalid() {
+        if invalid == false {
+            invalid = true
+            showCalc = false
+        }
+    }
 
     var body: some View {
         Form {
@@ -36,13 +55,13 @@ struct SimpleInterestView: View {
                 Text("Principal")
                 HStack {
                     Text("$")
-                    TextField("Amount", text: $principal)
+                    TextField("Amount", text: $stringPrincipal)
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
-                        .onReceive(Just(principal)) { newValue in
+                        .onReceive(Just(stringPrincipal)) { newValue in
                             let filtered = newValue.filter { "0123456789.".contains($0) }
                             if filtered != newValue {
-                                stringInterest = filtered
+                                stringPrincipal = filtered
                             }
                         }
                 }
@@ -59,7 +78,35 @@ struct SimpleInterestView: View {
                 /*if let encoded = try? JSONEncoder().encode(savedSimple.history) {
                     UserDefaults.standard.set(encoded, forKey: "SavedSimple")
                 }*/
-                
+                interest = Double(stringInterest) ?? 0.0
+                principal = Double(stringPrincipal) ?? 0.0
+                if (interest == 0.0 || principal == 0.0 || setTime == 0) {
+                    makeInvalid()
+                } else {
+                    createCalc()
+                    let simp = SimpleInterest(interest: interest, principal: principal, time: setTime)
+                    finalValue = simp.calcInterest()
+                }
+            }
+            .alert(isPresented: $invalid) {
+                Alert(
+                    title: Text("Invalid"),
+                    message: Text("The interest rate, principal, and time must be set"),
+                    dismissButton: .default(Text("Got it!"))
+                )
+            }
+            
+            if showCalc {
+                Section {
+                    Text("Final value: $\(String(format:"%.2f", finalValue))")
+                        .contextMenu {
+                            Button(action: {
+                                UIPasteboard.general.string = String(finalValue)
+                            }) {
+                                Text("Copy final value")
+                            }
+                        }
+                }
             }
         }
         .toolbar {

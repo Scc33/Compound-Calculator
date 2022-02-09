@@ -11,9 +11,11 @@ struct SimpleInterest: Identifiable, Codable {
     var id = UUID()
     var interest: Double
     var principal: Double
-    var time: Double
+    var time: Int
     
-    func calcInterest() -> 
+    func calcInterest() -> Double {
+        return principal * (1 + (interest / 100) * Double(time))
+    }
 }
 
 class SaveSimple: Codable, ObservableObject {
