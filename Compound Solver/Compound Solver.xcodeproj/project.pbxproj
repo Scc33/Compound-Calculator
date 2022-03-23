@@ -17,6 +17,7 @@
 		9C213B6327B2E60B000F91C0 /* CompoundCalculationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA825279F8C7B00139F20 /* CompoundCalculationModel.swift */; };
 		9C213B6827B2E8A0000F91C0 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C213B6727B2E8A0000F91C0 /* SplashScreen.storyboard */; };
 		9C213B6E27B46AD3000F91C0 /* SaveSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C213B6A27B467AD000F91C0 /* SaveSimple.swift */; };
+		9C213B7027B46F7F000F91C0 /* RequestReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C213B6F27B46F7F000F91C0 /* RequestReviewController.swift */; };
 		9C6FA7FC279F479000139F20 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 9C6FA7FB279F479000139F20 /* Charts */; };
 		9C6FA7FE279F4D1A00139F20 /* SettingMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FD279F4D1A00139F20 /* SettingMenuView.swift */; };
 		9C6FA800279F4D8F00139F20 /* DoubleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */; };
@@ -104,6 +105,7 @@
 		9C213B6727B2E8A0000F91C0 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		9C213B6A27B467AD000F91C0 /* SaveSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveSimple.swift; sourceTree = "<group>"; };
 		9C213B6C27B467ED000F91C0 /* SimpleHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHistoryView.swift; sourceTree = "<group>"; };
+		9C213B6F27B46F7F000F91C0 /* RequestReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestReviewController.swift; sourceTree = "<group>"; };
 		9C6FA7FD279F4D1A00139F20 /* SettingMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMenuView.swift; sourceTree = "<group>"; };
 		9C6FA7FF279F4D8F00139F20 /* DoubleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleView.swift; sourceTree = "<group>"; };
 		9C6FA801279F4DDA00139F20 /* FormulaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaView.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				9C83921827A1F14500C9F2C4 /* ChartsEx.swift */,
 				9C83923327AB2E9A00C9F2C4 /* Enums.swift */,
 				9C213B6727B2E8A0000F91C0 /* SplashScreen.storyboard */,
+				9C213B6F27B46F7F000F91C0 /* RequestReviewController.swift */,
 			);
 			path = "Compound Solver";
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				9C83921927A1F14500C9F2C4 /* ChartsEx.swift in Sources */,
 				9C83921D27A5D4BF00C9F2C4 /* SaveDoubles.swift in Sources */,
 				9C6FA804279F501E00139F20 /* CompoundSolverView.swift in Sources */,
+				9C213B7027B46F7F000F91C0 /* RequestReviewController.swift in Sources */,
 				9C6FA808279F5C1900139F20 /* CompoundHistoryView.swift in Sources */,
 				9C6FA806279F5B1D00139F20 /* YearlyValuesView.swift in Sources */,
 				9C213B6027B2E415000F91C0 /* PercentageGrowthView.swift in Sources */,
