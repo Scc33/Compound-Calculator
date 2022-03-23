@@ -6,3 +6,18 @@
 //
 
 import Foundation
+
+struct RequestReviewController: Codable {
+    public var countCalcs: Int
+                
+    init() {
+        if let data = UserDefaults.standard.data(forKey: "countCalcs") {
+            if let decoded = try? JSONDecoder().decode(Int.self, from: data) {
+                    countCalcs = decoded
+                    return
+                }
+            }
+        
+        countCalcs = 0
+    }
+}
