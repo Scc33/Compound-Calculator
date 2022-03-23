@@ -33,6 +33,7 @@
 		9C83922427A8590100C9F2C4 /* SwiftUI Apple Watch Decimal Pad in Frameworks */ = {isa = PBXBuildFile; productRef = 9C83922327A8590100C9F2C4 /* SwiftUI Apple Watch Decimal Pad */; };
 		9C83923427AB2E9A00C9F2C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83923327AB2E9A00C9F2C4 /* Enums.swift */; };
 		9C83923527AB2EAB00C9F2C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83923327AB2E9A00C9F2C4 /* Enums.swift */; };
+		9CBAB9C627EBAE83004D2D4F /* SaveSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C213B6A27B467AD000F91C0 /* SaveSimple.swift */; };
 		9CE0E15C26B741D000589891 /* Compound_SolverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E15B26B741D000589891 /* Compound_SolverApp.swift */; };
 		9CE0E15E26B741D000589891 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E15D26B741D000589891 /* ContentView.swift */; };
 		9CE0E16026B741D400589891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E15F26B741D400589891 /* Assets.xcassets */; };
@@ -577,6 +578,7 @@
 				9CE0E17B26BA219A00589891 /* ContentView.swift in Sources */,
 				9C83923527AB2EAB00C9F2C4 /* Enums.swift in Sources */,
 				9C213B6327B2E60B000F91C0 /* CompoundCalculationModel.swift in Sources */,
+				9CBAB9C627EBAE83004D2D4F /* SaveSimple.swift in Sources */,
 				9CE0E17D26BA219A00589891 /* Compound_SolverApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
