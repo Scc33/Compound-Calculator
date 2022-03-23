@@ -16,7 +16,7 @@ struct ContentView: View {
         TabView(selection: $selectedTab) {
             CompoundSolverView()
                 .tabItem {
-                    Text("Compound Solver")
+                    Text("Compound Calculator")
                     Image(systemName:"align.vertical.bottom.fill")
                 }.tag(0)
             OtherCalcView()

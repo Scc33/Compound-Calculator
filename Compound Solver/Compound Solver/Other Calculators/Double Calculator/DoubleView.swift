@@ -105,7 +105,7 @@ struct DoubleView: View {
                 }
             }
         }
-        .toolbar {
+        /*.toolbar {
             Button {
                 self.showingSettings.toggle()
             } label: {
@@ -113,7 +113,7 @@ struct DoubleView: View {
             }
         }.sheet(isPresented: $showingSettings) {
             SettingMenuView()
-        }
+        }*/
         .navigationTitle(Text("Doubling Calculator"))
         .navigationBarTitleDisplayMode(.inline)
     }

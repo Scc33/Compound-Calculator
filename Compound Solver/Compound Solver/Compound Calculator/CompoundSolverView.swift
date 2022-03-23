@@ -8,6 +8,7 @@
 import SwiftUI
 import Charts
 import Combine
+import StoreKit
 
 #if canImport(UIKit)
 extension View {
@@ -26,6 +27,7 @@ func stringify(value: Double) -> String{
 struct CompoundSolverView: View {
     @State private var compound: CompoundCalculationModel = CompoundCalculationModel()
     @ObservedObject private var savedCompounds: SaveCompounds = SaveCompounds()
+    @State private var trackReview: RequestReviewController = RequestReviewController()
     @State private var showingSettings = false
     @State var isActive: Bool = false
     @State private var calculated: Bool = false
@@ -133,6 +135,15 @@ struct CompoundSolverView: View {
                             graphVals = compound.graphYearlyVals()
                             contrib = compound.calcContrib()
                             profit = compound.calcProfit()
+                            print(trackReview.countCalcs)
+                            if (trackReview.countCalcs == 10 || trackReview.countCalcs % 50 == 0) && trackReview.countCalcs != 0 {
+                                if let windowScene = UIApplication.shared.windows.first?.windowScene {
+                                    SKStoreReviewController.requestReview(in: windowScene)
+                                }
+                            }
+                            if let encoded = try? JSONEncoder().encode(trackReview.countCalcs) {
+                                UserDefaults.standard.set(encoded, forKey: "countCalcs")
+                            }
                         }
                         if let encoded = try? JSONEncoder().encode(savedCompounds.savedCompounds) {
                             UserDefaults.standard.set(encoded, forKey: "SavedCompound")
@@ -206,7 +217,7 @@ struct CompoundSolverView: View {
             }.sheet(isPresented: $showingSettings) {
                 SettingMenuView()
             }
-            .navigationTitle(Text("Compound Solver"))
+            .navigationTitle(Text("Compound Calculator"))
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

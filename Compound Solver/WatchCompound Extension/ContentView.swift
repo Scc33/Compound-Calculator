@@ -23,6 +23,7 @@ extension View {
 enum calculateType: String, Equatable, CaseIterable, Identifiable, Codable {
     case double = "double"
     case compound = "compound"
+    case simple = "simple"
     
     var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
     var id: String { self.rawValue }
@@ -40,6 +41,10 @@ struct CalculateView: View {
     
     var compound: CompoundCalculationModel {
         CompoundCalculationModel(rate: Double(rate) ?? 0.0, initial: Double(initial) ?? 0.0, time: Int(time) ?? 0, contributionAmt: Double(contributionAmt) ?? 0.0)
+    }
+    
+    var simpleCompound: SimpleInterest {
+        SimpleInterest(interest: Double(rate) ?? 0.0, principal: Double(initial) ?? 0.0, time: Int(time) ?? 0)
     }
     
     func stringify(value: Double) -> String{
@@ -136,11 +141,60 @@ struct CalculateView: View {
         .navBarTitleDisplayMode(.inline)
     }
     
+    var simpleView: some View {
+        List {
+            HStack {
+                VStack {
+                    Text("Interest")
+                    Text("Rate")
+                }
+                DigiTextView(placeholder: rate,
+                             text: $rate,
+                             presentingModal: presentingModal,
+                             alignment: .leading,
+                             style: .decimal
+                )
+            }
+            HStack {
+                VStack {
+                    Text("Initial")
+                    Text("Principal")
+                }
+                DigiTextView(placeholder: initial,
+                             text: $initial,
+                             presentingModal: presentingModal,
+                             alignment: .leading,
+                             style: .decimal
+                )
+            }
+            HStack {
+                VStack {
+                    Text("Years")
+                    Text("of Growth")
+                }
+                DigiTextView(placeholder: time,
+                             text: $time,
+                             presentingModal: presentingModal,
+                             alignment: .leading
+                )
+            }
+            NavigationLink(destination: List {
+                Text("Final Value: \(compound.currency.rawValue)\(String(format:"%.2f", simpleCompound.calcInterest()))")
+            }) {
+                Text("Calculate")
+            }
+        }
+        .navigationTitle(Text(title))
+        .navBarTitleDisplayMode(.inline)
+    }
+    
     var body: some View {
         if type == calculateType.compound {
             compoundView
-        } else {
+        } else if type == calculateType.double {
             doubleView
+        } else {
+            simpleView
         }
     }
 }
@@ -168,6 +222,7 @@ struct ContentView: View {
         List{
             RowView(title: "Compound Solver", image: "align.vertical.bottom.fill", type: calculateType.compound)
             RowView(title: "Double Calculator", image: "multiply", type: calculateType.double)
+            RowView(title: "Simple Interest", image: "percent", type: calculateType.simple)
         }
         .listStyle(.carousel)
     }
