@@ -54,8 +54,10 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/Compound Solver">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9CE0E16B26BA219600589891"
@@ -63,7 +65,7 @@
             BlueprintName = "WatchCompound"
             ReferencedContainer = "container:Compound Solver.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -71,8 +73,10 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/Compound Solver">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9CE0E16B26BA219600589891"
@@ -80,7 +84,16 @@
             BlueprintName = "WatchCompound"
             ReferencedContainer = "container:Compound Solver.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9CE0E16B26BA219600589891"
+            BuildableName = "WatchCompound.app"
+            BlueprintName = "WatchCompound"
+            ReferencedContainer = "container:Compound Solver.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
