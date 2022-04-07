@@ -9,7 +9,7 @@ import SwiftUI
 import GoogleMobileAds
 import UIKit
 
-final private class BannerVC: UIViewControllerRepresentable  {
+/*final private class BannerVC: UIViewControllerRepresentable  {
     func makeUIViewController(context: Context) -> UIViewController {
         let view = GADBannerView(adSize: GADAdSizeBanner)
 
@@ -41,4 +41,4 @@ struct Banner_Previews: PreviewProvider {
     static var previews: some View {
         Banner()
     }
-}
+}*/

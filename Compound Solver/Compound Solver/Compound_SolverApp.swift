@@ -6,14 +6,14 @@
 //
 
 import SwiftUI
-import GoogleMobileAds
+//import GoogleMobileAds
 
 
 @main
 struct Compound_SolverApp: App {
-    init() {
-        //GADMobileAds.sharedInstance().start(completionHandler: nil)
-    }
+    /*init() {
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+    }*/
     
     var body: some Scene {
         WindowGroup {

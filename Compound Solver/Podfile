@@ -6,7 +6,7 @@ target 'Compound Solver' do
   use_frameworks!
 
   # Pods for Compound Solver
-  pod 'Google-Mobile-Ads-SDK'
+  # pod 'Google-Mobile-Ads-SDK'
   
 end
 
