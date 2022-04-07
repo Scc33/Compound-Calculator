@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import GoogleMobileAds
+//import GoogleMobileAds
 import UIKit
 
 /*final private class BannerVC: UIViewControllerRepresentable  {
