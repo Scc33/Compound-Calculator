@@ -27,7 +27,7 @@ func stringify(value: Double) -> String{
 struct CompoundSolverView: View {
     @State private var compound: CompoundCalculationModel = CompoundCalculationModel()
     @ObservedObject private var savedCompounds: SaveCompounds = SaveCompounds()
-    @State private var trackReview: RequestReviewController = RequestReviewController()
+    @ObservedObject private var trackReview: RequestReviewController = RequestReviewController()
     @State private var showingSettings = false
     @State var isActive: Bool = false
     @State private var calculated: Bool = false
@@ -135,7 +135,7 @@ struct CompoundSolverView: View {
                             graphVals = compound.graphYearlyVals()
                             contrib = compound.calcContrib()
                             profit = compound.calcProfit()
-                            if trackReview.checkForReviewRequest {
+                            if trackReview.checkForReviewRequest() {
                                 if let windowScene = UIApplication.shared.windows.first?.windowScene {
                                     SKStoreReviewController.requestReview(in: windowScene)
                                 }

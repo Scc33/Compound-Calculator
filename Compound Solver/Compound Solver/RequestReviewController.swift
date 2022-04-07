@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct RequestReviewController: Codable {
+class RequestReviewController: Codable, ObservableObject {
     public var countCalcs: Int
                 
     init() {
-        if let data = UserDefaults.standard.data(forKey: "countCalcs") {
+        if let data = UserDefaults.standard.data(forKey: "countCalc") {
             if let decoded = try? JSONDecoder().decode(Int.self, from: data) {
                     countCalcs = decoded
                     return
@@ -21,13 +21,14 @@ struct RequestReviewController: Codable {
         countCalcs = 0
     }
     
-    mutating func checkForReviewRequest() -> Bool {
+    func checkForReviewRequest() -> Bool {
         countCalcs += 1
+        print(countCalcs)
         
         if let encoded = try? JSONEncoder().encode(self.countCalcs) {
-            UserDefaults.standard.set(encoded, forKey: "countCalcs")
+            UserDefaults.standard.set(encoded, forKey: "countCalc")
         }
         
-        return (countCalcs == 10 || countCalcs % 50 == 0) && countCalcs != 0
+        return (countCalcs == 5 || countCalcs == 15 || countCalcs % 50 == 0) && countCalcs != 0
     }
 }
