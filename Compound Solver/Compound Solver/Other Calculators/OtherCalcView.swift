@@ -13,18 +13,21 @@ struct OtherCalcView: View {
     var body: some View {
         NavigationView {
             List {
+                /*NavigationLink(destination: CompoundTargetView()) {
+                    Text("Compound Target Calculator")
+                }*/
+                NavigationLink(destination: DebtCalcView()) {
+                    Text("Debt Calculator")
+                }
                 NavigationLink(destination: DoubleView()) {
                     Text("Doubling Calculator")
+                }
+                NavigationLink(destination: PercentageGrowthView()) {
+                    Text("Percent Growth Calculator")
                 }
                 NavigationLink(destination: SimpleInterestView()) {
                     Text("Simple Interest Calculator")
                 }
-                /*NavigationLink(destination: CompoundTargetView()) {
-                    Text("Compound Target Calculator")
-                }
-                NavigationLink(destination: PercentageGrowthView()) {
-                    Text("Percent Growth Calculator")
-                }*/
             }
             .navigationTitle(Text("Other Calculators"))
             .toolbar {
