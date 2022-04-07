@@ -135,15 +135,12 @@ struct CompoundSolverView: View {
                             graphVals = compound.graphYearlyVals()
                             contrib = compound.calcContrib()
                             profit = compound.calcProfit()
-                            print(trackReview.countCalcs)
-                            if (trackReview.countCalcs == 10 || trackReview.countCalcs % 50 == 0) && trackReview.countCalcs != 0 {
+                            if trackReview.checkForReviewRequest {
                                 if let windowScene = UIApplication.shared.windows.first?.windowScene {
                                     SKStoreReviewController.requestReview(in: windowScene)
                                 }
                             }
-                            if let encoded = try? JSONEncoder().encode(trackReview.countCalcs) {
-                                UserDefaults.standard.set(encoded, forKey: "countCalcs")
-                            }
+
                         }
                         if let encoded = try? JSONEncoder().encode(savedCompounds.savedCompounds) {
                             UserDefaults.standard.set(encoded, forKey: "SavedCompound")

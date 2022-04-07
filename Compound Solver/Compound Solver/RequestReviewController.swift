@@ -20,4 +20,14 @@ struct RequestReviewController: Codable {
         
         countCalcs = 0
     }
+    
+    mutating func checkForReviewRequest() -> Bool {
+        countCalcs += 1
+        
+        if let encoded = try? JSONEncoder().encode(self.countCalcs) {
+            UserDefaults.standard.set(encoded, forKey: "countCalcs")
+        }
+        
+        return (countCalcs == 10 || countCalcs % 50 == 0) && countCalcs != 0
+    }
 }
