@@ -39,6 +39,12 @@ struct SettingMenuView: View {
         }
     }
     
+    func leaveAReview() {
+        if let url = URL(string: "https://apps.apple.com/us/app/compound-interest-solver/id1607884819?action=write-review") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     var body: some View {
         NavigationView {
             List {
@@ -53,7 +59,10 @@ struct SettingMenuView: View {
                     }
                 }.sheet(isPresented: $showingSheet,
                         content: {
-                         ActivityView(activityItems: [NSURL(string: "https://apps.apple.com/us/app/compound-solver/id1607884819")!] as [Any], applicationActivities: nil) })
+                         ActivityView(activityItems: [NSURL(string: "https://apps.apple.com/us/app/compound-interest-solver/id1607884819")!] as [Any], applicationActivities: nil) })
+                Button(action: leaveAReview) {
+                    Text("Leave a Review")
+                }
                 Button(action: openPrivacy) {
                     Text("Privacy Policy")
                 }

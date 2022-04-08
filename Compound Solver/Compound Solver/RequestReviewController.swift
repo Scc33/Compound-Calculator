@@ -29,6 +29,6 @@ class RequestReviewController: Codable, ObservableObject {
             UserDefaults.standard.set(encoded, forKey: "countCalc")
         }
         
-        return (countCalcs == 5 || countCalcs == 15 || countCalcs % 50 == 0) && countCalcs != 0
+        return countCalcs % 10 == 0 && countCalcs != 0
     }
 }

@@ -140,7 +140,6 @@ struct CompoundSolverView: View {
                                     SKStoreReviewController.requestReview(in: windowScene)
                                 }
                             }
-
                         }
                         if let encoded = try? JSONEncoder().encode(savedCompounds.savedCompounds) {
                             UserDefaults.standard.set(encoded, forKey: "SavedCompound")
