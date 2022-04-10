@@ -6,15 +6,6 @@
 //
 
 import SwiftUI
-
-//
-//  SimpleInterestView.swift
-//  Compound Solver
-//
-//  Created by Sean Coughlin on 2/8/22.
-//
-
-import SwiftUI
 import Combine
 
 precedencegroup ExponentiationPrecedence {
