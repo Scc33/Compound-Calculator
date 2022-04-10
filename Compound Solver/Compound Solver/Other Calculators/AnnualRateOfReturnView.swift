@@ -100,7 +100,7 @@ struct AnnualRateOfReturnView: View {
             .alert(isPresented: $invalid) {
                 Alert(
                     title: Text("Invalid"),
-                    message: Text("The interest rate, principal, and time must be set"),
+                    message: Text("The starting value, ending value, and time must be set"),
                     dismissButton: .default(Text("Got it!"))
                 )
             }

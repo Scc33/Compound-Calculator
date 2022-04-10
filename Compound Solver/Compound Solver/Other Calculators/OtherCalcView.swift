@@ -16,6 +16,9 @@ struct OtherCalcView: View {
                 /*NavigationLink(destination: CompoundTargetView()) {
                     Text("Compound Target Calculator")
                 }*/
+                NavigationLink(destination: AnnualRateOfReturnView()) {
+                    Text("Annual Rate of Return")
+                }
                 NavigationLink(destination: DebtCalcView()) {
                     Text("Debt Calculator")
                 }

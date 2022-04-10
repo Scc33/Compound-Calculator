@@ -35,6 +35,7 @@
 		9C83923527AB2EAB00C9F2C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83923327AB2E9A00C9F2C4 /* Enums.swift */; };
 		9CBAB9C627EBAE83004D2D4F /* SaveSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C213B6A27B467AD000F91C0 /* SaveSimple.swift */; };
 		9CD6518327FE85AB000FE1BC /* DebtCalcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD6518227FE85AB000FE1BC /* DebtCalcView.swift */; };
+		9CDC04462803419700C80B22 /* AnnualRateOfReturnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDC04452803419700C80B22 /* AnnualRateOfReturnView.swift */; };
 		9CE0E15C26B741D000589891 /* Compound_SolverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E15B26B741D000589891 /* Compound_SolverApp.swift */; };
 		9CE0E15E26B741D000589891 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E15D26B741D000589891 /* ContentView.swift */; };
 		9CE0E16026B741D400589891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E15F26B741D400589891 /* Assets.xcassets */; };
@@ -121,6 +122,7 @@
 		9C83921C27A5D4BF00C9F2C4 /* SaveDoubles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDoubles.swift; sourceTree = "<group>"; };
 		9C83923327AB2E9A00C9F2C4 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		9CD6518227FE85AB000FE1BC /* DebtCalcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtCalcView.swift; sourceTree = "<group>"; };
+		9CDC04452803419700C80B22 /* AnnualRateOfReturnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnualRateOfReturnView.swift; sourceTree = "<group>"; };
 		9CE0E15826B741D000589891 /* Compound Solver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Compound Solver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE0E15B26B741D000589891 /* Compound_SolverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compound_SolverApp.swift; sourceTree = "<group>"; };
 		9CE0E15D26B741D000589891 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -208,13 +210,14 @@
 		9C213B6627B2E6CC000F91C0 /* Other Calculators */ = {
 			isa = PBXGroup;
 			children = (
+				9CDC04442803409A00C80B22 /* Percent */,
+				9CDC04432803408900C80B22 /* Debt */,
 				9C213B6927B46788000F91C0 /* Simple Interest Calculator */,
 				9C213B6427B2E673000F91C0 /* Double Calculator */,
 				9C6FA801279F4DDA00139F20 /* FormulaView.swift */,
 				9C213B5927B2E10E000F91C0 /* OtherCalcView.swift */,
 				9C213B5D27B2E3DA000F91C0 /* CompoundTargetView.swift */,
-				9C213B5F27B2E415000F91C0 /* PercentageGrowthView.swift */,
-				9CD6518227FE85AB000FE1BC /* DebtCalcView.swift */,
+				9CDC04452803419700C80B22 /* AnnualRateOfReturnView.swift */,
 			);
 			path = "Other Calculators";
 			sourceTree = "<group>";
@@ -227,6 +230,22 @@
 				9C213B6C27B467ED000F91C0 /* SimpleHistoryView.swift */,
 			);
 			path = "Simple Interest Calculator";
+			sourceTree = "<group>";
+		};
+		9CDC04432803408900C80B22 /* Debt */ = {
+			isa = PBXGroup;
+			children = (
+				9CD6518227FE85AB000FE1BC /* DebtCalcView.swift */,
+			);
+			path = Debt;
+			sourceTree = "<group>";
+		};
+		9CDC04442803409A00C80B22 /* Percent */ = {
+			isa = PBXGroup;
+			children = (
+				9C213B5F27B2E415000F91C0 /* PercentageGrowthView.swift */,
+			);
+			path = Percent;
 			sourceTree = "<group>";
 		};
 		9CE0E14F26B741D000589891 = {
@@ -537,6 +556,7 @@
 				9C83921D27A5D4BF00C9F2C4 /* SaveDoubles.swift in Sources */,
 				9C6FA804279F501E00139F20 /* CompoundSolverView.swift in Sources */,
 				9C213B7027B46F7F000F91C0 /* RequestReviewController.swift in Sources */,
+				9CDC04462803419700C80B22 /* AnnualRateOfReturnView.swift in Sources */,
 				9C6FA808279F5C1900139F20 /* CompoundHistoryView.swift in Sources */,
 				9C6FA806279F5B1D00139F20 /* YearlyValuesView.swift in Sources */,
 				9C213B6027B2E415000F91C0 /* PercentageGrowthView.swift in Sources */,
@@ -708,7 +728,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Compound Solver/Preview Content\"";
 				DEVELOPMENT_TEAM = Y46ZFSQQF3;
 				ENABLE_PREVIEWS = YES;
@@ -718,7 +738,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SeanCoughlin.Compound-Solver";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -733,7 +753,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Compound Solver/Preview Content\"";
 				DEVELOPMENT_TEAM = Y46ZFSQQF3;
 				ENABLE_PREVIEWS = YES;
@@ -743,7 +763,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SeanCoughlin.Compound-Solver";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -756,7 +776,7 @@
 			baseConfigurationReference = 2D5C6A521C3D7D3E2A8563D5 /* Pods-WatchCompound Extension.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WatchCompound Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = Y46ZFSQQF3;
 				ENABLE_PREVIEWS = YES;
@@ -766,7 +786,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SeanCoughlin.Compound-Solver.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -782,7 +802,7 @@
 			baseConfigurationReference = 455A58009774117685B41C08 /* Pods-WatchCompound Extension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WatchCompound Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = Y46ZFSQQF3;
 				ENABLE_PREVIEWS = YES;
@@ -792,7 +812,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SeanCoughlin.Compound-Solver.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -811,11 +831,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y46ZFSQQF3;
 				IBSC_MODULE = WatchCompound_Extension;
 				INFOPLIST_FILE = WatchCompound/Info.plist;
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SeanCoughlin.Compound-Solver.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -834,11 +854,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y46ZFSQQF3;
 				IBSC_MODULE = WatchCompound_Extension;
 				INFOPLIST_FILE = WatchCompound/Info.plist;
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SeanCoughlin.Compound-Solver.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
