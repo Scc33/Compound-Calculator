@@ -135,7 +135,7 @@ struct AnnualRateOfReturnView: View {
         }.sheet(isPresented: $showingSettings) {
             SettingMenuView()
         }*/
-        .navigationTitle(Text("Annual Rate Of ReturnView"))
+        .navigationTitle(Text("Annual Rate Of Return"))
         .navigationBarTitleDisplayMode(.inline)
     }
 }
