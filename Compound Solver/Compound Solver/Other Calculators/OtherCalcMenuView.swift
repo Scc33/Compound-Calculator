@@ -25,6 +25,9 @@ struct OtherCalcMenuView: View {
                 NavigationLink(destination: DoubleView()) {
                     Text("Doubling Calculator")
                 }
+                NavigationLink(destination: InflationCalcView()) {
+                    Text("Inflation Calculator")
+                }
                 NavigationLink(destination: PercentageGrowthView()) {
                     Text("Percent Growth Calculator")
                 }

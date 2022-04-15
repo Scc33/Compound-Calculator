@@ -37,6 +37,7 @@
 		9CD6518327FE85AB000FE1BC /* DebtCalcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD6518227FE85AB000FE1BC /* DebtCalcView.swift */; };
 		9CDC04462803419700C80B22 /* AnnualRateOfReturnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDC04452803419700C80B22 /* AnnualRateOfReturnView.swift */; };
 		9CDC0448280A119500C80B22 /* OtherCalcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDC0447280A119500C80B22 /* OtherCalcView.swift */; };
+		9CDC044A280A16F200C80B22 /* InflationCalcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDC0449280A16F200C80B22 /* InflationCalcView.swift */; };
 		9CE0E15C26B741D000589891 /* Compound_SolverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E15B26B741D000589891 /* Compound_SolverApp.swift */; };
 		9CE0E15E26B741D000589891 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0E15D26B741D000589891 /* ContentView.swift */; };
 		9CE0E16026B741D400589891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE0E15F26B741D400589891 /* Assets.xcassets */; };
@@ -125,6 +126,7 @@
 		9CD6518227FE85AB000FE1BC /* DebtCalcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtCalcView.swift; sourceTree = "<group>"; };
 		9CDC04452803419700C80B22 /* AnnualRateOfReturnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnualRateOfReturnView.swift; sourceTree = "<group>"; };
 		9CDC0447280A119500C80B22 /* OtherCalcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCalcView.swift; sourceTree = "<group>"; };
+		9CDC0449280A16F200C80B22 /* InflationCalcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InflationCalcView.swift; sourceTree = "<group>"; };
 		9CE0E15826B741D000589891 /* Compound Solver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Compound Solver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE0E15B26B741D000589891 /* Compound_SolverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compound_SolverApp.swift; sourceTree = "<group>"; };
 		9CE0E15D26B741D000589891 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				9C83923327AB2E9A00C9F2C4 /* Enums.swift */,
 				9C213B6727B2E8A0000F91C0 /* SplashScreen.storyboard */,
 				9C213B6F27B46F7F000F91C0 /* RequestReviewController.swift */,
+				9CDC0449280A16F200C80B22 /* InflationCalcView.swift */,
 			);
 			path = "Compound Solver";
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				9C6FA804279F501E00139F20 /* CompoundSolverView.swift in Sources */,
 				9C213B7027B46F7F000F91C0 /* RequestReviewController.swift in Sources */,
 				9CDC04462803419700C80B22 /* AnnualRateOfReturnView.swift in Sources */,
+				9CDC044A280A16F200C80B22 /* InflationCalcView.swift in Sources */,
 				9C6FA808279F5C1900139F20 /* CompoundHistoryView.swift in Sources */,
 				9C6FA806279F5B1D00139F20 /* YearlyValuesView.swift in Sources */,
 				9C213B6027B2E415000F91C0 /* PercentageGrowthView.swift in Sources */,
