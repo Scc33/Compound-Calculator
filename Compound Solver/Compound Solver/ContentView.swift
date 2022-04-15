@@ -19,7 +19,7 @@ struct ContentView: View {
                     Text("Compound Calculator")
                     Image(systemName:"align.vertical.bottom.fill")
                 }.tag(0)
-            OtherCalcView()
+            OtherCalcMenuView()
                 .tabItem {
                     Text("Other Calculators")
                     Image(systemName:"multiply")
