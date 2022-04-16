@@ -44,6 +44,8 @@ struct CompoundSolverView: View {
     
     @State private var invalid = false
     
+    @State private var withdrawlMode = false
+    
     func createGraph() {
         if calculated == false {
             calculated = true
@@ -54,6 +56,9 @@ struct CompoundSolverView: View {
         NavigationView {
             Form {
                 Section {
+                    Toggle(isOn: $withdrawlMode) {
+                            Text("Withdrawl Mode")
+                        }
                     Group {
                         VStack(alignment: .leading) {
                             Text("Interest Rate")
