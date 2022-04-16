@@ -9,8 +9,19 @@ import SwiftUI
 
 let fileName = "Inflation.json"
 
-struct ResponseData: Decodable {
-    var InflationData: [InflationData]
+struct Response: Decodable {
+    var status: String
+    var responseTime: Int
+    var Results: [Result]
+}
+
+struct Result: Decodable {
+    var series: [Series]
+}
+
+struct Series: Decodable {
+    var seriesID: String
+    var data: [InflationData]
 }
 
 struct InflationData : Decodable {
@@ -25,8 +36,8 @@ func loadJson() -> [InflationData]? {
         do {
             let data = try Data(contentsOf: url)
             let decoder = JSONDecoder()
-            let jsonData = try decoder.decode(ResponseData.self, from: data)
-            return jsonData.InflationData
+            let jsonData = try decoder.decode(Response.self, from: data)
+            print(jsonData.status)
         } catch {
             print("error:\(error)")
         }
@@ -41,16 +52,29 @@ func apiCall(startYear: String, endYear: String) {
     request.httpMethod = "POST"
     request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
+    
     let session = URLSession.shared
     let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
         print(response!)
-        do {
-            let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
-            print(json)
+        if let data = data {
+            
+            let decoder = JSONDecoder()
+            do {
+                let json: Response = try! decoder.decode(Response.self, from: data)
+            }catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        /*do {
+            //let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, String>
+            //let results: ResponseData = json["Results"] as! ResponseData
+            //print(json["Results"])
+            //let jsonData = data!.data(using: .utf8)!
+            let json = try JSONSerialization.jsonObject(with: data!)
+            let blogPost: ResponseData = try! JSONDecoder().decode(ResponseData.self, from: json as! Data)
         } catch {
             print("error")
-        }
+        }*/
         /*do {
             let fileURL = try FileManager.default
                 .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
